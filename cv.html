@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curriculum Vitae (CV) — S M Roqunuzzaman · UI/UX Designer</title>
+  <meta name="description" content="Official Curriculum Vitae (CV) of S M Roqunuzzaman: product design employment at Betopia Group, technical skills matrix, full shipped case files, education, and honors.">
+  <meta property="og:title" content="Curriculum Vitae (CV) — S M Roqunuzzaman · UI/UX Designer">
+  <meta property="og:description" content="Verified track record, design systems leadership, shipped SaaS case files, and academic background.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    (function() {
+      try {
+        const saved = localStorage.getItem('theme');
+        if (saved === 'light' || (!saved && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body class="dossier-body">
+
+  <!-- Fluid Neon Ribbon Cursor (White Neon in Dark Mode / Dark Neon in Light Mode) -->
+  <canvas class="cursor-trail-canvas" id="cursorTrailCanvas" aria-hidden="true"></canvas>
+
+  <!-- Film Grain Overlay -->
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- Top Navigation Header -->
+  <header class="dossier-header-nav" role="banner">
+    <div class="dossier-nav-left">
+      <a href="index.html" class="dossier-back-btn">
+        <span class="back-arrow">←</span>
+        <span>Back to Portfolio</span>
+      </a>
+    </div>
+
+    <div class="dossier-nav-right">
+      <a href="https://drive.google.com/file/d/1cXV8lthcDHrPGLQng46d6io8WmMNn0Pw/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="overlay-link resume-link-highlight" title="Open PDF Resume in Google Drive">PDF Resume ↗</a>
+      <a href="mailto:smroqunuzzaman@gmail.com" class="overlay-link">Mail</a>
+      <a href="https://dribbble.com/SMRoqunuzzaman" target="_blank" rel="noopener noreferrer" class="overlay-link">Dribbble</a>
+      <a href="https://www.linkedin.com/in/smroqunuzzaman/" target="_blank" rel="noopener noreferrer" class="overlay-link">LinkedIn</a>
+
+      <!-- Theme Switcher Bulb -->
+      <button class="theme-bulb-toggle" id="themeToggle" type="button" aria-label="Toggle dark and light theme" role="switch" aria-checked="false" title="Click to turn lights on/off">
+        <div class="bulb-widget-wrapper">
+          <div class="bulb-disc-fixture">
+            <svg class="bulb-silhouette-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 2.5a6.5 6.5 0 0 0-6.5 6.5c0 2.44 1.34 4.56 3.32 5.66.45.25.74.72.74 1.24v1.8c0 .72.58 1.3 1.3 1.3h2.28c.72 0 1.3-.58 1.3-1.3v-1.8c0-.52.29-.99.74-1.24A6.48 6.48 0 0 0 18.5 9a6.5 6.5 0 0 0-6.5-6.5zm-1.14 17.5h2.28a.7.7 0 0 1 .7.7v.2a.7.7 0 0 1-.7.7h-2.28a.7.7 0 0 1-.7-.7v-.2a.7.7 0 0 1 .7-.7z"/>
+            </svg>
+          </div>
+          <div class="bulb-pull-chain" aria-hidden="true">
+            <span class="chain-string"></span>
+            <span class="chain-bead"></span>
+          </div>
+        </div>
+      </button>
+    </div>
+  </header>
+
+  <main class="dossier-main-container">
+    
+    <!-- Hero Title & Profile CV Lead -->
+    <header class="dossier-hero">
+      <div class="section-label-header">
+        <span class="section-tag-name">Verified Curriculum Vitae (CV)</span>
+        <div class="tag-divider"></div>
+      </div>
+      <h1 class="dossier-headline">CURRICULUM<br>VITAE (CV)</h1>
+      <p class="dossier-subhead">
+        Full verified professional record of product design roles at Betopia Group, enterprise design system governance, technical skills, English literature academic background, and honors.
+      </p>
+
+      <div class="cv-hero-actions" style="display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:2rem;">
+        <a href="https://drive.google.com/file/d/1cXV8lthcDHrPGLQng46d6io8WmMNn0Pw/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn-primary" style="display:inline-flex; align-items:center; gap:8px;">
+          <span>OPEN PDF RESUME (GOOGLE DRIVE)</span>
+          <span>↗</span>
+        </a>
+        <a href="mailto:smroqunuzzaman@gmail.com" class="btn-secondary" style="display:inline-flex; align-items:center; gap:8px;">
+          <span>EMAIL DIRECTLY</span>
+          <span>→</span>
+        </a>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <nav class="dossier-filter-bar" aria-label="Filter CV Sections">
+        <button type="button" class="filter-pill active" data-target="all">All Sections</button>
+        <button type="button" class="filter-pill" data-target="work">Experience</button>
+        <button type="button" class="filter-pill" data-target="skills">Skills</button>
+        <button type="button" class="filter-pill" data-target="projects">Case Archive</button>
+        <button type="button" class="filter-pill" data-target="education">Education</button>
+        <button type="button" class="filter-pill" data-target="achievements">Recognition</button>
+      </nav>
+    </header>
+
+    <!-- SECTION 1: WORK EXPERIENCE -->
+    <section class="dossier-section" id="work" data-category="work">
+      <div class="section-label-header">
+        <span class="section-tag-name">Employment & Track Record</span>
+        <div class="tag-divider"></div>
+      </div>
+      <h2 class="section-title-huge">WORK<br>EXPERIENCE</h2>
+
+      <div class="stack-list">
+
+        <!-- Role 01: Betopia Group -->
+        <article class="row-item">
+          <div class="grid-row">
+            <div class="row-col-5">
+              <h3 class="item-heading">UI/UX Designer</h3>
+              <p class="item-sub">Betopia Group</p>
+              <p class="item-meta">Dhaka, Bangladesh</p>
+            </div>
+
+            <div class="row-col-2">
+              <span class="item-period">Jan 2026 — Present</span>
+            </div>
+
+            <div class="row-col-5">
+              <ul class="bullet-list mb-medium">
+                <li>Designed end-to-end UI for <strong>ProQscan AI</strong> (Enterprise Procurement & Inventory Control), <strong>Callswain AI</strong> (Intelligent IVR & Agent Platform), <strong>Voqal</strong> (AI Voice SaaS), and <strong>Sakeena Institute</strong> (Islamic EdTech LMS) — multi-role dashboards, onboarding wizards, course builders, and billing panels across web and mobile.</li>
+                <li>Built comprehensive Figma design systems and delivered pixel-accurate, handoff-ready files with auto-layout, component variants, interactive tokens, and responsive grids for multi-persona enterprise platforms.</li>
+                <li>Collaborated closely with engineering and product leads in fast Agile sprints, iterating rapidly on user feedback and business requirements.</li>
+                <li>Engineered scalable design components for global products serving international audiences across 100+ countries.</li>
+              </ul>
+              <div class="tag-chips">
+                <span class="chip">SaaS Dashboards</span>
+                <span class="chip">Design Systems</span>
+                <span class="chip">Figma (Advanced)</span>
+                <span class="chip">Prototyping</span>
+                <span class="chip">Agile / Scrum</span>
+                <span class="chip">Multi-role Portals</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Role 02: Aims Digital School -->
+        <article class="row-item">
+          <div class="grid-row">
+            <div class="row-col-5">
+              <h3 class="item-heading">Computer Operator & IT Support</h3>
+              <p class="item-sub">Aims Digital School and College</p>
+              <p class="item-meta">Bangladesh</p>
+            </div>
+
+            <div class="row-col-2">
+              <span class="item-period">Jan 2024 — Jan 2026</span>
+            </div>
+
+            <div class="row-col-5">
+              <ul class="bullet-list mb-medium">
+                <li>Managed institutional IT infrastructure, digital student records, examination portals and network systems.</li>
+                <li>Supported faculty and administrative staff with technical troubleshooting, hardware maintenance and software administration.</li>
+                <li>Streamlined manual academic record workflows into automated spreadsheets and database management tools.</li>
+              </ul>
+              <div class="tag-chips">
+                <span class="chip">IT Support</span>
+                <span class="chip">System Admin</span>
+                <span class="chip">Workflow Automation</span>
+                <span class="chip">Data Management</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- SECTION 2: SKILLS MATRIX -->
+    <section class="dossier-section" id="skills" data-category="skills">
+      <div class="section-label-header">
+        <span class="section-tag-name">Capabilities & Technical Toolkit</span>
+        <div class="tag-divider"></div>
+      </div>
+      <h2 class="section-title-huge">SKILLS<br>MATRIX</h2>
+
+      <div class="grid-four-col">
+        <div class="skill-category">
+          <p class="skill-cat-title">Core UX Capabilities</p>
+          <ul class="skill-list">
+            <li>User Interface (UI) Design</li>
+            <li>User Experience (UX) Research</li>
+            <li>Information Architecture</li>
+            <li>User Flow & Journey Mapping</li>
+            <li>Wireframing & Lo-Fi Prototyping</li>
+            <li>Hi-Fi Interactive Prototyping</li>
+            <li>Usability Testing & Heuristics</li>
+            <li>Design-to-Dev Handoff</li>
+          </ul>
+        </div>
+
+        <div class="skill-category">
+          <p class="skill-cat-title">Design Tools</p>
+          <ul class="skill-list">
+            <li>Figma (Auto-Layout, Variables, Tokens)</li>
+            <li>Adobe Photoshop</li>
+            <li>Adobe Illustrator</li>
+            <li>Whimsical & Miro</li>
+            <li>Maze & UsabilityHub</li>
+            <li>Notion (Product Specs & ADRs)</li>
+          </ul>
+        </div>
+
+        <div class="skill-category">
+          <p class="skill-cat-title">Technical Literacy</p>
+          <ul class="skill-list">
+            <li>HTML5 Semantic Markup</li>
+            <li>CSS3 / Flexbox / CSS Grid</li>
+            <li>Responsive Breakpoint Modeling</li>
+            <li>Component State Logic</li>
+            <li>Git / Version Control Awareness</li>
+            <li>Micro-interaction Choreography</li>
+          </ul>
+        </div>
+
+        <div class="skill-category">
+          <p class="skill-cat-title">Platforms & Standards</p>
+          <ul class="skill-list">
+            <li>Responsive Web Applications</li>
+            <li>Native Mobile Design (iOS & Android)</li>
+            <li>Complex Enterprise SaaS Dashboards</li>
+            <li>Accessibility Standards (WCAG 2.1 AA)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: COMPLETE CASE ARCHIVE -->
+    <section class="dossier-section" id="projects" data-category="projects">
+      <div class="section-label-header">
+        <span class="section-tag-name">Full Portfolio Archive</span>
+        <div class="tag-divider"></div>
+      </div>
+      <h2 class="section-title-huge">SHIPPED<br>CASES</h2>
+
+      <div class="stack-list">
+
+        <!-- Case 01: ProQscan AI -->
+        <a href="https://proqscanai.com/" target="_blank" rel="noopener noreferrer" class="row-item project-link-row">
+          <div class="grid-row align-top">
+            <div class="row-col-1">
+              <span class="project-idx">01</span>
+            </div>
+            <div class="row-col-5">
+              <h3 class="project-title">ProQscan AI</h3>
+              <p class="project-subtitle">Enterprise Procurement & Inventory Control · Live Platform</p>
+              <div class="project-preview-card mt-3">
+                <img src="proqscan_mockup.jpg" alt="ProQscan AI Laptop Preview" class="project-img-thumb">
+              </div>
+            </div>
+            <div class="row-col-6">
+              <p class="project-desc">
+                Connected enterprise platform unifying 4 core operational portals: Procurement Requisitions, Real-time Stock Inventory, Forensic Anomaly Audit, and Executive Intelligence. Eliminates data silos with automated 3-way matching.
+              </p>
+              <div class="project-footer-meta">
+                <div class="tag-chips">
+                  <span class="chip">Enterprise SaaS</span>
+                  <span class="chip">Procurement</span>
+                  <span class="chip">Forensic Audit</span>
+                  <a href="proqscan-case-study.html" class="chip" style="color:var(--accent-coral); font-weight:700; text-decoration:none;">Read Full Case Study →</a>
+                </div>
+                <span class="figma-arrow">Visit Live Site ↗</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Case 02: Callswain AI -->
+        <a href="https://callswainai.com/" target="_blank" rel="noopener noreferrer" class="row-item project-link-row">
+          <div class="grid-row align-top">
+            <div class="row-col-1">
+              <span class="project-idx">02</span>
+            </div>
+            <div class="row-col-5">
+              <h3 class="project-title">Callswain AI</h3>
+              <p class="project-subtitle">Intelligent IVR & Agent Management SaaS · Live Platform</p>
+              <div class="project-preview-card mt-3">
+                <img src="callswain_mockup.jpg" alt="Callswain AI UI Preview" class="project-img-thumb">
+              </div>
+            </div>
+            <div class="row-col-6">
+              <p class="project-desc">
+                Automated call routing workflows, real-time voice analytics, and agent productivity dashboard. Features drag-and-drop IVR flow composition and high-frequency incoming/outgoing telemetry.
+              </p>
+              <div class="project-footer-meta">
+                <div class="tag-chips">
+                  <span class="chip">Voice AI</span>
+                  <span class="chip">IVR Flow Editor</span>
+                  <span class="chip">Agent Analytics</span>
+                  <a href="callswain-case-study.html" class="chip" style="color:var(--accent-coral); font-weight:700; text-decoration:none;">Read Full Case Study →</a>
+                </div>
+                <span class="figma-arrow">Visit Live Site ↗</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Case 03: Voqal AI -->
+        <a href="https://www.figma.com/design/vABZISsnUv6okHreZK1C4v/Project-IVR-for-LTD" target="_blank" rel="noopener noreferrer" class="row-item project-link-row">
+          <div class="grid-row align-top">
+            <div class="row-col-1">
+              <span class="project-idx">03</span>
+            </div>
+            <div class="row-col-5">
+              <h3 class="project-title">Voqal AI</h3>
+              <p class="project-subtitle">AI Voice Agent SaaS Platform · Betopia Group</p>
+              <div class="project-preview-card mt-3">
+                <img src="voqal_mockup.png" alt="Voqal UI Preview" class="project-img-thumb">
+              </div>
+            </div>
+            <div class="row-col-6">
+              <p class="project-desc">
+                Complete SaaS product UI — landing page, 3-step agent creation wizard, 3 role-based dashboards, call logs, transcript viewer and super admin billing panel; built for scalability across 100+ countries.
+              </p>
+              <div class="project-footer-meta">
+                <div class="tag-chips">
+                  <span class="chip">SaaS</span>
+                  <span class="chip">Onboarding Wizard</span>
+                  <a href="voqal-case-study.html" class="chip" style="color:var(--accent-coral); font-weight:700; text-decoration:none;">Read Full Case Study →</a>
+                </div>
+                <span class="figma-arrow">View in Figma ↗</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Case 04: Sakeena Institute -->
+        <a href="https://www.figma.com/design/dmh1iT37o1WfgQjjurceMe/Project-Education-Platform" target="_blank" rel="noopener noreferrer" class="row-item project-link-row">
+          <div class="grid-row align-top">
+            <div class="row-col-1">
+              <span class="project-idx">04</span>
+            </div>
+            <div class="row-col-5">
+              <h3 class="project-title">Sakeena Institute</h3>
+              <p class="project-subtitle">Islamic EdTech LMS · Betopia Group</p>
+              <div class="project-preview-card mt-3">
+                <img src="sakeena_mockup.png" alt="Sakeena Institute UI Preview" class="project-img-thumb">
+              </div>
+            </div>
+            <div class="row-col-6">
+              <p class="project-desc">
+                Full LMS for 3 user roles (students, teachers, admins) with course builder, live sessions, quizzes and e-commerce — delivered across web and mobile for a Dubai-based Muslim audience.
+              </p>
+              <div class="project-footer-meta">
+                <div class="tag-chips">
+                  <span class="chip">LMS</span>
+                  <span class="chip">Multi-role Dashboards</span>
+                  <a href="sakeena-case-study.html" class="chip" style="color:var(--accent-coral); font-weight:700; text-decoration:none;">Read Full Case Study →</a>
+                </div>
+                <span class="figma-arrow">View in Figma ↗</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Case 05: BoiGhor -->
+        <a href="https://www.figma.com/design/VjkZy0jZGdqwQPVSX28d8I/A-Case-Study-on-BoiGhor" target="_blank" rel="noopener noreferrer" class="row-item project-link-row">
+          <div class="grid-row align-top">
+            <div class="row-col-1">
+              <span class="project-idx">05</span>
+            </div>
+            <div class="row-col-5">
+              <h3 class="project-title">BoiGhor</h3>
+              <p class="project-subtitle">Library Mobile App · Case Study</p>
+              <div class="project-preview-card mt-3">
+                <img src="boighor_mockup.png" alt="BoiGhor Mobile App Preview" class="project-img-thumb">
+              </div>
+            </div>
+            <div class="row-col-6">
+              <p class="project-desc">
+                Mobile library app solving remote book availability, digital reservation and automated late-fee reminders — with Bengali-rooted branding balancing warmth and institutional credibility.
+              </p>
+              <div class="project-footer-meta">
+                <div class="tag-chips">
+                  <span class="chip">Case Study</span>
+                  <span class="chip">Mobile App</span>
+                  <a href="boighor-case-study.html" class="chip" style="color:var(--accent-coral); font-weight:700; text-decoration:none;">Read Full Case Study →</a>
+                </div>
+                <span class="figma-arrow">View in Figma ↗</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- SECTION 4: EDUCATION & CERTIFICATIONS -->
+    <section class="dossier-section" id="education" data-category="education">
+      <div class="section-label-header">
+        <span class="section-tag-name">Academic Foundation</span>
+        <div class="tag-divider"></div>
+      </div>
+      <h2 class="section-title-huge">EDUCATION</h2>
+
+      <div class="stack-list">
+
+        <!-- Degree 01 -->
+        <article class="row-item">
+          <div class="grid-row">
+            <div class="row-col-5">
+              <h3 class="item-heading">Professional Master's in International Relations</h3>
+              <p class="item-sub">University of Dhaka</p>
+            </div>
+
+            <div class="row-col-2">
+              <span class="item-period">Ongoing · Expected 2026</span>
+            </div>
+
+            <div class="row-col-5">
+              <p class="item-desc">
+                Research-heavy program sharpening analytical thinking, cross-cultural context and structured argumentation — all of which feed directly into user research, information hierarchy, and product reasoning.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Degree 02 -->
+        <article class="row-item">
+          <div class="grid-row">
+            <div class="row-col-5">
+              <h3 class="item-heading">Bachelor of Arts — English Language & Literature</h3>
+              <p class="item-sub">University of Asia Pacific</p>
+            </div>
+
+            <div class="row-col-2">
+              <span class="item-period">2019 — 2023</span>
+            </div>
+
+            <div class="row-col-5">
+              <p class="item-desc">
+                GPA 3.33/4.00 · Dean's List Recipient. Studied narrative, rhetoric, cognitive empathy, and interpretation — the intellectual foundation of the way I approach content hierarchy and interface copy.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Degree 03 -->
+        <article class="row-item">
+          <div class="grid-row">
+            <div class="row-col-5">
+              <h3 class="item-heading">UI/UX Career Track Certification</h3>
+              <p class="item-sub">Ostad Limited (Credential ID: C41312)</p>
+            </div>
+
+            <div class="row-col-2">
+              <span class="item-period">2025</span>
+            </div>
+
+            <div class="row-col-5">
+              <p class="item-desc">
+                Instructor: Mahmud Khairul — Lead Mentor, Human Centered Design. Intensive professional track covering advanced UX research, wireframing, scalable design systems, prototyping, and usability testing.
+              </p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- SECTION 5: RECOGNITION & LEADERSHIP -->
+    <section class="dossier-section" id="achievements" data-category="achievements">
+      <div class="section-label-header">
+        <span class="section-tag-name">Honors & Impact</span>
+        <div class="tag-divider"></div>
+      </div>
+      <h2 class="section-title-huge">RECOGNITION<br>& LEADERSHIP</h2>
+
+      <div class="grid-two-col">
+        <div>
+          <p class="subhead-label">Achievements & Awards</p>
+          <div class="sub-list">
+            <div class="sub-item">
+              <p class="sub-title">Dean's List Recipient</p>
+              <p class="sub-detail">3rd & 4th Semesters, University of Asia Pacific</p>
+            </div>
+            <div class="sub-item">
+              <p class="sub-title">1st Runner-Up — English Fest</p>
+              <p class="sub-detail">Department of English, University of Asia Pacific</p>
+            </div>
+            <div class="sub-item">
+              <p class="sub-title">2nd Runner-Up — Video Making</p>
+              <p class="sub-detail">National Thought Competition 2020, School of Thought</p>
+            </div>
+            <div class="sub-item">
+              <p class="sub-title">4th Runner-Up — The View Finder Season 5</p>
+              <p class="sub-detail">CSE Film & Photography Club, UAP</p>
+            </div>
+            <div class="sub-item">
+              <p class="sub-title">Honorable Mention — Think Covid-19 Exhibition</p>
+              <p class="sub-detail">UAP Central Photography Club</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p class="subhead-label">Exhibitions & Community</p>
+          <div class="sub-list">
+            <div class="sub-item">
+              <p class="sub-title">Drik Gallery National Exhibition</p>
+              <p class="sub-detail">Two photographs curated and exhibited at Drik Gallery, Dhaka — Bangladesh's premier photographic institution.</p>
+            </div>
+            <div class="sub-item">
+              <p class="sub-title">Joint Secretary & Treasurer</p>
+              <p class="sub-detail">UAP Central Photography Club (2020 — 2022). Managed exhibitions, workshops, financial administration, and sponsor relations.</p>
+            </div>
+            <div class="sub-item">
+              <p class="sub-title">Creative Director & Co-Host</p>
+              <p class="sub-detail">English Fest 2021 — Directed event identity, visual branding, stage design and schedule choreography.</p>
+            </div>
+            <div class="sub-item">
+              <p class="sub-title">Member — English Language Club</p>
+              <p class="sub-detail">Organized literature seminars, creative writing workshops, and debate panels.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER / RETURN CTA -->
+    <footer class="dossier-footer-banner">
+      <div class="dossier-footer-content">
+        <h3 class="dossier-footer-title">Ready to discuss your product?</h3>
+        <p class="dossier-footer-sub">Open for product design roles and select freelance inquiries.</p>
+        <div class="dossier-footer-btns">
+          <a href="mailto:smroqunuzzaman@gmail.com" class="btn-primary">Email smroqunuzzaman@gmail.com</a>
+          <a href="https://drive.google.com/file/d/1cXV8lthcDHrPGLQng46d6io8WmMNn0Pw/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn-secondary">Open PDF Resume ↗</a>
+          <a href="index.html" class="btn-secondary">← Return to Portfolio</a>
+        </div>
+      </div>
+      <p class="contact-location">© 2026 S M Roqunuzzaman · UI/UX Designer · Dhaka, Bangladesh</p>
+    </footer>
+
+  </main>
+
+  <script src="app.js"></script>
+  <script>
+    // Interactive Category Filter Tabs for CV
+    const filterPills = document.querySelectorAll('.filter-pill');
+    const cvSections = document.querySelectorAll('.dossier-section');
+
+    function filterCategory(cat) {
+      filterPills.forEach(p => {
+        p.classList.toggle('active', p.dataset.target === cat);
+      });
+
+      if (cat === 'all') {
+        cvSections.forEach(s => s.style.display = 'block');
+      } else {
+        cvSections.forEach(s => {
+          if (s.dataset.category === cat) {
+            s.style.display = 'block';
+            s.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          } else {
+            s.style.display = 'none';
+          }
+        });
+      }
+    }
+
+    filterPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        const target = pill.dataset.target;
+        filterCategory(target);
+      });
+    });
+
+    // Check URL hash on load (e.g., cv.html#skills)
+    window.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash && ['work', 'skills', 'projects', 'education', 'achievements'].includes(hash)) {
+        filterCategory(hash);
+      }
+    });
+  </script>
+</body>
+</html>

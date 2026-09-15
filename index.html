@@ -23,6 +23,25 @@
         if (saved === 'light' || (!saved && window.matchMedia('(prefers-color-scheme: light)').matches)) {
           document.documentElement.setAttribute('data-theme', 'light');
         }
+
+        // Only show loading screen on initial visit or on reload/hard reload.
+        // When navigating back and forth between pages in the same session, skip immediately.
+        const navEntry = window.performance && window.performance.getEntriesByType && window.performance.getEntriesByType('navigation')[0];
+        const isReload = navEntry ? navEntry.type === 'reload' : (window.performance && window.performance.navigation && window.performance.navigation.type === 1);
+        const hasSeenLoader = sessionStorage.getItem('hasSeenPortfolioLoader');
+        if (hasSeenLoader && !isReload) {
+          document.documentElement.classList.add('skip-loader');
+        }
+
+        // Restore exact screen scroll position when returning from case study pages
+        if ('scrollRestoration' in history) {
+          history.scrollRestoration = 'manual';
+        }
+        const key = window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1) || 'index.html';
+        const savedScroll = sessionStorage.getItem('scroll_pos_' + key);
+        if (savedScroll && !isReload) {
+          window.scrollTo(0, parseInt(savedScroll, 10));
+        }
       } catch (e) {}
     })();
   </script>
@@ -107,11 +126,12 @@
   <!-- Film Grain Overlay -->
   <div class="grain-overlay" aria-hidden="true"></div>
 
-  <!-- Top Right Links (Mail, Dribbble, LinkedIn, Theme Switcher) -->
+  <!-- Top Right Links (Mail, Dribbble, LinkedIn, Resume, Theme Switcher) -->
   <header class="top-links-overlay" role="banner">
     <a href="mailto:smroqunuzzaman@gmail.com" class="overlay-link">Mail</a>
     <a href="https://dribbble.com/SMRoqunuzzaman" target="_blank" rel="noopener noreferrer" class="overlay-link">Dribbble</a>
     <a href="https://www.linkedin.com/in/smroqunuzzaman/" target="_blank" rel="noopener noreferrer" class="overlay-link">LinkedIn</a>
+    <a href="https://drive.google.com/file/d/1cXV8lthcDHrPGLQng46d6io8WmMNn0Pw/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="overlay-link resume-link-highlight" title="Open PDF Resume (Google Drive)">Resume ↗</a>
 
     <!-- Luminous Bulb Pull-Switch Theme Indicator (Matches User Reference Images) -->
     <button class="theme-bulb-toggle" id="themeToggle" type="button" aria-label="Toggle dark and light theme" role="switch" aria-checked="false" title="Click to turn lights on/off">
@@ -135,11 +155,11 @@
   <nav class="bottom-nav-overlay" id="bottomNav" aria-label="Page navigation">
     <div class="nav-stack">
       <button onclick="scrollToSection('about')" class="nav-btn" data-nav="about">About</button>
-      <button onclick="scrollToSection('featured')" class="nav-btn" data-nav="featured">Featured</button>
-      <button onclick="scrollToSection('selected')" class="nav-btn" data-nav="selected">Selected</button>
+      <button onclick="scrollToSection('selected')" class="nav-btn" data-nav="selected">Selected Work</button>
       <button onclick="scrollToSection('why-me')" class="nav-btn" data-nav="why-me">Why Me</button>
       <button onclick="scrollToSection('process')" class="nav-btn" data-nav="process">How I Work</button>
-      <a href="dossier.html" class="nav-btn nav-link-external" title="View Full Career Dossier">Dossier ↗</a>
+      <a href="cv.html" class="nav-btn nav-link-external" title="View Curriculum Vitae (CV)">CV ↗</a>
+      <a href="https://drive.google.com/file/d/1cXV8lthcDHrPGLQng46d6io8WmMNn0Pw/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="nav-btn nav-link-external nav-resume-btn" title="Open PDF Resume in Google Drive">Resume ↗</a>
       <button onclick="scrollToSection('contact')" class="nav-btn" data-nav="contact">Contact</button>
     </div>
   </nav>
@@ -149,11 +169,11 @@
     <button id="mobileMenuBtn" class="mobile-btn">Menu</button>
     <div class="mobile-menu-dropdown" id="mobileDropdown">
       <button onclick="scrollToSection('about')">About</button>
-      <button onclick="scrollToSection('featured')">Featured</button>
-      <button onclick="scrollToSection('selected')">Selected</button>
+      <button onclick="scrollToSection('selected')">Selected Work</button>
       <button onclick="scrollToSection('why-me')">Why Me</button>
       <button onclick="scrollToSection('process')">How I Work</button>
-      <a href="dossier.html" style="text-decoration:none; color:inherit; font-size:0.875rem;">Dossier ↗</a>
+      <a href="cv.html" style="text-decoration:none; color:inherit; font-size:0.875rem;">Curriculum Vitae (CV) ↗</a>
+      <a href="https://drive.google.com/file/d/1cXV8lthcDHrPGLQng46d6io8WmMNn0Pw/view?usp=sharing" target="_blank" rel="noopener noreferrer" style="text-decoration:none; color:inherit; font-size:0.875rem; color: var(--accent-coral);">PDF Resume ↗</a>
       <button onclick="scrollToSection('contact')">Contact</button>
     </div>
   </div>
@@ -210,232 +230,402 @@
       </div>
     </section>
 
-    <!-- ABOUT SECTION -->
-    <section class="section-padding" id="about">
-      <div class="section-container">
-        <div class="section-label-header">
-          <span class="section-tag-name">About</span>
-          <div class="tag-divider"></div>
-        </div>
+    <!-- ABOUT SECTION (STICKY SCROLL-SCRUB EDITORIAL MANIFESTO) -->
+    <section class="about-scroll-track" id="about">
+      <div class="about-sticky-stage" id="aboutStickyStage">
+        <div class="section-container about-sticky-container">
 
-        <div class="about-editorial-stage">
+          <!-- Section Label Header (Left-aligned identically to other sections) -->
+          <div class="section-label-header about-section-header">
+            <span class="section-tag-name">About</span>
+            <div class="tag-divider"></div>
+          </div>
+
           <div class="about-editorial-wrapper">
-            <!-- Top Floating Sticker Card & Hand-Drawn Arrow (Locked to Narrative Headline) -->
-            <div class="about-sticker-group" aria-hidden="true">
-              <div class="about-sticker-badge">
-                <span class="sticker-line-1">Don't you want</span>
-                <span class="sticker-line-2">to <em>know more</em></span>
+
+          <!-- Top Floating Sticker Card & Hand-Drawn Curved Arrow (Matches Attached Screenshot) -->
+          <div class="about-sticker-group" aria-hidden="true">
+            <div class="about-sticker-badge">
+              <span class="sticker-line-1">Don't you want</span>
+              <span class="sticker-line-2">to <em>know more</em></span>
+            </div>
+            <svg class="sticker-arrow-svg" viewBox="0 0 92 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M 4 12 C 42 0, 74 12, 71 42" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+              <path d="M 61 31 L 71 43 L 81 33" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+
+          <!-- Editorial Narrative Paragraphs with Scroll-Scrub Animation -->
+          <div class="about-scrub-editorial" id="aboutScrubManifesto">
+            <p class="about-story-p">
+              <span class="scrub-word">Hello,</span>
+              <span class="scrub-word">I’m</span>
+              <span class="scrub-word scrub-name"><em>Roqunuzzaman</em>,</span>
+              <span class="scrub-word">a</span>
+              <span class="scrub-word">UI/UX</span>
+              <span class="scrub-word">designer</span>
+              <span class="scrub-word">focused</span>
+              <span class="scrub-word">on</span>
+              <span class="scrub-word">turning</span>
+              <span class="scrub-word">complex</span>
+              <span class="scrub-word">ideas</span>
+              <span class="scrub-word">into</span>
+              <span class="scrub-word">clear,</span>
+              <span class="scrub-word">thoughtful</span>
+              <span class="scrub-word">digital</span>
+              <span class="scrub-word">experiences.</span>
+            </p>
+
+            <p class="about-story-p">
+              <span class="scrub-word">My</span>
+              <span class="scrub-word">background</span>
+              <span class="scrub-word">in</span>
+              <span class="scrub-word">literature</span>
+              <span class="scrub-word">taught</span>
+              <span class="scrub-word">me</span>
+              <span class="scrub-word">to</span>
+              <span class="scrub-word">understand</span>
+              <span class="scrub-word">stories,</span>
+              <span class="scrub-word">people,</span>
+              <span class="scrub-word">and</span>
+              <span class="scrub-word">the</span>
+              <span class="scrub-word">details</span>
+              <span class="scrub-word">hidden</span>
+              <span class="scrub-word">between</span>
+              <span class="scrub-word">the</span>
+              <span class="scrub-word">lines.</span>
+              <span class="scrub-word">I</span>
+              <span class="scrub-word">bring</span>
+              <span class="scrub-word">that</span>
+              <span class="scrub-word">perspective</span>
+              <span class="scrub-word">into</span>
+              <span class="scrub-word">design,</span>
+              <span class="scrub-word">creating</span>
+              <span class="scrub-word">practical</span>
+              <span class="scrub-word">products</span>
+              <span class="scrub-word">that</span>
+              <span class="scrub-word">feel</span>
+              <span class="scrub-word">intuitive,</span>
+              <span class="scrub-word">purposeful,</span>
+              <span class="scrub-word">and</span>
+              <span class="scrub-word">human.</span>
+            </p>
+
+            <p class="about-story-p">
+              <span class="scrub-word">Today,</span>
+              <span class="scrub-word">I</span>
+              <span class="scrub-word">design</span>
+              <span class="scrub-word">digital</span>
+              <span class="scrub-word">experiences</span>
+              <span class="scrub-word">with</span>
+              <span class="scrub-word">equal</span>
+              <span class="scrub-word">attention</span>
+              <span class="scrub-word">to</span>
+              <span class="scrub-word">clarity,</span>
+              <span class="scrub-word">emotion,</span>
+              <span class="scrub-word">and</span>
+              <span class="scrub-word">craft.</span>
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- 01 — SELECTED & FEATURED WORK (3D FLUID CARD CAROUSEL SLIDER) -->
+    <section class="section-padding bg-alt selected-carousel-section" id="selected">
+      <div class="section-container">
+
+        <!-- Section Header Left-Aligned matching other sections -->
+        <div class="section-num-label">
+          <span>01 — SELECTED WORK</span>
+        </div>
+
+        <div class="selected-section-header">
+          <h2 class="featured-case-title">Selected Works &amp; Flagship Systems</h2>
+          <p class="featured-case-subtitle">Production platforms shipped across Enterprise SaaS, Forensic Audit, Conversational AI, and Consumer Mobile.</p>
+        </div>
+
+        <!-- 3D Fluid Floating Card Slider Stage (Cursor Drag & Swipe Navigation) -->
+        <div class="carousel-stage-wrapper" id="carouselStageWrapper" aria-label="Drag or swipe to explore selected projects">
+
+          <!-- Cards Track -->
+          <div class="carousel-cards-track" id="carouselCardsTrack">
+
+            <!-- Card 0: ProQscan AI -->
+            <article class="carousel-card active-card" data-index="0" tabindex="0">
+              <div class="card-content-col">
+                <h3 class="card-project-title">
+                  <span class="title-subline">ProQscan AI · Enterprise SaaS</span>
+                  <span class="title-mainline">Enterprise Procurement &amp; Forensic Audit Platform</span>
+                </h3>
+                <p class="card-project-desc">Unified 4-portal system connecting Purchasing, Inventory, Forensic Audit, and Executive Intelligence to eliminate capital leakage and halt fraud before invoices clear.</p>
+                <div class="card-pills-grid">
+                  <span class="card-pill">Forensic Audit</span>
+                  <span class="card-pill">3-Way Match</span>
+                  <span class="card-pill">4 Portals</span>
+                  <span class="card-pill">Benford's Law</span>
+                </div>
+                <div class="card-actions-row">
+                  <a href="proqscan-case-study.html" class="card-read-more-btn">
+                    <span>Read Case Study</span>
+                    <span class="arrow-circle">→</span>
+                  </a>
+                  <a href="https://proqscanai.com/" target="_blank" rel="noopener noreferrer" class="card-secondary-link">
+                    <span>Live Platform ↗</span>
+                  </a>
+                </div>
               </div>
-              <svg class="sticker-arrow-svg" viewBox="0 0 92 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M 4 12 C 42 0, 74 12, 71 42" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-                <path d="M 61 31 L 71 43 L 81 33" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
+              <div class="card-media-panel">
+                <div class="panel-header">
+                  <h4 class="panel-title">Workflow telemetry</h4>
+                  <p class="panel-sub">Automated 3-way reconciliation &amp; real-time risk exposure matrix.</p>
+                </div>
+                <div class="panel-preview">
+                  <img src="proqscan_mockup.jpg" alt="ProQscan AI Enterprise Procurement and Forensic Audit Platform Mockup" class="card-mockup-img">
+                </div>
+              </div>
+            </article>
 
-            <!-- Editorial Narrative Paragraphs -->
-            <p class="about-story-p">
-              Hello, I’m <em>Roqunuzzaman</em>, a UI/UX designer focused on turning complex ideas into clear, thoughtful digital experiences.
-            </p>
-            <p class="about-story-p">
-              My background in literature taught me to understand stories, people, and the details hidden between the lines. I bring that perspective into design, creating practical products that feel intuitive, purposeful, and human.
-            </p>
-            <p class="about-story-p">
-              Today, I design digital experiences with equal attention to clarity, emotion, and craft.
-            </p>
+            <!-- Card 1: Callswain AI -->
+            <article class="carousel-card next-card" data-index="1" tabindex="0">
+              <div class="card-content-col">
+                <h3 class="card-project-title">
+                  <span class="title-subline">Callswain AI · Voice SaaS</span>
+                  <span class="title-mainline">Intelligent IVR &amp; Agent Management Suite</span>
+                </h3>
+                <p class="card-project-desc">Cloud call center platform with automated drag-and-drop call routing, real-time waveform voice analytics, and agent productivity metrics.</p>
+                <div class="card-pills-grid">
+                  <span class="card-pill">Voice AI</span>
+                  <span class="card-pill">Smart IVR</span>
+                  <span class="card-pill">Analytics</span>
+                  <span class="card-pill">WebRTC</span>
+                </div>
+                <div class="card-actions-row">
+                  <a href="callswain-case-study.html" class="card-read-more-btn">
+                    <span>Read Case Study</span>
+                    <span class="arrow-circle">→</span>
+                  </a>
+                  <a href="https://callswainai.com/" target="_blank" rel="noopener noreferrer" class="card-secondary-link">
+                    <span>Live Platform ↗</span>
+                  </a>
+                </div>
+              </div>
+              <div class="card-media-panel">
+                <div class="panel-header">
+                  <h4 class="panel-title">Workflow telemetry</h4>
+                  <p class="panel-sub">Automating multi-tier IVR branches with sub-second response times and intelligent agent routing.</p>
+                </div>
+                <div class="panel-preview">
+                  <img src="callswain_mockup.jpg" alt="Callswain AI Intelligent IVR &amp; Agent Management Suite Mockup" class="card-mockup-img">
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 2: Voqal AI -->
+            <article class="carousel-card hidden-card" data-index="2" tabindex="0">
+              <div class="card-content-col">
+                <h3 class="card-project-title">
+                  <span class="title-subline">Voqal AI · Conversational Studio</span>
+                  <span class="title-mainline">AI Voice Agent Builder &amp; Real-Time Analytics</span>
+                </h3>
+                <p class="card-project-desc">Enterprise conversational voice studio featuring visual prompt engineering, test call simulator, and multi-tenant telemetry dashboards.</p>
+                <div class="card-pills-grid">
+                  <span class="card-pill">Prompt Studio</span>
+                  <span class="card-pill">Voice Agents</span>
+                  <span class="card-pill">Telemetry</span>
+                  <span class="card-pill">Multi-Tenant</span>
+                </div>
+                <div class="card-actions-row">
+                  <a href="voqal-case-study.html" class="card-read-more-btn">
+                    <span>Read Case Study</span>
+                    <span class="arrow-circle">→</span>
+                  </a>
+                </div>
+              </div>
+              <div class="card-media-panel">
+                <div class="panel-header">
+                  <h4 class="panel-title">Agent studio deployed</h4>
+                  <p class="panel-sub">Visual prompt chaining, live latency telemetry, and unified speech synthesis streams.</p>
+                </div>
+                <div class="panel-preview">
+                  <img src="voqal_mockup.png" alt="Voqal AI Voice Agent Builder Mockup" class="card-mockup-img">
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 3: Sakeena Institute -->
+            <article class="carousel-card hidden-card" data-index="3" tabindex="0">
+              <div class="card-content-col">
+                <h3 class="card-project-title">
+                  <span class="title-subline">Sakeena Institute · Global EdTech</span>
+                  <span class="title-mainline">Global Islamic EdTech LMS &amp; Learning Ecosystem</span>
+                </h3>
+                <p class="card-project-desc">Connected learning platform serving international students across 100+ countries with course classrooms and multi-currency billing portals.</p>
+                <div class="card-pills-grid">
+                  <span class="card-pill">Global LMS</span>
+                  <span class="card-pill">EdTech</span>
+                  <span class="card-pill">100+ Countries</span>
+                  <span class="card-pill">Billing Portal</span>
+                </div>
+                <div class="card-actions-row">
+                  <a href="sakeena-case-study.html" class="card-read-more-btn">
+                    <span>Read Case Study</span>
+                    <span class="arrow-circle">→</span>
+                  </a>
+                </div>
+              </div>
+              <div class="card-media-panel">
+                <div class="panel-header">
+                  <h4 class="panel-title">Curriculum ecosystem live</h4>
+                  <p class="panel-sub">Synchronous global classroom streaming, localized billing, and multi-lingual student engagement.</p>
+                </div>
+                <div class="panel-preview">
+                  <img src="sakeena_mockup.png" alt="Sakeena Institute LMS Mockup" class="card-mockup-img">
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 4: Boighor -->
+            <article class="carousel-card prev-card" data-index="4" tabindex="0">
+              <div class="card-content-col">
+                <h3 class="card-project-title">
+                  <span class="title-subline">Boighor · Mobile App</span>
+                  <span class="title-mainline">Digital Books &amp; Audiobook Reader Mobile App</span>
+                </h3>
+                <p class="card-project-desc">Distraction-free mobile e-reading and audiobook listening experience emphasizing typographic legibility, fluid audio controls, and offline library sync.</p>
+                <div class="card-pills-grid">
+                  <span class="card-pill">E-Reader</span>
+                  <span class="card-pill">Audiobooks</span>
+                  <span class="card-pill">Offline Sync</span>
+                  <span class="card-pill">Mobile UI</span>
+                </div>
+                <div class="card-actions-row">
+                  <a href="boighor-case-study.html" class="card-read-more-btn">
+                    <span>Read Case Study</span>
+                    <span class="arrow-circle">→</span>
+                  </a>
+                </div>
+              </div>
+              <div class="card-media-panel">
+                <div class="panel-header">
+                  <h4 class="panel-title">Reading engine optimized</h4>
+                  <p class="panel-sub">High-contrast typographic rendering, offline library sync, and smooth audiobook background playback.</p>
+                </div>
+                <div class="panel-preview">
+                  <img src="boighor_mockup.png" alt="Boighor E-Reader &amp; Audiobook App Mockup" class="card-mockup-img">
+                </div>
+              </div>
+            </article>
+
+          </div>
+
+        </div>
+
+        <!-- Carousel Pagination Dots -->
+        <div class="carousel-bottom-nav">
+          <div class="carousel-dots-row" id="carouselDotsRow" role="tablist" aria-label="Carousel navigation">
+            <button class="carousel-dot active" type="button" data-dot="0" aria-label="Go to slide 1" role="tab"></button>
+            <button class="carousel-dot" type="button" data-dot="1" aria-label="Go to slide 2" role="tab"></button>
+            <button class="carousel-dot" type="button" data-dot="2" aria-label="Go to slide 3" role="tab"></button>
+            <button class="carousel-dot" type="button" data-dot="3" aria-label="Go to slide 4" role="tab"></button>
+            <button class="carousel-dot" type="button" data-dot="4" aria-label="Go to slide 5" role="tab"></button>
           </div>
         </div>
+
       </div>
     </section>
 
-    <!-- 01 — FEATURED CASE -->
-    <section class="section-padding" id="featured">
-      <div class="section-container">
-        <div class="section-num-label">
-          <span>01 — FEATURED CASE</span>
-        </div>
-
-        <div class="featured-case-grid">
-          <div class="featured-case-info">
-            <h2 class="featured-case-title">Offx: Deal Discovery &amp; Creation Flow</h2>
-            <div class="pill-badge">PRODUCT DESIGN</div>
-
-            <h3 class="highlights-heading">Key Highlights</h3>
-            <ul class="featured-highlights-list">
-              <li>Redesigned a fragmented OTC platform into a clearer trader workflow.</li>
-              <li>Moved pricing, terms, and context closer to the decision point.</li>
-              <li>Added guided onboarding and review steps for high-value actions.</li>
-            </ul>
-
-            <div>
-              <a href="dossier.html#projects" class="btn-primary">READ MORE</a>
-            </div>
-          </div>
-
-          <div class="featured-mockup-col">
-            <div class="featured-mockup-wrapper">
-              <img src="offx_laptop_mockup.png" alt="Offx Deal Discovery and Creation Flow platform mockup on laptop" class="featured-mockup-img">
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 02 — SELECTED CASES -->
-    <section class="section-padding bg-alt" id="selected">
-      <div class="section-container">
-        <div class="section-num-label">
-          <span>02 — SELECTED</span>
-        </div>
-
-        <div class="selected-cases-table">
-          <!-- Item P. 02 -->
-          <a href="dossier.html#projects" class="selected-case-row">
-            <div class="selected-case-idx">P. 02</div>
-            <div class="selected-case-main">
-              <h3 class="selected-case-title">Herd - Simplifying Blockchain with AI</h3>
-              <p class="selected-case-desc">Herd.eco is a collaborative platform designed to help users search, understand, and act on blockchain data with the assistance of AI agents.</p>
-            </div>
-            <div class="selected-case-meta">
-              <span>PRODUCT DESIGN</span>
-              <span>2025-26</span>
-              <span class="selected-case-arrow">↗</span>
-            </div>
-          </a>
-
-          <!-- Item P. 03 -->
-          <a href="dossier.html#projects" class="selected-case-row">
-            <div class="selected-case-idx">P. 03</div>
-            <div class="selected-case-main">
-              <h3 class="selected-case-title">Crypto No code Data Builder</h3>
-              <p class="selected-case-desc">The Delphi Chart builder is an intuitive no-code solution that allows users to explore and build widgets using datasets.</p>
-            </div>
-            <div class="selected-case-meta">
-              <span>PRODUCT DESIGN</span>
-              <span>2022-23</span>
-              <span class="selected-case-arrow">↗</span>
-            </div>
-          </a>
-
-          <!-- Item P. 04 -->
-          <a href="dossier.html#projects" class="selected-case-row">
-            <div class="selected-case-idx">P. 04</div>
-            <div class="selected-case-main">
-              <h3 class="selected-case-title">CoreStack: Enterprise Control Panel</h3>
-              <p class="selected-case-desc">A full redesign of a cloud-hosting control panel turning years of feature growth into a product that infrastructure, support, sales, billing teams, and clients could navigate with confidence.</p>
-            </div>
-            <div class="selected-case-meta">
-              <span>DESIGN CONCEPT</span>
-              <span>2026</span>
-              <span class="selected-case-arrow">↗</span>
-            </div>
-          </a>
-
-          <!-- Item P. 05 -->
-          <a href="dossier.html#projects" class="selected-case-row">
-            <div class="selected-case-idx">P. 05</div>
-            <div class="selected-case-main">
-              <h3 class="selected-case-title">Making direct mail campaigns easier to launch, manage, and measure</h3>
-              <p class="selected-case-desc">A redesign of an established direct-mail platform for roofers, real-estate agents, and home-service businesses. I turned an engineer-built dashboard into a guided product that helps non-technical owners understand the platform and reach their first campaign with confidence.</p>
-            </div>
-            <div class="selected-case-meta">
-              <span>DESIGN CONCEPT</span>
-              <span>2026</span>
-              <span class="selected-case-arrow">↗</span>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 03 — WHY WORK WITH ME? -->
+    <!-- 02 — WHY WORK WITH ME? -->
     <section class="section-padding" id="why-me">
       <div class="section-container">
         <div class="section-num-label">
-          <span>03 — WHY WORK WITH ME?</span>
+          <span>02 — WHY WORK WITH ME?</span>
         </div>
 
         <div class="why-me-hero">
           <h2 class="why-me-headline">
-            Designers who can hold both ends - <span class="highlight-accent">strategy &amp; craft</span>, are <span class="highlight-accent">rare</span>.
+            I try to make complicated things feel simple.
           </h2>
           <p class="why-me-lead">
-            I work best where the stakes are real and the data is dense. My job is to remove the friction, so the next decision comes faster.
+            I like understanding how a product works before deciding how it should look. I think through the user flow, the information, the edge cases, and the small interactions that make an interface feel natural.
           </p>
         </div>
 
         <div class="principles-grid">
           <div class="principle-card">
             <span class="principle-badge">A</span>
-            <h3 class="principle-title">I design from the lifecycle, not the screen.</h3>
+            <h3 class="principle-title">I understand before I design.</h3>
             <p class="principle-body">
-              I design around how people discover, use, return to, and grow with a product, creating systems that feel connected and easy to trust.
+              I take time to understand the product, the users, and the problem before jumping into screens.
             </p>
           </div>
 
           <div class="principle-card">
             <span class="principle-badge">B</span>
-            <h3 class="principle-title">Systems first, screens second.</h3>
+            <h3 class="principle-title">I think beyond individual screens.</h3>
             <p class="principle-body">
-              I start with the structure behind the product, then shape the screens around it, so the experience feels consistent, scalable, and easier to use.
+              A good interface is part of a larger journey. I design flows and systems that stay consistent as the product grows.
             </p>
           </div>
 
           <div class="principle-card">
             <span class="principle-badge">C</span>
-            <h3 class="principle-title">Density is not the enemy.</h3>
+            <h3 class="principle-title">I design with implementation in mind.</h3>
             <p class="principle-body">
-              I don't simplify by removing what matters. I organize dense information so people can scan, understand, and act with confidence.
+              I try to make my designs clear enough for developers to understand what happens, what changes, and what needs to be built.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 04 — HOW I WORK? -->
+    <!-- 03 — HOW I WORK -->
     <section class="section-padding bg-alt" id="process">
       <div class="section-container">
         <div class="section-num-label">
-          <span>04 — HOW I WORK?</span>
+          <span>03 — HOW I WORK</span>
         </div>
 
         <div class="how-i-work-layout">
           <div class="how-i-work-intro">
-            <h2 class="how-i-work-heading">What working together actually looks like.</h2>
+            <h2 class="how-i-work-heading">Think. Structure. Design. Refine.</h2>
             <p class="how-i-work-lead">
-              I work closely with PMs and engineers when there's a team, and own the process end-to-end when working independently, staying close to the product, constraints, and decisions.
+              I keep my process simple. I try to understand the problem first, structure the experience, design the interface, and keep refining it with feedback.
             </p>
           </div>
 
           <div class="how-i-work-steps">
             <div class="how-step-row">
-              <span class="how-step-tag">H. 01</span>
+              <span class="how-step-tag">01</span>
               <div class="how-step-content">
-                <h3>Discovery in the open</h3>
-                <p>I keep discovery visible and collaborative, sharing early thoughts, questions, references, and tradeoffs so the direction gets sharper before the design gets polished.</p>
+                <h3>Understand the problem</h3>
+                <p>I start with the brief, requirements, existing product, and anything else that helps me understand what we are actually solving.</p>
               </div>
             </div>
 
             <div class="how-step-row">
-              <span class="how-step-tag">H. 02</span>
+              <span class="how-step-tag">02</span>
               <div class="how-step-content">
-                <h3>Decisions documented, not just designed</h3>
-                <p>I don't just design the final state. I make the reasoning visible, so decisions feel clear, intentional, and easier to build on.</p>
+                <h3>Structure the experience</h3>
+                <p>Before focusing too much on visuals, I work through user flows, information, hierarchy, and the different states of the experience.</p>
               </div>
             </div>
 
             <div class="how-step-row">
-              <span class="how-step-tag">H. 03</span>
+              <span class="how-step-tag">03</span>
               <div class="how-step-content">
-                <h3>Clear specs, fewer gaps</h3>
-                <p>I design with implementation in mind, defining states, specs, components, and context so the work moves smoothly from Figma to build.</p>
+                <h3>Design the interface</h3>
+                <p>Once the structure makes sense, I move into the visual design, components, interactions, and responsive states.</p>
               </div>
             </div>
 
             <div class="how-step-row">
-              <span class="how-step-tag">H. 04</span>
+              <span class="how-step-tag">04</span>
               <div class="how-step-content">
-                <h3>Support where it matters</h3>
-                <p>I stay close to implementation where the project allows, helping clarify edge cases, states, and interaction details so the final build holds up beyond the handoff.</p>
+                <h3>Review and refine</h3>
+                <p>I share the work, take feedback, make adjustments, and stay close to the details until the experience feels right.</p>
               </div>
             </div>
           </div>
@@ -443,20 +633,24 @@
       </div>
     </section>
 
-    <!-- CAREER DOSSIER GATEWAY (Skills, Experience, Education & Achievements Archive) -->
-    <section class="section-padding" id="dossier-gateway">
+    <!-- CURRICULUM VITAE (CV) & RESUME GATEWAY -->
+    <section class="section-padding" id="cv-gateway">
       <div class="section-container">
         <div class="dossier-gateway-card">
           <div class="dossier-gateway-left">
-            <p class="dossier-gateway-tag">Complete Professional Record</p>
-            <h2 class="dossier-gateway-title">Career Dossier &amp; Detailed Background</h2>
+            <p class="dossier-gateway-tag">Verified Professional Record</p>
+            <h2 class="dossier-gateway-title">Curriculum Vitae (CV) &amp; Detailed Background</h2>
             <p class="dossier-gateway-desc">
-              Looking for my full employment timeline at Betopia Group, technical skills matrix, complete shipped case archive, academic credentials, and leadership honors?
+              Looking for my verified employment timeline at Betopia Group, technical skills matrix, full shipped case files, English literature academic background, and photography honors?
             </p>
           </div>
           <div class="dossier-gateway-right">
-            <a href="dossier.html" class="dossier-gateway-btn">
-              <span>Explore Full Dossier</span>
+            <a href="cv.html" class="dossier-gateway-btn">
+              <span>View Curriculum Vitae (CV)</span>
+              <span class="btn-arrow">↗</span>
+            </a>
+            <a href="https://drive.google.com/file/d/1cXV8lthcDHrPGLQng46d6io8WmMNn0Pw/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="dossier-gateway-btn btn-resume-accent" title="Open PDF Resume in Google Drive">
+              <span>Open PDF Resume</span>
               <span class="btn-arrow">↗</span>
             </a>
           </div>

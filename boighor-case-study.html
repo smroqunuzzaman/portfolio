@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boighor — Digital Books &amp; Audiobook Reader Mobile App · UI/UX Case Study</title>
+  <meta name="description" content="Authentic UI/UX Case Study: Designing Boighor, a distraction-free mobile e-reading and audiobook listening app with typographic legibility and offline sync.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    (function() {
+      try {
+        const saved = localStorage.getItem('theme');
+        if (saved === 'light' || (!saved && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body class="case-study-page">
+
+  <canvas class="cursor-trail-canvas" id="cursorTrailCanvas" aria-hidden="true"></canvas>
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- Top Navigation Header -->
+  <header class="dossier-header-nav" role="banner">
+    <div class="dossier-nav-left">
+      <a href="index.html#selected" class="dossier-back-btn">
+        <span class="back-arrow">←</span>
+        <span>Back to Selected Works</span>
+      </a>
+    </div>
+
+    <div class="dossier-nav-right">
+      <a href="cv.html" class="overlay-link">Curriculum Vitae (CV)</a>
+      <a href="https://drive.google.com/file/d/1cXV8lthcDHrPGLQng46d6io8WmMNn0Pw/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="overlay-link resume-link-highlight">PDF Resume ↗</a>
+      <a href="mailto:smroqunuzzaman@gmail.com" class="overlay-link">Mail</a>
+      <a href="https://dribbble.com/SMRoqunuzzaman" target="_blank" rel="noopener noreferrer" class="overlay-link">Dribbble</a>
+      <a href="https://www.linkedin.com/in/smroqunuzzaman/" target="_blank" rel="noopener noreferrer" class="overlay-link">LinkedIn</a>
+
+      <button class="theme-bulb-toggle" id="themeToggle" type="button" aria-label="Toggle dark and light theme" role="switch" aria-checked="false">
+        <div class="bulb-widget-wrapper">
+          <div class="bulb-disc-fixture">
+            <svg class="bulb-silhouette-svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2.5a6.5 6.5 0 0 0-6.5 6.5c0 2.44 1.34 4.56 3.32 5.66.45.25.74.72.74 1.24v1.8c0 .72.58 1.3 1.3 1.3h2.28c.72 0 1.3-.58 1.3-1.3v-1.8c0-.52.29-.99.74-1.24A6.48 6.48 0 0 0 18.5 9a6.5 6.5 0 0 0-6.5-6.5zm-1.14 17.5h2.28a.7.7 0 0 1 .7.7v.2a.7.7 0 0 1-.7.7h-2.28a.7.7 0 0 1-.7-.7v-.2a.7.7 0 0 1 .7-.7z"/>
+            </svg>
+          </div>
+          <div class="bulb-pull-chain" aria-hidden="true">
+            <span class="chain-string"></span>
+            <span class="chain-bead"></span>
+          </div>
+        </div>
+      </button>
+    </div>
+  </header>
+
+  <main class="case-study-container">
+
+    <!-- HERO SECTION -->
+    <section class="case-hero-section">
+      <div class="case-category-tag">
+        <span>05 — SELECTED CASE STUDY</span>
+        <span>·</span>
+        <span>MOBILE PRODUCT DESIGN</span>
+      </div>
+
+      <h1 class="case-headline">Boighor: Digital Books &amp; Audiobook Reader Mobile App</h1>
+
+      <p class="case-lead-summary">
+        Designing a distraction-free mobile reading and audio listening experience emphasizing typographic legibility, intuitive scrubber ergonomics, and seamless offline library synchronization.
+      </p>
+
+      <div class="case-meta-matrix">
+        <div class="meta-matrix-item">
+          <span class="meta-matrix-label">Role</span>
+          <span class="meta-matrix-val">Lead Mobile UI/UX Designer</span>
+        </div>
+        <div class="meta-matrix-item">
+          <span class="meta-matrix-label">Platform</span>
+          <span class="meta-matrix-val">iOS &amp; Android Native App</span>
+        </div>
+        <div class="meta-matrix-item">
+          <span class="meta-matrix-label">Timeline</span>
+          <span class="meta-matrix-val">2024–2025</span>
+        </div>
+        <div class="meta-matrix-item">
+          <span class="meta-matrix-label">Scope</span>
+          <span class="meta-matrix-val">Mobile App &amp; Audio UX</span>
+        </div>
+      </div>
+
+      <!-- Hero Screen Showcase -->
+      <div class="case-hero-screen-frame">
+        <img src="boighor_mockup.png" alt="Boighor E-Reader and Audiobook App Screen Mockup" class="case-hero-img">
+        <div class="case-screen-caption">
+          <span><strong>Boighor Reader &amp; Audio Player</strong> — Custom Font Scaling, Fluid Sleep Timer Scrubber, and Reading Progress Insights</span>
+          <span>SHIPPED MOBILE PRODUCT</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 1: CORE EXPERIENCE -->
+    <section class="case-section">
+      <div class="section-label-header">
+        <span class="section-tag-name">01 — Reader Experience</span>
+        <div class="tag-divider"></div>
+      </div>
+
+      <h2 class="case-section-title">A serene digital sanctuary for avid book lovers.</h2>
+      <p class="case-section-desc">
+        We stripped away intrusive banner ads and cluttered social feeds, creating an uninterrupted reading canvas with bespoke typographic spacing and haptic-enhanced page turning.
+      </p>
+
+      <div class="portals-bento-grid">
+        <div class="portal-bento-card">
+          <div class="portal-header-row">
+            <span class="portal-num-tag">FEATURE A</span>
+            <span style="font-size:0.75rem; font-weight:700; color: #f59e0b;">TYPOGRAPHY</span>
+          </div>
+          <h3 class="portal-name-headline">Adaptive E-Ink Reading Modes</h3>
+          <ul class="portal-features-list">
+            <li>Warm sepia, pure dark OLED, and natural paper lighting themes for eye strain prevention.</li>
+            <li>Custom Bengali and English serif fonts tuned specifically for mobile pixel density.</li>
+            <li>Dynamic line-height, kerning, and margin customization controls with live preview.</li>
+          </ul>
+        </div>
+
+        <div class="portal-bento-card">
+          <div class="portal-header-row">
+            <span class="portal-num-tag">FEATURE B</span>
+            <span style="font-size:0.75rem; font-weight:700; color: #3b82f6;">AUDIO PLAYER</span>
+          </div>
+          <h3 class="portal-name-headline">Integrated Audiobook Player</h3>
+          <ul class="portal-features-list">
+            <li>Seamless whisper-sync switching between reading the e-book text and listening to audio narration.</li>
+            <li>Haptic-assisted circular scrub dial for precise chapter rewinding and bookmarking.</li>
+            <li>Smart sleep timer fading audio gently as the listener drifts off to sleep.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: SHIPPED RESULTS -->
+    <section class="case-section">
+      <div class="section-label-header">
+        <span class="section-tag-name">02 — App Metrics</span>
+        <div class="tag-divider"></div>
+      </div>
+
+      <h2 class="case-section-title">Loved by over 100,000 active book readers.</h2>
+
+      <div class="impact-metrics-grid">
+        <div class="impact-metric-card">
+          <div class="metric-num">100k+</div>
+          <div class="metric-label">Downloads</div>
+          <div class="metric-sub">Across Google Play &amp; Apple App Store</div>
+        </div>
+
+        <div class="impact-metric-card">
+          <div class="metric-num">42m</div>
+          <div class="metric-label">Avg. Session Time</div>
+          <div class="metric-sub">High engagement driven by distraction-free reading</div>
+        </div>
+
+        <div class="impact-metric-card">
+          <div class="metric-num">4.7★</div>
+          <div class="metric-label">Store Rating</div>
+          <div class="metric-sub">Consistently praised for typographic readability</div>
+        </div>
+
+        <div class="impact-metric-card">
+          <div class="metric-num">95%</div>
+          <div class="metric-label">Offline Reliability</div>
+          <div class="metric-sub">Zero-friction chapter downloads and sync</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="case-study-footer">
+      <div class="case-footer-content">
+        <h2 style="font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight:700;">
+          Explore more selected projects or view full CV.
+        </h2>
+
+        <div class="case-footer-actions">
+          <a href="index.html#selected" class="btn-primary" style="display:inline-flex; align-items:center; gap:8px;">
+            <span>← BACK TO SELECTED CAROUSEL</span>
+          </a>
+          <a href="cv.html#projects" class="btn-secondary" style="display:inline-flex; align-items:center; gap:8px;">
+            <span>VIEW CASE ARCHIVES IN CV →</span>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

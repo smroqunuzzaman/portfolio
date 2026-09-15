@@ -1,5 +1,6 @@
 // Smooth Scroll Navigation & Observer Logic
 document.addEventListener('DOMContentLoaded', () => {
+  initScrollRestoration();
   initPortfolioLoader();
   initHeroTypewriter();
   initThemeToggle();
@@ -7,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu();
   initNoirCompanion();
   initCustomCursor();
+  initSelectedCarousel();
+  initAboutScrollScrub();
 });
 
 /* ==========================================================================
@@ -76,6 +79,7 @@ function scrollToSection(id) {
 
 function initScrollNav() {
   const bottomNav = document.getElementById('bottomNav');
+  if (!bottomNav) return;
   const sections = document.querySelectorAll('section[id]');
   const navButtons = document.querySelectorAll('.nav-btn');
 
@@ -182,14 +186,14 @@ function initNoirCompanion() {
       "Story and logic in tension. That’s where interfaces start feeling second nature."
     ],
     featured: [
-      "Offx OTC flow... high-stakes institutional trading where every millisecond counts.",
-      "Pricing, compliance, and terms brought right to the decision point. Clean execution.",
-      "Notice how density doesn't compromise speed here. Total operator confidence."
+      "ProQscan AI... enterprise procurement and real-time inventory control. Pure operational clarity.",
+      "Requisition, stock, anomaly audit, and executive oversight unified into an unbroken trail.",
+      "Notice the high-density layout. Zero data gaps, total executive leverage."
     ],
     selected: [
-      "Selected case files: blockchain AI bots, data builders, enterprise cloud consoles.",
-      "Four diverse products, one common thread: ruthlessly eliminating complexity.",
-      "Clean systems that scale. The evidence is right here on the table."
+      "Real production platforms: Callswain AI, Voqal, Sakeena, Boighor.",
+      "From automated IVR routing to global EdTech and mobile e-reading, clean systems throughout.",
+      "Hover over each case file... the live mockups and evidence speak for themselves."
     ],
     'why-me': [
       "Strategy and craft under one trenchcoat. Rare in a field full of surface polishers.",
@@ -346,11 +350,12 @@ function initNoirCompanion() {
       if (!el) continue;
       const rect = el.getBoundingClientRect();
 
-      // Condition for section's last line/bottom being fully opened in viewport:
-      // - The bottom edge has reached the screen (rect.bottom <= vh + 50)
-      // - The section hasn't scrolled completely off above (rect.bottom >= 120)
-      // - The section is the primary focused section on screen (rect.top < vh * 0.65)
-      if (rect.bottom <= vh + 50 && rect.bottom >= 120 && rect.top < vh * 0.65) {
+      // Condition for sticky About section vs regular scroll sections
+      if (id === 'about') {
+        if (rect.top <= 50 && rect.bottom >= vh * 0.5) {
+          return 'about';
+        }
+      } else if (rect.bottom <= vh + 50 && rect.bottom >= 120 && rect.top < vh * 0.65) {
         return id;
       }
     }
@@ -488,10 +493,12 @@ function initCustomCursor() {
   });
 
   // Interactive hover detection
+  const INTERACTIVE_SELECTOR = 'a, button, [role="button"], input, textarea, select, .pill-tag, .filter-chip, .overlay-link, .nav-btn, .hero-btn, .stack-item, .noir-body, .theme-bulb-toggle, .project-card, .filter-pill, .row-item, .selected-case-row, .dossier-back-btn, .figma-arrow, .dossier-gateway-btn';
+
   document.addEventListener('mouseover', (e) => {
     const target = e.target;
     if (!target) return;
-    const isInteractive = target.closest('a, button, [role="button"], input, textarea, select, .pill-tag, .filter-chip, .overlay-link, .nav-btn, .hero-btn, .stack-item, .noir-body, .theme-bulb-toggle, .project-card');
+    const isInteractive = target.closest(INTERACTIVE_SELECTOR);
     if (isInteractive) {
       isHovering = true;
       targetDotRadius = 6.2;
@@ -501,10 +508,10 @@ function initCustomCursor() {
   document.addEventListener('mouseout', (e) => {
     const target = e.target;
     if (!target) return;
-    const isInteractive = target.closest('a, button, [role="button"], input, textarea, select, .pill-tag, .filter-chip, .overlay-link, .nav-btn, .hero-btn, .stack-item, .noir-body, .theme-bulb-toggle, .project-card');
+    const isInteractive = target.closest(INTERACTIVE_SELECTOR);
     if (isInteractive) {
       const related = e.relatedTarget;
-      if (related && related.closest && related.closest('a, button, [role="button"], input, textarea, select, .pill-tag, .filter-chip, .overlay-link, .nav-btn, .hero-btn, .stack-item, .noir-body, .theme-bulb-toggle, .project-card')) {
+      if (related && related.closest && related.closest(INTERACTIVE_SELECTOR)) {
         return;
       }
       isHovering = false;
@@ -649,6 +656,21 @@ function initCustomCursor() {
 function initPortfolioLoader() {
   const loader = document.getElementById('portfolioLoader');
   if (!loader) return;
+
+  // Check if page was loaded via normal page navigation or reload
+  const navEntry = window.performance && window.performance.getEntriesByType && window.performance.getEntriesByType('navigation')[0];
+  const isReload = navEntry ? navEntry.type === 'reload' : (window.performance && window.performance.navigation && window.performance.navigation.type === 1);
+  const hasSeenLoader = sessionStorage.getItem('hasSeenPortfolioLoader');
+
+  // If user has already seen the loader in this session and is not reloading the page, remove immediately
+  if (hasSeenLoader && !isReload) {
+    loader.style.display = 'none';
+    loader.remove();
+    return;
+  }
+
+  // Record that the loader was shown in this session
+  sessionStorage.setItem('hasSeenPortfolioLoader', 'true');
 
   const box = document.getElementById('loaderSelectionBox');
   const cursor = document.getElementById('loaderFigmaCursor');
@@ -947,4 +969,323 @@ function initHeroTypewriter() {
   }, FIRST_DWELL);
 }
 
+/* ==========================================================================
+   SELECTED WORK 3D FLUID CARD CAROUSEL SLIDER
+   - Smooth left / right wrapping index cycling
+   - Center active card, peeked previous and next cards
+   - Dot indicator sync and direct click navigation
+   - Keyboard arrow keys & touch swipe support
+   ========================================================================== */
+function initSelectedCarousel() {
+  const wrapper = document.getElementById('carouselStageWrapper');
+  const track = document.getElementById('carouselCardsTrack');
+  const dotsContainer = document.getElementById('carouselDotsRow');
 
+  if (!track || !wrapper) return;
+
+  const cards = Array.from(track.querySelectorAll('.carousel-card'));
+  const dots = dotsContainer ? Array.from(dotsContainer.querySelectorAll('.carousel-dot')) : [];
+  const totalCards = cards.length;
+  if (totalCards === 0) return;
+
+  let currentPos = 0;
+  let targetPos = 0;
+  let isDragging = false;
+  let pointerStartX = 0;
+  let dragStartPos = 0;
+  let lastClientX = 0;
+  let lastTime = 0;
+  let dragVelocity = 0;
+  let hasDragged = false;
+
+  // Render loop using requestAnimationFrame for smooth continuous swipe motion
+  function render() {
+    requestAnimationFrame(render);
+
+    // Liquid spring interpolation for horizontal swipe motion
+    // If dragging, responsive tracking; if released, smooth, buttery deceleration
+    const diff = targetPos - currentPos;
+    if (Math.abs(diff) > 0.0002) {
+      const ease = isDragging ? 0.32 : 0.075;
+      currentPos += diff * ease;
+    } else if (!isDragging) {
+      currentPos = targetPos;
+    }
+
+    cards.forEach((card, index) => {
+      // Circular distance from current position
+      let d = index - currentPos;
+      d = ((d % totalCards) + totalCards) % totalCards;
+      if (d > totalCards / 2) d -= totalCards;
+
+      const absD = Math.abs(d);
+
+      // Smooth horizontal spatial transition along 3D perspective track
+      const xPercent = Math.sign(d) * Math.min(1, absD) * 44;
+      const zOffset = -absD * 80;
+      const scale = Math.max(0.72, 1 - absD * 0.15);
+      const opacity = Math.max(0, Math.min(1, 1 - Math.max(0, absD - 0.15) * 0.52));
+      const blur = Math.max(0, (absD - 0.2) * 2.2);
+
+      // Cards stay in one place vertically (translateY 0), smoothly translating horizontally
+      card.style.transform = `translateX(${xPercent.toFixed(2)}%) translateY(0) scale(${scale.toFixed(3)}) translateZ(${zOffset.toFixed(1)}px)`;
+      card.style.opacity = opacity.toFixed(3);
+      card.style.filter = blur > 0.1 ? `blur(${blur.toFixed(1)}px)` : 'none';
+      card.style.zIndex = Math.round(20 - absD * 10);
+
+      const isActive = absD < 0.4;
+      card.style.pointerEvents = isActive ? 'auto' : (absD < 1.35 ? 'auto' : 'none');
+      card.classList.toggle('is-active', isActive);
+      card.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+    });
+
+    // Sync active pagination dot to closest card
+    const activeDotIndex = ((Math.round(targetPos) % totalCards) + totalCards) % totalCards;
+    dots.forEach((dot, idx) => {
+      dot.classList.toggle('active', idx === activeDotIndex);
+      dot.setAttribute('aria-selected', idx === activeDotIndex ? 'true' : 'false');
+    });
+  }
+
+  requestAnimationFrame(render);
+
+  // --- POINTER DRAG GESTURES ---
+  wrapper.addEventListener('pointerdown', (e) => {
+    isDragging = true;
+    hasDragged = false;
+    pointerStartX = e.clientX;
+    dragStartPos = targetPos;
+    lastClientX = e.clientX;
+    lastTime = performance.now();
+    dragVelocity = 0;
+    wrapper.classList.add('is-dragging');
+  });
+
+  window.addEventListener('pointermove', (e) => {
+    if (!isDragging) return;
+
+    const deltaX = e.clientX - pointerStartX;
+    if (Math.abs(deltaX) > 8) {
+      hasDragged = true;
+    }
+
+    const now = performance.now();
+    const dt = Math.max(1, now - lastTime);
+    dragVelocity = (e.clientX - lastClientX) / dt;
+    lastClientX = e.clientX;
+    lastTime = now;
+
+    // Convert pixel drag to fractional card units (520px = 1 full card float)
+    const dragFraction = deltaX / 520;
+    targetPos = dragStartPos - dragFraction;
+  });
+
+  function onPointerUp() {
+    if (!isDragging) return;
+    isDragging = false;
+    wrapper.classList.remove('is-dragging');
+
+    if (hasDragged) {
+      // If user flicked with velocity, carry momentum smoothly to next/prev card
+      if (Math.abs(dragVelocity) > 0.35) {
+        if (dragVelocity < 0) {
+          targetPos = Math.ceil(targetPos);
+        } else {
+          targetPos = Math.floor(targetPos);
+        }
+      } else {
+        // Gently settle to nearest card
+        targetPos = Math.round(targetPos);
+      }
+    }
+  }
+
+  window.addEventListener('pointerup', onPointerUp);
+  window.addEventListener('pointercancel', onPointerUp);
+
+  // Prevent link click if user was dragging
+  wrapper.addEventListener('click', (e) => {
+    if (hasDragged) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  }, true);
+
+  // Click on peeked side cards smoothly floats them to center
+  cards.forEach((card, index) => {
+    card.addEventListener('click', (e) => {
+      if (hasDragged) return;
+      if (e.target.closest('a') || e.target.closest('button')) {
+        return;
+      }
+      // Calculate circular delta from current target
+      let delta = index - ((Math.round(targetPos) % totalCards + totalCards) % totalCards);
+      if (delta > totalCards / 2) delta -= totalCards;
+      if (delta < -totalCards / 2) delta += totalCards;
+
+      if (Math.abs(delta) > 0) {
+        e.preventDefault();
+        targetPos = Math.round(targetPos) + delta;
+      }
+    });
+  });
+
+  // Pagination dots click smoothly floats to target card
+  dots.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      const dotIndex = parseInt(dot.getAttribute('data-dot'), 10);
+      if (!isNaN(dotIndex)) {
+        let delta = dotIndex - ((Math.round(targetPos) % totalCards + totalCards) % totalCards);
+        if (delta > totalCards / 2) delta -= totalCards;
+        if (delta < -totalCards / 2) delta += totalCards;
+        targetPos = Math.round(targetPos) + delta;
+      }
+    });
+  });
+
+  // Trackpad / Mouse Wheel Horizontal Swipe
+  let wheelTimer = null;
+  wrapper.addEventListener('wheel', (e) => {
+    if (Math.abs(e.deltaX) > 25) {
+      e.preventDefault();
+      targetPos += (e.deltaX > 0 ? 1 : -1) * 0.08;
+      clearTimeout(wheelTimer);
+      wheelTimer = setTimeout(() => {
+        targetPos = Math.round(targetPos);
+      }, 180);
+    }
+  }, { passive: false });
+
+  // Keyboard left/right arrow navigation
+  const selectedSection = document.getElementById('selected');
+  if (selectedSection) {
+    window.addEventListener('keydown', (e) => {
+      const rect = selectedSection.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight && rect.bottom > 0;
+      if (!inView) return;
+
+      if (e.key === 'ArrowLeft') {
+        targetPos = Math.round(targetPos) - 1;
+      } else if (e.key === 'ArrowRight') {
+        targetPos = Math.round(targetPos) + 1;
+      }
+    });
+  }
+}
+
+/* ==========================================================================
+   ABOUT MANIFESTO STICKY SCROLL-SCRUB READING SYSTEM
+   - Keeps section pinned ("stuck") while user scrolls down
+   - Progressively lights up words from muted gray to high-contrast white / black
+   - Smoothly drives the reading progress bar
+   - Unlocks when all words are fully read and illuminated
+   ========================================================================== */
+function initAboutScrollScrub() {
+  const track = document.getElementById('about');
+  const manifesto = document.getElementById('aboutScrubManifesto');
+
+  if (!track || !manifesto) return;
+
+  const words = manifesto.querySelectorAll('.scrub-word');
+  const totalWords = words.length;
+  if (totalWords === 0) return;
+
+  let isTicking = false;
+
+  function handleScrub() {
+    const rect = track.getBoundingClientRect();
+    const vh = window.innerHeight;
+    const scrollDistance = rect.height - vh;
+
+    if (scrollDistance <= 0) return;
+
+    // Scrolled distance from top of section hitting top of viewport
+    const scrolled = -rect.top;
+    const progress = Math.max(0, Math.min(1, scrolled / scrollDistance));
+
+    // Calculate how many words should be illuminated
+    const activeWordCount = Math.floor(progress * (totalWords + 1));
+
+    words.forEach((word, index) => {
+      if (index < activeWordCount) {
+        word.classList.add('active');
+      } else {
+        word.classList.remove('active');
+      }
+    });
+
+    isTicking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!isTicking) {
+      window.requestAnimationFrame(handleScrub);
+      isTicking = true;
+    }
+  }, { passive: true });
+
+  window.addEventListener('resize', handleScrub, { passive: true });
+
+  // Initial call on load
+  handleScrub();
+}
+
+/* ==========================================================================
+   SCROLL POSITION MEMORY & BACK NAVIGATION RESTORATION
+   Guarantees that navigating into a case study or CV and returning lands the user
+   at the exact pixel and section where they left off.
+   ========================================================================== */
+function getPageScrollKey() {
+  const path = window.location.pathname;
+  return path.substring(path.lastIndexOf('/') + 1) || 'index.html';
+}
+
+function initScrollRestoration() {
+  const key = getPageScrollKey();
+  const navEntry = window.performance && window.performance.getEntriesByType && window.performance.getEntriesByType('navigation')[0];
+  const isReload = navEntry ? navEntry.type === 'reload' : (window.performance && window.performance.navigation && window.performance.navigation.type === 1);
+
+  // 1. Restore exact scroll position if returning from another page
+  if (!isReload) {
+    const saved = sessionStorage.getItem('scroll_pos_' + key);
+    if (saved !== null) {
+      const targetY = parseInt(saved, 10);
+      if (!isNaN(targetY) && targetY >= 0) {
+        if ('scrollRestoration' in history) {
+          history.scrollRestoration = 'manual';
+        }
+
+        const applyScroll = () => {
+          window.scrollTo({ top: targetY, behavior: 'instant' });
+        };
+
+        applyScroll();
+        requestAnimationFrame(applyScroll);
+        setTimeout(applyScroll, 40);
+        setTimeout(applyScroll, 120);
+        setTimeout(applyScroll, 300);
+        setTimeout(applyScroll, 600);
+      }
+    }
+  }
+
+  // 2. Continuous saving before navigation / unload
+  function saveCurrentScroll() {
+    try {
+      sessionStorage.setItem('scroll_pos_' + key, window.scrollY.toString());
+    } catch (e) {}
+  }
+
+  window.addEventListener('beforeunload', saveCurrentScroll);
+  window.addEventListener('pagehide', saveCurrentScroll);
+
+  // Capture scroll immediately upon clicking any internal navigation link
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+    if (!link) return;
+    const href = link.getAttribute('href');
+    if (href && (href.endsWith('.html') || href.includes('.html#') || href === 'index.html' || href.startsWith('/'))) {
+      saveCurrentScroll();
+    }
+  });
+}
