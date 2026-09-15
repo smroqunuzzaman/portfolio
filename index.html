@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>S M Roqunuzzaman — UI/UX Designer Portfolio</title>
+  <meta name="description" content="SaaS dashboards, EdTech platforms and mobile app design — Figma design systems, prototyping and user-centered UX.">
+  <meta property="og:title" content="S M Roqunuzzaman — UI/UX Designer Portfolio">
+  <meta property="og:description" content="SaaS dashboards, EdTech platforms and mobile app design — Figma design systems, prototyping and user-centered UX.">
+  <meta name="twitter:title" content="S M Roqunuzzaman — UI/UX Designer Portfolio">
+  <meta name="twitter:description" content="SaaS dashboards, EdTech platforms and mobile app design — Figma design systems, prototyping and user-centered UX.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    (function() {
+      try {
+        const saved = localStorage.getItem('theme');
+        if (saved === 'light' || (!saved && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- Figma-Style "Design in Progress" Interactive Loading Screen (Matches User Reference Image) -->
+  <aside class="figma-loader-overlay" id="portfolioLoader" aria-label="Loading Portfolio Canvas" role="dialog" aria-modal="true">
+    <!-- Subtle Dot Grid Blueprint Canvas -->
+    <div class="loader-blueprint-grid" aria-hidden="true"></div>
+
+    <!-- UI/UX Design Tool Workboard Frame -->
+    <div class="loader-canvas-container">
+      
+      <!-- Top Guide Line & Category Label (Matches 'O que eu faço.' in reference) -->
+      <div class="loader-guideline loader-guideline-top">
+        <span class="guideline-rule"></span>
+        <span class="guideline-tag">Crafting Experiences.</span>
+        <span class="guideline-metric">Frame / 1440 × 900</span>
+      </div>
+
+      <!-- Main Editable Typography Stage -->
+      <div class="loader-typo-stage" id="loaderTypoStage">
+        
+        <!-- Big Bold Display Word "Loading" (Modeled after "Designer" in reference) -->
+        <h1 class="loader-display-text" id="loaderDisplayText" aria-label="Loading">
+          <span class="char-span">L</span><span class="char-span">o</span><span class="char-span">a</span><span class="char-span">d</span><span class="char-span">i</span><span class="char-span">n</span><span class="char-span">g</span>
+        </h1>
+
+        <!-- Active Design Selection Box (like attached reference image) -->
+        <div class="loader-selection-box" id="loaderSelectionBox" aria-hidden="true">
+          <!-- Figma Smart Alignment Guides -->
+          <div class="smart-guide smart-guide-x" id="smartGuideX"></div>
+          <div class="smart-guide smart-guide-y" id="smartGuideY"></div>
+
+          <!-- Transform Corner Nodes -->
+          <span class="corner-handle handle-tl"></span>
+          <span class="corner-handle handle-tr"></span>
+          <span class="corner-handle handle-bl"></span>
+          <span class="corner-handle handle-br" id="loaderCornerHandleBR"></span>
+
+          <!-- Floating Dimension & Status Pill (W: 420  H: 140 · 100%) -->
+          <div class="loader-dimension-pill" id="loaderDimensionPill">
+            <span class="dim-spec"><span class="dim-lbl">W:</span> <b id="loaderDimW">280</b></span>
+            <span class="dim-spec"><span class="dim-lbl">H:</span> <b id="loaderDimH">160</b></span>
+            <span class="dim-divider">|</span>
+            <span class="dim-progress" id="loaderPct">24%</span>
+          </div>
+
+          <!-- Simulated Figma Designer Cursor -->
+          <div class="loader-figma-cursor" id="loaderFigmaCursor">
+            <svg class="figma-arrow-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5.5 3.2L18.5 13.8L12.5 14.5L15.8 21.2L13.2 22.5L9.9 15.8L5.5 19.5V3.2Z" fill="currentColor" stroke="#ffffff" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+            <div class="cursor-nametag">
+              <span class="nametag-dot"></span>
+              <span class="nametag-text">Roqunuzzaman</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Guide Line & Profession Subtitle (Matches 'O que eu sou.' in reference) -->
+      <div class="loader-guideline loader-guideline-bottom">
+        <span class="guideline-rule"></span>
+        <span class="guideline-tag">UI/UX &amp; Product Designer.</span>
+        <span class="guideline-metric">Align: Center · 100%</span>
+      </div>
+
+      <!-- Interactive Skip Hint -->
+      <div class="loader-footer-hint" id="loaderSkipHint">
+        <button type="button" class="skip-loader-btn" id="skipLoaderBtn">Click anywhere or press <kbd>Space</kbd> to enter</button>
+      </div>
+
+    </div>
+  </aside>
+
+  <!-- Fluid Neon Ribbon Cursor (White Neon in Dark Mode / Dark Neon in Light Mode) -->
+  <canvas class="cursor-trail-canvas" id="cursorTrailCanvas" aria-hidden="true"></canvas>
+
+  <!-- Film Grain Overlay -->
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- Top Right Links (Mail, Dribbble, LinkedIn, Theme Switcher) -->
+  <header class="top-links-overlay" role="banner">
+    <a href="mailto:smroqunuzzaman@gmail.com" class="overlay-link">Mail</a>
+    <a href="https://dribbble.com/SMRoqunuzzaman" target="_blank" rel="noopener noreferrer" class="overlay-link">Dribbble</a>
+    <a href="https://www.linkedin.com/in/smroqunuzzaman/" target="_blank" rel="noopener noreferrer" class="overlay-link">LinkedIn</a>
+
+    <!-- Luminous Bulb Pull-Switch Theme Indicator (Matches User Reference Images) -->
+    <button class="theme-bulb-toggle" id="themeToggle" type="button" aria-label="Toggle dark and light theme" role="switch" aria-checked="false" title="Click to turn lights on/off">
+      <div class="bulb-widget-wrapper">
+        <!-- Circular Light Fixture Disc -->
+        <div class="bulb-disc-fixture">
+          <svg class="bulb-silhouette-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2.5a6.5 6.5 0 0 0-6.5 6.5c0 2.44 1.34 4.56 3.32 5.66.45.25.74.72.74 1.24v1.8c0 .72.58 1.3 1.3 1.3h2.28c.72 0 1.3-.58 1.3-1.3v-1.8c0-.52.29-.99.74-1.24A6.48 6.48 0 0 0 18.5 9a6.5 6.5 0 0 0-6.5-6.5zm-1.14 17.5h2.28a.7.7 0 0 1 .7.7v.2a.7.7 0 0 1-.7.7h-2.28a.7.7 0 0 1-.7-.7v-.2a.7.7 0 0 1 .7-.7z"/>
+          </svg>
+        </div>
+        <!-- Hanging Pull-Cord String & Bead -->
+        <div class="bulb-pull-chain" aria-hidden="true">
+          <span class="chain-string"></span>
+          <span class="chain-bead"></span>
+        </div>
+      </div>
+    </button>
+  </header>
+
+  <!-- Bottom Right Navigation (Scroll-triggered) -->
+  <nav class="bottom-nav-overlay" id="bottomNav" aria-label="Page navigation">
+    <div class="nav-stack">
+      <button onclick="scrollToSection('about')" class="nav-btn" data-nav="about">About</button>
+      <button onclick="scrollToSection('featured')" class="nav-btn" data-nav="featured">Featured</button>
+      <button onclick="scrollToSection('selected')" class="nav-btn" data-nav="selected">Selected</button>
+      <button onclick="scrollToSection('why-me')" class="nav-btn" data-nav="why-me">Why Me</button>
+      <button onclick="scrollToSection('process')" class="nav-btn" data-nav="process">How I Work</button>
+      <a href="dossier.html" class="nav-btn nav-link-external" title="View Full Career Dossier">Dossier ↗</a>
+      <button onclick="scrollToSection('contact')" class="nav-btn" data-nav="contact">Contact</button>
+    </div>
+  </nav>
+
+  <!-- Mobile Floating Menu Toggle -->
+  <div class="mobile-nav-toggle">
+    <button id="mobileMenuBtn" class="mobile-btn">Menu</button>
+    <div class="mobile-menu-dropdown" id="mobileDropdown">
+      <button onclick="scrollToSection('about')">About</button>
+      <button onclick="scrollToSection('featured')">Featured</button>
+      <button onclick="scrollToSection('selected')">Selected</button>
+      <button onclick="scrollToSection('why-me')">Why Me</button>
+      <button onclick="scrollToSection('process')">How I Work</button>
+      <a href="dossier.html" style="text-decoration:none; color:inherit; font-size:0.875rem;">Dossier ↗</a>
+      <button onclick="scrollToSection('contact')">Contact</button>
+    </div>
+  </div>
+
+  <!-- Interactive Spider-Man Noir Web-Swinging Detective -->
+  <aside class="noir-companion" id="noirCompanion" aria-label="Spider-Man Noir Web-Swinging Detective">
+    <div class="noir-anchor">
+      <!-- Pendulum Swing Rig with Realistic Physics -->
+      <div class="noir-pendulum-rig" id="noirRig">
+        <!-- Comic SFX Burst Bubble -->
+        <div class="noir-sfx-burst" id="noirSfxBurst" aria-hidden="true">*DETECTIVE SENSE*</div>
+
+        <!-- Flexible Swinging Body tracking the cursor -->
+        <div class="noir-body" id="noirBody" role="button" tabindex="0">
+          <img src="noir-3d-swing.png" alt="Spider-Man Noir 3D animated swinging detective" class="noir-img" id="noirImg" draggable="false">
+          <!-- Glowing Eye Highlights at his goggles -->
+          <div class="noir-eyes-glow" aria-hidden="true"></div>
+        </div>
+
+        <!-- Minimalist Detective Whisper Capsule -->
+        <div class="noir-whisper-bubble" id="noirDossierBubble" role="status" aria-live="polite">
+          <p class="noir-whisper-text" id="noirQuoteText">
+            "In a city of broken UX, Roqunuzzaman gets results."
+          </p>
+          <div class="noir-bubble-tail"></div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="hero">
+      <div class="hero-bg-media">
+        <img src="roqunuzzaman-portrait.png" alt="S M Roqunuzzaman, UI/UX Designer" class="hero-portrait">
+        <div class="hero-gradient-overlay"></div>
+      </div>
+
+      <div class="hero-content-wrapper">
+        <div class="max-w-hero">
+          
+          <!-- Iconic 3-Line Stacked Hero Title (Matches User's Reference Screenshot) -->
+          <div class="hero-headline-block">
+            <h1 class="hero-title">
+              <span class="hero-line">S M</span>
+              <span class="hero-line">ROQUNUZZAMAN</span>
+              <span class="hero-line hero-line-muted">
+                <span class="hero-title-prefix">I AM A </span><span class="typewriter-text" id="heroTypewriterText">UI/UX DESIGNER</span><span class="typewriter-cursor" aria-hidden="true">|</span>
+              </span>
+            </h1>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="section-padding" id="about">
+      <div class="section-container">
+        <div class="section-label-header">
+          <span class="section-tag-name">About</span>
+          <div class="tag-divider"></div>
+        </div>
+
+        <div class="about-editorial-stage">
+          <div class="about-editorial-wrapper">
+            <!-- Top Floating Sticker Card & Hand-Drawn Arrow (Locked to Narrative Headline) -->
+            <div class="about-sticker-group" aria-hidden="true">
+              <div class="about-sticker-badge">
+                <span class="sticker-line-1">Don't you want</span>
+                <span class="sticker-line-2">to <em>know more</em></span>
+              </div>
+              <svg class="sticker-arrow-svg" viewBox="0 0 92 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M 4 12 C 42 0, 74 12, 71 42" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M 61 31 L 71 43 L 81 33" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+
+            <!-- Editorial Narrative Paragraphs -->
+            <p class="about-story-p">
+              Hello, I’m <em>Roqunuzzaman</em>, a UI/UX designer focused on turning complex ideas into clear, thoughtful digital experiences.
+            </p>
+            <p class="about-story-p">
+              My background in literature taught me to understand stories, people, and the details hidden between the lines. I bring that perspective into design, creating practical products that feel intuitive, purposeful, and human.
+            </p>
+            <p class="about-story-p">
+              Today, I design digital experiences with equal attention to clarity, emotion, and craft.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01 — FEATURED CASE -->
+    <section class="section-padding" id="featured">
+      <div class="section-container">
+        <div class="section-num-label">
+          <span>01 — FEATURED CASE</span>
+        </div>
+
+        <div class="featured-case-grid">
+          <div class="featured-case-info">
+            <h2 class="featured-case-title">Offx: Deal Discovery &amp; Creation Flow</h2>
+            <div class="pill-badge">PRODUCT DESIGN</div>
+
+            <h3 class="highlights-heading">Key Highlights</h3>
+            <ul class="featured-highlights-list">
+              <li>Redesigned a fragmented OTC platform into a clearer trader workflow.</li>
+              <li>Moved pricing, terms, and context closer to the decision point.</li>
+              <li>Added guided onboarding and review steps for high-value actions.</li>
+            </ul>
+
+            <div>
+              <a href="dossier.html#projects" class="btn-primary">READ MORE</a>
+            </div>
+          </div>
+
+          <div class="featured-mockup-col">
+            <div class="featured-mockup-wrapper">
+              <img src="offx_laptop_mockup.png" alt="Offx Deal Discovery and Creation Flow platform mockup on laptop" class="featured-mockup-img">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 — SELECTED CASES -->
+    <section class="section-padding bg-alt" id="selected">
+      <div class="section-container">
+        <div class="section-num-label">
+          <span>02 — SELECTED</span>
+        </div>
+
+        <div class="selected-cases-table">
+          <!-- Item P. 02 -->
+          <a href="dossier.html#projects" class="selected-case-row">
+            <div class="selected-case-idx">P. 02</div>
+            <div class="selected-case-main">
+              <h3 class="selected-case-title">Herd - Simplifying Blockchain with AI</h3>
+              <p class="selected-case-desc">Herd.eco is a collaborative platform designed to help users search, understand, and act on blockchain data with the assistance of AI agents.</p>
+            </div>
+            <div class="selected-case-meta">
+              <span>PRODUCT DESIGN</span>
+              <span>2025-26</span>
+              <span class="selected-case-arrow">↗</span>
+            </div>
+          </a>
+
+          <!-- Item P. 03 -->
+          <a href="dossier.html#projects" class="selected-case-row">
+            <div class="selected-case-idx">P. 03</div>
+            <div class="selected-case-main">
+              <h3 class="selected-case-title">Crypto No code Data Builder</h3>
+              <p class="selected-case-desc">The Delphi Chart builder is an intuitive no-code solution that allows users to explore and build widgets using datasets.</p>
+            </div>
+            <div class="selected-case-meta">
+              <span>PRODUCT DESIGN</span>
+              <span>2022-23</span>
+              <span class="selected-case-arrow">↗</span>
+            </div>
+          </a>
+
+          <!-- Item P. 04 -->
+          <a href="dossier.html#projects" class="selected-case-row">
+            <div class="selected-case-idx">P. 04</div>
+            <div class="selected-case-main">
+              <h3 class="selected-case-title">CoreStack: Enterprise Control Panel</h3>
+              <p class="selected-case-desc">A full redesign of a cloud-hosting control panel turning years of feature growth into a product that infrastructure, support, sales, billing teams, and clients could navigate with confidence.</p>
+            </div>
+            <div class="selected-case-meta">
+              <span>DESIGN CONCEPT</span>
+              <span>2026</span>
+              <span class="selected-case-arrow">↗</span>
+            </div>
+          </a>
+
+          <!-- Item P. 05 -->
+          <a href="dossier.html#projects" class="selected-case-row">
+            <div class="selected-case-idx">P. 05</div>
+            <div class="selected-case-main">
+              <h3 class="selected-case-title">Making direct mail campaigns easier to launch, manage, and measure</h3>
+              <p class="selected-case-desc">A redesign of an established direct-mail platform for roofers, real-estate agents, and home-service businesses. I turned an engineer-built dashboard into a guided product that helps non-technical owners understand the platform and reach their first campaign with confidence.</p>
+            </div>
+            <div class="selected-case-meta">
+              <span>DESIGN CONCEPT</span>
+              <span>2026</span>
+              <span class="selected-case-arrow">↗</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 — WHY WORK WITH ME? -->
+    <section class="section-padding" id="why-me">
+      <div class="section-container">
+        <div class="section-num-label">
+          <span>03 — WHY WORK WITH ME?</span>
+        </div>
+
+        <div class="why-me-hero">
+          <h2 class="why-me-headline">
+            Designers who can hold both ends - <span class="highlight-accent">strategy &amp; craft</span>, are <span class="highlight-accent">rare</span>.
+          </h2>
+          <p class="why-me-lead">
+            I work best where the stakes are real and the data is dense. My job is to remove the friction, so the next decision comes faster.
+          </p>
+        </div>
+
+        <div class="principles-grid">
+          <div class="principle-card">
+            <span class="principle-badge">A</span>
+            <h3 class="principle-title">I design from the lifecycle, not the screen.</h3>
+            <p class="principle-body">
+              I design around how people discover, use, return to, and grow with a product, creating systems that feel connected and easy to trust.
+            </p>
+          </div>
+
+          <div class="principle-card">
+            <span class="principle-badge">B</span>
+            <h3 class="principle-title">Systems first, screens second.</h3>
+            <p class="principle-body">
+              I start with the structure behind the product, then shape the screens around it, so the experience feels consistent, scalable, and easier to use.
+            </p>
+          </div>
+
+          <div class="principle-card">
+            <span class="principle-badge">C</span>
+            <h3 class="principle-title">Density is not the enemy.</h3>
+            <p class="principle-body">
+              I don't simplify by removing what matters. I organize dense information so people can scan, understand, and act with confidence.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 — HOW I WORK? -->
+    <section class="section-padding bg-alt" id="process">
+      <div class="section-container">
+        <div class="section-num-label">
+          <span>04 — HOW I WORK?</span>
+        </div>
+
+        <div class="how-i-work-layout">
+          <div class="how-i-work-intro">
+            <h2 class="how-i-work-heading">What working together actually looks like.</h2>
+            <p class="how-i-work-lead">
+              I work closely with PMs and engineers when there's a team, and own the process end-to-end when working independently, staying close to the product, constraints, and decisions.
+            </p>
+          </div>
+
+          <div class="how-i-work-steps">
+            <div class="how-step-row">
+              <span class="how-step-tag">H. 01</span>
+              <div class="how-step-content">
+                <h3>Discovery in the open</h3>
+                <p>I keep discovery visible and collaborative, sharing early thoughts, questions, references, and tradeoffs so the direction gets sharper before the design gets polished.</p>
+              </div>
+            </div>
+
+            <div class="how-step-row">
+              <span class="how-step-tag">H. 02</span>
+              <div class="how-step-content">
+                <h3>Decisions documented, not just designed</h3>
+                <p>I don't just design the final state. I make the reasoning visible, so decisions feel clear, intentional, and easier to build on.</p>
+              </div>
+            </div>
+
+            <div class="how-step-row">
+              <span class="how-step-tag">H. 03</span>
+              <div class="how-step-content">
+                <h3>Clear specs, fewer gaps</h3>
+                <p>I design with implementation in mind, defining states, specs, components, and context so the work moves smoothly from Figma to build.</p>
+              </div>
+            </div>
+
+            <div class="how-step-row">
+              <span class="how-step-tag">H. 04</span>
+              <div class="how-step-content">
+                <h3>Support where it matters</h3>
+                <p>I stay close to implementation where the project allows, helping clarify edge cases, states, and interaction details so the final build holds up beyond the handoff.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAREER DOSSIER GATEWAY (Skills, Experience, Education & Achievements Archive) -->
+    <section class="section-padding" id="dossier-gateway">
+      <div class="section-container">
+        <div class="dossier-gateway-card">
+          <div class="dossier-gateway-left">
+            <p class="dossier-gateway-tag">Complete Professional Record</p>
+            <h2 class="dossier-gateway-title">Career Dossier &amp; Detailed Background</h2>
+            <p class="dossier-gateway-desc">
+              Looking for my full employment timeline at Betopia Group, technical skills matrix, complete shipped case archive, academic credentials, and leadership honors?
+            </p>
+          </div>
+          <div class="dossier-gateway-right">
+            <a href="dossier.html" class="dossier-gateway-btn">
+              <span>Explore Full Dossier</span>
+              <span class="btn-arrow">↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="section-padding" id="contact">
+      <div class="section-container">
+        <div class="section-label-header">
+          <span class="section-tag-name">Contact</span>
+          <div class="tag-divider"></div>
+        </div>
+
+        <h2 class="hero-title-giant">Let's work together</h2>
+
+        <div class="divider-line"></div>
+
+        <div class="mb-large max-w-2xl">
+          <h3 class="contact-subheading">
+            OPEN TO PRODUCT<br>
+            DESIGN ROLES AND<br>
+            SELECT FREELANCE WORK
+          </h3>
+          <p class="contact-location">Based in Dhaka, Bangladesh — working with teams worldwide</p>
+        </div>
+
+        <div class="contact-links-list">
+          <a href="mailto:smroqunuzzaman@gmail.com" class="contact-link-item">
+            <span class="contact-lbl">EMAIL — SMROQUNUZZAMAN@GMAIL.COM</span>
+            <span class="contact-arrow">↗</span>
+          </a>
+          <a href="tel:+8801732554030" class="contact-link-item">
+            <span class="contact-lbl">PHONE — +880 1732-554030</span>
+            <span class="contact-arrow">↗</span>
+          </a>
+          <a href="https://dribbble.com/SMRoqunuzzaman" target="_blank" rel="noopener noreferrer" class="contact-link-item">
+            <span class="contact-lbl">DRIBBBLE — @SMROQUNUZZAMAN</span>
+            <span class="contact-arrow">↗</span>
+          </a>
+          <a href="https://www.linkedin.com/in/smroqunuzzaman/" target="_blank" rel="noopener noreferrer" class="contact-link-item">
+            <span class="contact-lbl">LINKEDIN — /IN/SMROQUNUZZAMAN</span>
+            <span class="contact-arrow">↗</span>
+          </a>
+        </div>
+
+        <footer class="footer-bottom">
+          <p>© 2026 S M Roqunuzzaman. All rights reserved.</p>
+          <p>UI/UX Designer · Dhaka, Bangladesh</p>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

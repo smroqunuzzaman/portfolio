@@ -1,0 +1,19 @@
+{
+  "name": "portfolio-roqunuzzaman",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "npx http-server ./ -p 8085 -c-1",
+    "dev": "npx http-server ./ -p 8085 -c-1"
+  },
+  "dependencies": {
+    "fflate": "^0.8.3",
+    "jpeg-js": "^0.4.4",
+    "pngjs": "^7.0.0"
+  },
+  "devDependencies": {
+    "fbx2gltf": "^0.9.7-p1",
+    "node-addon-api": "^8.9.2",
+    "node-gyp": "^12.4.0",
+    "three": "^0.186.0"
+  }
+}
