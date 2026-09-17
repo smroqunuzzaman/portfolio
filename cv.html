@@ -49,19 +49,21 @@
       <a href="https://www.linkedin.com/in/smroqunuzzaman/" target="_blank" rel="noopener noreferrer" class="overlay-link">LinkedIn</a>
 
       <!-- Theme Switcher Bulb -->
-      <button class="theme-bulb-toggle" id="themeToggle" type="button" aria-label="Toggle dark and light theme" role="switch" aria-checked="false" title="Click to turn lights on/off">
+      <div class="theme-bulb-toggle" id="themeToggle" role="group" aria-label="Theme toggle switch">
         <div class="bulb-widget-wrapper">
-          <div class="bulb-disc-fixture">
+          <button class="bulb-disc-fixture" id="bulbDiscFixture" type="button" aria-label="Toggle dark and light theme" role="switch" aria-checked="false" title="Click disc to toggle theme">
             <svg class="bulb-silhouette-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M12 2.5a6.5 6.5 0 0 0-6.5 6.5c0 2.44 1.34 4.56 3.32 5.66.45.25.74.72.74 1.24v1.8c0 .72.58 1.3 1.3 1.3h2.28c.72 0 1.3-.58 1.3-1.3v-1.8c0-.52.29-.99.74-1.24A6.48 6.48 0 0 0 18.5 9a6.5 6.5 0 0 0-6.5-6.5zm-1.14 17.5h2.28a.7.7 0 0 1 .7.7v.2a.7.7 0 0 1-.7.7h-2.28a.7.7 0 0 1-.7-.7v-.2a.7.7 0 0 1 .7-.7z"/>
             </svg>
-          </div>
-          <div class="bulb-pull-chain" aria-hidden="true">
-            <span class="chain-string"></span>
-            <span class="chain-bead"></span>
+          </button>
+          <div class="bulb-pull-chain" id="bulbPullChain" aria-label="Pull cord to toggle theme" title="Pull string down fully to toggle theme">
+            <svg class="chain-spring-svg" id="chainSpringSvg" viewBox="0 0 40 50" preserveAspectRatio="none" aria-hidden="true">
+              <path class="chain-spring-path" id="chainSpringPath" d="M 20 0 L 20 16" />
+            </svg>
+            <span class="chain-bead" id="chainBead" aria-hidden="true"></span>
           </div>
         </div>
-      </button>
+      </div>
     </div>
   </header>
 
@@ -79,12 +81,12 @@
       </p>
 
       <div class="cv-hero-actions" style="display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:2rem;">
-        <a href="https://drive.google.com/file/d/1cXV8lthcDHrPGLQng46d6io8WmMNn0Pw/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn-primary" style="display:inline-flex; align-items:center; gap:8px;">
-          <span>OPEN PDF RESUME (GOOGLE DRIVE)</span>
+        <a href="https://drive.google.com/file/d/1cXV8lthcDHrPGLQng46d6io8WmMNn0Pw/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn-primary swipe-letters-btn" data-swipe-letters style="display:inline-flex; align-items:center; gap:8px;">
+          <span class="swipe-title">OPEN PDF RESUME (GOOGLE DRIVE)</span>
           <span>↗</span>
         </a>
-        <a href="mailto:smroqunuzzaman@gmail.com" class="btn-secondary" style="display:inline-flex; align-items:center; gap:8px;">
-          <span>EMAIL DIRECTLY</span>
+        <a href="mailto:smroqunuzzaman@gmail.com" class="btn-secondary swipe-letters-btn" data-swipe-letters style="display:inline-flex; align-items:center; gap:8px;">
+          <span class="swipe-title">EMAIL DIRECTLY</span>
           <span>→</span>
         </a>
       </div>
@@ -265,7 +267,7 @@
                   <span class="chip">Enterprise SaaS</span>
                   <span class="chip">Procurement</span>
                   <span class="chip">Forensic Audit</span>
-                  <a href="proqscan-case-study.html" class="chip" style="color:var(--accent-coral); font-weight:700; text-decoration:none;">Read Full Case Study →</a>
+                  <a href="proqscan-case-study.html" class="chip" style="font-weight:700; text-decoration:none; color:var(--foreground); border-color:var(--border);">Read Full Case Study →</a>
                 </div>
                 <span class="figma-arrow">Visit Live Site ↗</span>
               </div>
@@ -295,7 +297,7 @@
                   <span class="chip">Voice AI</span>
                   <span class="chip">IVR Flow Editor</span>
                   <span class="chip">Agent Analytics</span>
-                  <a href="callswain-case-study.html" class="chip" style="color:var(--accent-coral); font-weight:700; text-decoration:none;">Read Full Case Study →</a>
+                  <a href="callswain-case-study.html" class="chip" style="font-weight:700; text-decoration:none; color:var(--foreground); border-color:var(--border);">Read Full Case Study →</a>
                 </div>
                 <span class="figma-arrow">Visit Live Site ↗</span>
               </div>
@@ -324,7 +326,7 @@
                 <div class="tag-chips">
                   <span class="chip">SaaS</span>
                   <span class="chip">Onboarding Wizard</span>
-                  <a href="voqal-case-study.html" class="chip" style="color:var(--accent-coral); font-weight:700; text-decoration:none;">Read Full Case Study →</a>
+                  <a href="voqal-case-study.html" class="chip" style="font-weight:700; text-decoration:none; color:var(--foreground); border-color:var(--border);">Read Full Case Study →</a>
                 </div>
                 <span class="figma-arrow">View in Figma ↗</span>
               </div>
@@ -353,7 +355,7 @@
                 <div class="tag-chips">
                   <span class="chip">LMS</span>
                   <span class="chip">Multi-role Dashboards</span>
-                  <a href="sakeena-case-study.html" class="chip" style="color:var(--accent-coral); font-weight:700; text-decoration:none;">Read Full Case Study →</a>
+                  <a href="sakeena-case-study.html" class="chip" style="font-weight:700; text-decoration:none; color:var(--foreground); border-color:var(--border);">Read Full Case Study →</a>
                 </div>
                 <span class="figma-arrow">View in Figma ↗</span>
               </div>
@@ -382,7 +384,7 @@
                 <div class="tag-chips">
                   <span class="chip">Case Study</span>
                   <span class="chip">Mobile App</span>
-                  <a href="boighor-case-study.html" class="chip" style="color:var(--accent-coral); font-weight:700; text-decoration:none;">Read Full Case Study →</a>
+                  <a href="boighor-case-study.html" class="chip" style="font-weight:700; text-decoration:none; color:var(--foreground); border-color:var(--border);">Read Full Case Study →</a>
                 </div>
                 <span class="figma-arrow">View in Figma ↗</span>
               </div>

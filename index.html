@@ -126,6 +126,80 @@
   <!-- Film Grain Overlay -->
   <div class="grain-overlay" aria-hidden="true"></div>
 
+  <!-- Framer Dynamic Info Island (Upper Middle Landing Page Status Pill) -->
+  <aside class="dynamic-info-island" id="dynamicInfoIsland" aria-label="Creator Profile & Live Status">
+    <!-- Left Wing Curvature (Inverted top notch blend) -->
+    <div class="notch-wing wing-left" aria-hidden="true"></div>
+
+    <!-- Main Pill Shell -->
+    <div class="dynamic-info-shell">
+      <!-- Top Bar: Avatar + Name & Role + Live Dhaka Clock / Expand Indicator -->
+      <button class="dynamic-info-top" id="dynamicInfoToggle" type="button" aria-expanded="false" aria-controls="dynamicInfoBottom" aria-label="Toggle profile details and quick links">
+        <div class="dynamic-user-group">
+          <img src="roqunuzzaman-portrait.png" alt="S M Roqunuzzaman" class="dynamic-user-avatar" width="34" height="34" loading="eager" />
+          <div class="dynamic-user-meta">
+            <span class="dynamic-user-name">S M Roqunuzzaman</span>
+            <span class="dynamic-user-role">UI/UX Designer</span>
+          </div>
+        </div>
+
+        <div class="dynamic-status-group">
+          <div class="dynamic-live-clock" id="dynamicLiveClock" title="Current time in Dhaka, Bangladesh (GMT+6)">
+            <span class="clock-pin-dot"></span>
+            <span class="clock-digits" id="clockDigits">--:-- --</span>
+          </div>
+          <span class="dynamic-chevron-icon" aria-hidden="true">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 6l4 4 4-4"/>
+            </svg>
+          </span>
+        </div>
+      </button>
+
+      <!-- Bottom Bar (Revealed on Open): Social Links + Availability Badge -->
+      <div class="dynamic-info-bottom" id="dynamicInfoBottom" aria-hidden="true">
+        <div class="dynamic-social-strip">
+          <a href="https://www.linkedin.com/in/smroqunuzzaman/" target="_blank" rel="noopener noreferrer" class="dyn-social-btn" aria-label="LinkedIn" title="LinkedIn Profile">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M8 10v10M8 6v.01M12 10v10m0-6a3 3 0 0 1 6 0v6M4 10h4M12 10h6"/>
+            </svg>
+          </a>
+          <a href="https://dribbble.com/SMRoqunuzzaman" target="_blank" rel="noopener noreferrer" class="dyn-social-btn" aria-label="Dribbble" title="Dribbble Portfolio">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M4 12c3-1 7-1 10 1m-4-8c1 2 2 4 3 7m5-3c-2 0-4 .5-6 2"/>
+            </svg>
+          </a>
+          <a href="mailto:smroqunuzzaman@gmail.com" class="dyn-social-btn" aria-label="Email" title="Send Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14" rx="2"/>
+              <path d="m3 7 9 6 9-6"/>
+            </svg>
+          </a>
+          <a href="https://drive.google.com/file/d/1cXV8lthcDHrPGLQng46d6io8WmMNn0Pw/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="dyn-social-btn" aria-label="Resume" title="View PDF Resume">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="dynamic-avail-badge" title="Open for design roles & freelance projects">
+          <span class="avail-beacon" aria-hidden="true">
+            <span class="beacon-ping"></span>
+            <span class="beacon-core"></span>
+          </span>
+          <span class="avail-label">Available</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Wing Curvature (Inverted top notch blend) -->
+    <div class="notch-wing wing-right" aria-hidden="true"></div>
+  </aside>
+
   <!-- Top Right Links (Mail, Dribbble, LinkedIn, Resume, Theme Switcher) -->
   <header class="top-links-overlay" role="banner">
     <a href="mailto:smroqunuzzaman@gmail.com" class="overlay-link">Mail</a>
@@ -133,22 +207,24 @@
     <a href="https://www.linkedin.com/in/smroqunuzzaman/" target="_blank" rel="noopener noreferrer" class="overlay-link">LinkedIn</a>
     <a href="https://drive.google.com/file/d/1cXV8lthcDHrPGLQng46d6io8WmMNn0Pw/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="overlay-link resume-link-highlight" title="Open PDF Resume (Google Drive)">Resume ↗</a>
 
-    <!-- Luminous Bulb Pull-Switch Theme Indicator (Matches User Reference Images) -->
-    <button class="theme-bulb-toggle" id="themeToggle" type="button" aria-label="Toggle dark and light theme" role="switch" aria-checked="false" title="Click to turn lights on/off">
+    <!-- Luminous Bulb Pull-Switch Theme Indicator (Matches User Reference Images & Framer Elastic Physics) -->
+    <div class="theme-bulb-toggle" id="themeToggle" role="group" aria-label="Theme toggle switch">
       <div class="bulb-widget-wrapper">
-        <!-- Circular Light Fixture Disc -->
-        <div class="bulb-disc-fixture">
+        <!-- Circular Light Fixture Disc (Clickable directly inside circle) -->
+        <button class="bulb-disc-fixture" id="bulbDiscFixture" type="button" aria-label="Toggle dark and light theme" role="switch" aria-checked="false" title="Click disc to toggle theme">
           <svg class="bulb-silhouette-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M12 2.5a6.5 6.5 0 0 0-6.5 6.5c0 2.44 1.34 4.56 3.32 5.66.45.25.74.72.74 1.24v1.8c0 .72.58 1.3 1.3 1.3h2.28c.72 0 1.3-.58 1.3-1.3v-1.8c0-.52.29-.99.74-1.24A6.48 6.48 0 0 0 18.5 9a6.5 6.5 0 0 0-6.5-6.5zm-1.14 17.5h2.28a.7.7 0 0 1 .7.7v.2a.7.7 0 0 1-.7.7h-2.28a.7.7 0 0 1-.7-.7v-.2a.7.7 0 0 1 .7-.7z"/>
           </svg>
-        </div>
-        <!-- Hanging Pull-Cord String & Bead -->
-        <div class="bulb-pull-chain" aria-hidden="true">
-          <span class="chain-string"></span>
-          <span class="chain-bead"></span>
+        </button>
+        <!-- Hanging Pull-Cord Elastic String & Bead (Draggable; only changes mode on full pull) -->
+        <div class="bulb-pull-chain" id="bulbPullChain" aria-label="Pull cord to toggle theme" title="Pull string down fully to toggle theme">
+          <svg class="chain-spring-svg" id="chainSpringSvg" viewBox="0 0 40 50" preserveAspectRatio="none" aria-hidden="true">
+            <path class="chain-spring-path" id="chainSpringPath" d="M 20 0 L 20 16" />
+          </svg>
+          <span class="chain-bead" id="chainBead" aria-hidden="true"></span>
         </div>
       </div>
-    </button>
+    </div>
   </header>
 
   <!-- Bottom Right Navigation (Scroll-triggered) -->
@@ -173,7 +249,7 @@
       <button onclick="scrollToSection('why-me')">Why Me</button>
       <button onclick="scrollToSection('process')">How I Work</button>
       <a href="cv.html" style="text-decoration:none; color:inherit; font-size:0.875rem;">Curriculum Vitae (CV) ↗</a>
-      <a href="https://drive.google.com/file/d/1cXV8lthcDHrPGLQng46d6io8WmMNn0Pw/view?usp=sharing" target="_blank" rel="noopener noreferrer" style="text-decoration:none; color:inherit; font-size:0.875rem; color: var(--accent-coral);">PDF Resume ↗</a>
+      <a href="https://drive.google.com/file/d/1cXV8lthcDHrPGLQng46d6io8WmMNn0Pw/view?usp=sharing" target="_blank" rel="noopener noreferrer" style="text-decoration:none; color:inherit; font-size:0.875rem; font-weight:600;">PDF Resume ↗</a>
       <button onclick="scrollToSection('contact')">Contact</button>
     </div>
   </div>
@@ -442,6 +518,9 @@
                     <span>Read Case Study</span>
                     <span class="arrow-circle">→</span>
                   </a>
+                  <a href="https://www.figma.com/design/vABZISsnUv6okHreZK1C4v/Project-IVR-for-LTD" target="_blank" rel="noopener noreferrer" class="card-secondary-link">
+                    <span>Figma Design ↗</span>
+                  </a>
                 </div>
               </div>
               <div class="card-media-panel">
@@ -474,6 +553,9 @@
                     <span>Read Case Study</span>
                     <span class="arrow-circle">→</span>
                   </a>
+                  <a href="https://www.figma.com/design/dmh1iT37o1WfgQjjurceMe/Project-Education-Platform" target="_blank" rel="noopener noreferrer" class="card-secondary-link">
+                    <span>Figma Design ↗</span>
+                  </a>
                 </div>
               </div>
               <div class="card-media-panel">
@@ -505,6 +587,9 @@
                   <a href="boighor-case-study.html" class="card-read-more-btn">
                     <span>Read Case Study</span>
                     <span class="arrow-circle">→</span>
+                  </a>
+                  <a href="https://www.figma.com/design/VjkZy0jZGdqwQPVSX28d8I/A-Case-Study-on-BoiGhor" target="_blank" rel="noopener noreferrer" class="card-secondary-link">
+                    <span>Figma Design ↗</span>
                   </a>
                 </div>
               </div>
@@ -646,47 +731,292 @@
     <!-- CURRICULUM VITAE (CV) & RESUME GATEWAY -->
     <section class="section-padding" id="cv-gateway">
       <div class="section-container">
-        <div class="dossier-gateway-card">
-          <div class="dossier-gateway-left">
-            <p class="dossier-gateway-tag">Verified Professional Record</p>
-            <h2 class="dossier-gateway-title">Curriculum Vitae (CV) &amp; Detailed Background</h2>
-            <p class="dossier-gateway-desc">
-              Looking for my verified employment timeline at Betopia Group, technical skills matrix, full shipped case files, English literature academic background, and photography honors?
-            </p>
-          </div>
-          <div class="dossier-gateway-right">
-            <a href="cv.html" class="dossier-gateway-btn">
-              <span>View Curriculum Vitae (CV)</span>
-              <span class="btn-arrow">↗</span>
-            </a>
-            <a href="https://drive.google.com/file/d/1cXV8lthcDHrPGLQng46d6io8WmMNn0Pw/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="dossier-gateway-btn btn-resume-accent" title="Open PDF Resume in Google Drive">
-              <span>Open PDF Resume</span>
-              <span class="btn-arrow">↗</span>
-            </a>
+        <div class="cv-gateway-shell">
+          <div class="cv-gateway-card">
+            
+            <!-- Left Narrative & Credential Column -->
+            <div class="cv-gateway-left">
+              <h2 class="cv-gateway-title">Curriculum Vitae (CV) &amp; Detailed Background</h2>
+
+              <p class="cv-gateway-desc">
+                A verified record of my employment timeline at Betopia Group, technical skills matrix, full shipped case files, English literature academic background, and photography honors.
+              </p>
+            </div>
+
+            <!-- Right Action Deck -->
+            <div class="cv-gateway-right">
+              <div class="cv-action-deck">
+                
+                <!-- Primary Action Button: View CV (Swipe Letters Effect) -->
+                <a href="cv.html" class="cv-action-btn primary-cv-btn swipe-letters-btn" id="viewCvBtn" data-swipe-letters aria-label="View Curriculum Vitae (CV)">
+                  <div class="cv-btn-content">
+                    <span class="cv-btn-title swipe-title">View Curriculum Vitae (CV)</span>
+                    <span class="cv-btn-meta">Interactive Career Dossier &amp; Timeline</span>
+                  </div>
+                  <div class="cv-btn-icon-wrapper" aria-hidden="true">
+                    <svg class="cv-arrow-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="7" y1="17" x2="17" y2="7"></line>
+                      <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                  </div>
+                </a>
+
+                <!-- Secondary Action Button: Open PDF Resume (Swipe Letters Effect) -->
+                <a href="https://drive.google.com/file/d/1cXV8lthcDHrPGLQng46d6io8WmMNn0Pw/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="cv-action-btn secondary-cv-btn swipe-letters-btn" id="openResumePdfBtn" title="Open PDF Resume in Google Drive" data-swipe-letters aria-label="Open PDF Resume">
+                  <div class="cv-btn-content">
+                    <span class="cv-btn-title swipe-title">Open PDF Resume</span>
+                    <span class="cv-btn-meta">Google Drive · 1-Page Summary</span>
+                  </div>
+                  <div class="cv-btn-icon-wrapper" aria-hidden="true">
+                    <svg class="cv-arrow-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                      <polyline points="7 10 12 15 17 10"></polyline>
+                      <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                  </div>
+                </a>
+
+                <!-- Availability Micro-Status -->
+                <div class="cv-status-micro">
+                  <span class="status-indicator-dot"></span>
+                  <span>Open to Full-Time Design Roles &amp; Select Advisory</span>
+                </div>
+
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CONTACT SECTION -->
-    <section class="section-padding" id="contact">
+    <!-- SCROLL-DRIVEN KINETIC STATEMENT STRIP (Matches Reference 'Text Line') -->
+    <section class="kinetic-scroll-strip" id="kineticStrip" aria-label="Design Philosophy Statement">
+      <div class="kinetic-strip-inner">
+        
+        <!-- Clean Single Statement Track matching Portfolio Typography & Vibe -->
+        <div class="kinetic-row kinetic-row-main">
+          <div class="kinetic-track" id="kineticTrack">
+            <div class="kinetic-stream">
+              <span class="kinetic-text">Crafting intuitive digital experiences</span>
+              <span class="kinetic-dot" aria-hidden="true">✦</span>
+              <span class="kinetic-text">Designing products that scale</span>
+              <span class="kinetic-dot" aria-hidden="true">✦</span>
+              <span class="kinetic-text">Turning complexity into simplicity</span>
+              <span class="kinetic-dot" aria-hidden="true">✦</span>
+              <span class="kinetic-text">From wireframe to pixel-perfection</span>
+              <span class="kinetic-dot" aria-hidden="true">✦</span>
+            </div>
+            <div class="kinetic-stream" aria-hidden="true">
+              <span class="kinetic-text">Crafting intuitive digital experiences</span>
+              <span class="kinetic-dot">✦</span>
+              <span class="kinetic-text">Designing products that scale</span>
+              <span class="kinetic-dot">✦</span>
+              <span class="kinetic-text">Turning complexity into simplicity</span>
+              <span class="kinetic-dot">✦</span>
+              <span class="kinetic-text">From wireframe to pixel-perfection</span>
+              <span class="kinetic-dot">✦</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION (WITH FRAMER 5-COLUMN SHUTTER CURTAIN REVEAL) -->
+    <section class="section-padding contact-section-curtain-shell" id="contact">
+      <!-- Framer 5-Column Shutter Curtain Reveal Overlay -->
+      <div class="footer-shutter-curtain" id="footerShutterCurtain" aria-hidden="true">
+        <!-- Column 1 (Leftmost edge) -->
+        <div class="shutter-col shutter-col-1" data-col="0">
+          <div class="shutter-blade">
+            <div class="shutter-blade-edge"></div>
+          </div>
+          <div class="shutter-col-meta">
+            <span class="shutter-col-id">01</span>
+            <span class="shutter-col-label">EXPERIENCE</span>
+          </div>
+        </div>
+
+        <!-- Column 2 (Inner Left) -->
+        <div class="shutter-col shutter-col-2" data-col="1">
+          <div class="shutter-blade">
+            <div class="shutter-blade-edge"></div>
+          </div>
+          <div class="shutter-col-meta">
+            <span class="shutter-col-id">02</span>
+            <span class="shutter-col-label">SYSTEMS</span>
+          </div>
+        </div>
+
+        <!-- Column 3 (Center Anchor - First to Retract) -->
+        <div class="shutter-col shutter-col-3" data-col="2">
+          <div class="shutter-blade">
+            <div class="shutter-blade-edge"></div>
+          </div>
+          <div class="shutter-col-meta shutter-center-meta">
+            <div class="shutter-center-badge">
+              <span class="shutter-badge-pre">✦ STUDIO REVEAL</span>
+              <span class="shutter-badge-title">ROQUNUZZAMAN</span>
+              <span class="shutter-badge-sub"><span class="shutter-pulse-dot"></span> OPEN FOR COLLABORATION · 2026</span>
+            </div>
+            <span class="shutter-col-id">03</span>
+          </div>
+        </div>
+
+        <!-- Column 4 (Inner Right) -->
+        <div class="shutter-col shutter-col-4" data-col="3">
+          <div class="shutter-blade">
+            <div class="shutter-blade-edge"></div>
+          </div>
+          <div class="shutter-col-meta">
+            <span class="shutter-col-id">04</span>
+            <span class="shutter-col-label">MOTION</span>
+          </div>
+        </div>
+
+        <!-- Column 5 (Rightmost edge) -->
+        <div class="shutter-col shutter-col-5" data-col="4">
+          <div class="shutter-blade">
+            <div class="shutter-blade-edge"></div>
+          </div>
+          <div class="shutter-col-meta">
+            <span class="shutter-col-id">05</span>
+            <span class="shutter-col-label">CONNECT</span>
+          </div>
+        </div>
+      </div>
+
       <div class="section-container">
         <div class="section-label-header">
           <span class="section-tag-name">Contact</span>
           <div class="tag-divider"></div>
         </div>
 
-        <h2 class="hero-title-giant">Let's work together</h2>
+        <!-- COLLABORATIVE DESIGN CANVAS HEADLINE -->
+        <div class="collab-canvas-area" id="collabCanvasArea">
+          <h2 class="hero-title-giant collab-headline" id="collabHeadline">
+            <span class="collab-lead-text">Let's</span>
+            <span class="collab-slot-wrapper" id="collabSlotWrapper">
+              <!-- Animated / Interactive editable word "work" -->
+              <span class="collab-word" id="collabWord">work</span>
+
+              <!-- Figma Selection Bounding Box with Corner Anchor Handles & Dimensions Pill -->
+              <div class="figma-box" id="figmaBox" aria-hidden="true">
+                <span class="f-handle f-handle-tl"></span>
+                <span class="f-handle f-handle-tr"></span>
+                <span class="f-handle f-handle-bl"></span>
+                <span class="f-handle f-handle-br"></span>
+                <span class="figma-dim-pill" id="figmaDimPill">248 × 82</span>
+              </div>
+
+              <!-- Task 1: Figma Floating Font Selector Dropdown -->
+              <div class="figma-font-menu" id="figmaFontMenu" aria-hidden="true">
+                <div class="menu-header">
+                  <span class="menu-title">Font family</span>
+                  <span class="menu-shortcut">⌘T</span>
+                </div>
+                <div class="menu-options">
+                  <div class="menu-option" id="fontOptJakarta" data-font="'Plus Jakarta Sans', sans-serif">
+                    <span class="opt-name">Plus Jakarta Sans</span>
+                    <span class="opt-tag">Grotesque</span>
+                  </div>
+                  <div class="menu-option" id="fontOptSerif" data-font="'Playfair Display', Georgia, serif">
+                    <span class="opt-name opt-serif">Playfair Display</span>
+                    <span class="opt-tag">Editorial Serif</span>
+                  </div>
+                  <div class="menu-option active-target" id="fontOptSyne" data-font="'Syne', sans-serif">
+                    <span class="opt-name opt-syne">Syne</span>
+                    <span class="opt-tag">Display · Bold</span>
+                    <span class="opt-check">✓</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Task 2: Figma Floating Typography & Weight Inspector -->
+              <div class="figma-typo-inspector" id="figmaTypoInspector" aria-hidden="true">
+                <div class="inspector-col">
+                  <span class="inspector-lbl">Weight</span>
+                  <div class="weight-buttons">
+                    <span class="w-btn" id="wBtnLight">300</span>
+                    <span class="w-btn" id="wBtnReg">400</span>
+                    <span class="w-btn active-target" id="wBtnBold">700</span>
+                    <span class="w-btn" id="wBtnBlack">800</span>
+                  </div>
+                </div>
+                <div class="inspector-sep"></div>
+                <div class="inspector-col">
+                  <span class="inspector-lbl">Tracking</span>
+                  <span class="inspector-val" id="trackVal">-0.03em</span>
+                </div>
+              </div>
+
+              <!-- Task 3: Figma Floating Color Styles Palette (White & Zinc Shades) -->
+              <div class="figma-color-palette" id="figmaColorPalette" aria-hidden="true">
+                <div class="palette-header">
+                  <span class="palette-title">Color styles · White & Zinc</span>
+                  <div class="palette-icons">
+                    <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><circle cx="4" cy="4" r="2"/><circle cx="12" cy="4" r="2"/><circle cx="4" cy="12" r="2"/><circle cx="12" cy="12" r="2"/></svg>
+                  </div>
+                </div>
+                <div class="palette-swatches">
+                  <button type="button" class="palette-swatch swatch-charcoal" data-color="#27272a" title="Charcoal Zinc" aria-label="Charcoal Zinc"></button>
+                  <button type="button" class="palette-swatch swatch-muted" data-color="#71717a" title="Muted Zinc" aria-label="Muted Zinc"></button>
+                  <button type="button" class="palette-swatch swatch-silver" id="swatchSilver" data-color="#a1a1aa" title="Medium Silver" aria-label="Medium Silver"></button>
+                  <button type="button" class="palette-swatch swatch-platinum" id="swatchPlatinum" data-color="#e4e4e7" title="Light Platinum" aria-label="Light Platinum"></button>
+                  <button type="button" class="palette-swatch swatch-pure-white active-target" id="swatchWhite" data-color="#ffffff" title="Pure White" aria-label="Pure White"></button>
+                </div>
+              </div>
+
+              <!-- Task 4: Collaborator Review / Approval Chip (You) -->
+              <div class="collab-review-chip" id="collabReviewChip" aria-hidden="true">
+                <span class="review-author-badge">Y</span>
+                <span class="review-text">“Typography dialed in · Approved”</span>
+                <span class="review-check">✓</span>
+              </div>
+
+              <!-- Hand-drawn Tilted Organic Sketch Loop SVG (matches reference) -->
+              <svg class="collab-highlighter-svg" id="collabHighlighterSvg" viewBox="0 0 360 150" preserveAspectRatio="none" aria-hidden="true">
+                <path class="highlighter-path" id="highlighterPath" d="M 125,42 C 85,48 28,70 20,102 C 14,126 68,138 128,136 C 192,134 275,115 332,78 C 348,65 346,44 320,36 C 285,26 205,23 132,28 C 95,30 62,36 42,44" />
+              </svg>
+            </span>
+            <span class="collab-tail-text">together</span>
+          </h2>
+
+          <!-- Collaborative Cursors Layer (Roqunuzzaman & You) -->
+          <div class="collab-cursors-container" id="collabCursorsContainer" aria-hidden="true">
+            <!-- Cursor 1: Roqunuzzaman (Designer) -->
+            <div class="collab-cursor cursor-cristian" id="cursorCristian">
+              <svg class="cursor-pointer-svg" width="18" height="22" viewBox="0 0 18 22" fill="none">
+                <path d="M1 1L7.5 20.5L10.5 12.5L17 11L1 1Z" fill="#18181b" stroke="#ffffff" stroke-width="1.5" stroke-linejoin="round"/>
+              </svg>
+              <div class="cursor-badge badge-cristian">
+                <span class="cursor-name">Roqunuzzaman</span>
+                <span class="cursor-role-tag">Design</span>
+              </div>
+            </div>
+
+            <!-- Cursor 2: You (Viewer / Client Reviewer) -->
+            <div class="collab-cursor cursor-sandra" id="cursorSandra">
+              <svg class="cursor-pointer-svg" width="18" height="22" viewBox="0 0 18 22" fill="none">
+                <path d="M1 1L7.5 20.5L10.5 12.5L17 11L1 1Z" fill="#27272a" stroke="#ffffff" stroke-width="1.5" stroke-linejoin="round"/>
+              </svg>
+              <div class="cursor-badge badge-sandra">
+                <span class="cursor-name">You</span>
+                <span class="cursor-role-tag">Review</span>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div class="divider-line"></div>
 
         <div class="mb-large max-w-2xl">
           <h3 class="contact-subheading">
-            OPEN TO PRODUCT<br>
-            DESIGN ROLES AND<br>
-            SELECT FREELANCE WORK
+            Open to enquiries, collaboration requests, or job opportunities.<br>
+            Don’t hesitate to reach out!
           </h3>
-          <p class="contact-location">Based in Dhaka, Bangladesh — working with teams worldwide</p>
+          <p class="contact-location"><span class="location-pulse-dot" aria-hidden="true"></span>Based in Dhaka, Bangladesh — working with teams worldwide</p>
         </div>
 
         <div class="contact-links-list">
@@ -710,6 +1040,85 @@
 
         <footer class="footer-bottom">
           <p>© 2026 S M Roqunuzzaman. All rights reserved.</p>
+
+          <!-- Social Icons Bar (Framer-style vertical slide-up hover fill with animated tooltips) -->
+          <div class="social-icons-bar" role="navigation" aria-label="Social profiles and channels">
+            <!-- Dribbble -->
+            <a href="https://dribbble.com/SMRoqunuzzaman" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Dribbble">
+              <div class="social-tooltip">Dribbble</div>
+              <div class="icon-disc-frame">
+                <div class="icon-disc-base"></div>
+                <div class="icon-disc-hover"></div>
+                <span class="icon-symbol">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9"/>
+                    <path d="M4 12c3-1 7-1 10 1m-4-8c1 2 2 4 3 7m5-3c-2 0-4 .5-6 2"/>
+                  </svg>
+                </span>
+              </div>
+            </a>
+
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/in/smroqunuzzaman/" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="LinkedIn">
+              <div class="social-tooltip">LinkedIn</div>
+              <div class="icon-disc-frame">
+                <div class="icon-disc-base"></div>
+                <div class="icon-disc-hover"></div>
+                <span class="icon-symbol">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M8 10v10M8 6v.01M12 10v10m0-6a3 3 0 0 1 6 0v6M4 10h4M12 10h6"/>
+                  </svg>
+                </span>
+              </div>
+            </a>
+
+            <!-- Email -->
+            <a href="mailto:smroqunuzzaman@gmail.com" class="social-icon-btn" aria-label="Email">
+              <div class="social-tooltip">Email</div>
+              <div class="icon-disc-frame">
+                <div class="icon-disc-base"></div>
+                <div class="icon-disc-hover"></div>
+                <span class="icon-symbol">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="5" width="18" height="14" rx="2"/>
+                    <path d="m3 7 9 6 9-6"/>
+                  </svg>
+                </span>
+              </div>
+            </a>
+
+            <!-- Phone -->
+            <a href="tel:+8801732554030" class="social-icon-btn" aria-label="Phone">
+              <div class="social-tooltip">Phone</div>
+              <div class="icon-disc-frame">
+                <div class="icon-disc-base"></div>
+                <div class="icon-disc-hover"></div>
+                <span class="icon-symbol">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M6.5 4h3l2 4-2 2a13 13 0 0 0 4.5 4.5l2-2 4 2v3C12.5 19 5 11.5 6.5 4Z"/>
+                  </svg>
+                </span>
+              </div>
+            </a>
+
+            <!-- Resume / CV Document -->
+            <a href="https://drive.google.com/file/d/1cXV8lthcDHrPGLQng46d6io8WmMNn0Pw/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Resume">
+              <div class="social-tooltip">Resume</div>
+              <div class="icon-disc-frame">
+                <div class="icon-disc-base"></div>
+                <div class="icon-disc-hover"></div>
+                <span class="icon-symbol">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                  </svg>
+                </span>
+              </div>
+            </a>
+          </div>
+
           <p>UI/UX Designer · Dhaka, Bangladesh</p>
         </footer>
       </div>

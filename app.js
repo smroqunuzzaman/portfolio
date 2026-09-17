@@ -3,13 +3,18 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollRestoration();
   initPortfolioLoader();
   initHeroTypewriter();
+  initDynamicInfoIsland();
   initThemeToggle();
+  initSwipeLettersButtons();
   initScrollNav();
   initMobileMenu();
   initNoirCompanion();
   initCustomCursor();
   initSelectedCarousel();
   initAboutScrollScrub();
+  initKineticScrollStrip();
+  initCollabCanvasHeadline();
+  initFooterShutterReveal();
 });
 
 /* ==========================================================================
@@ -17,6 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
    ========================================================================== */
 function initThemeToggle() {
   const toggleBtn = document.getElementById('themeToggle');
+  const fixture = document.getElementById('bulbDiscFixture') || toggleBtn?.querySelector('.bulb-disc-fixture');
+  const chain = document.getElementById('bulbPullChain') || toggleBtn?.querySelector('.bulb-pull-chain');
+  const chainPath = document.getElementById('chainSpringPath');
+  const chainBead = document.getElementById('chainBead');
+
   if (!toggleBtn) return;
 
   function updateToggleAria(theme) {
@@ -25,16 +35,7 @@ function initThemeToggle() {
     toggleBtn.setAttribute('title', isLight ? 'Turn off the lights (Switch to Dark Mode)' : 'Turn on the lights (Switch to Light Mode)');
   }
 
-  // Initial check
-  const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-  updateToggleAria(currentTheme);
-
-  toggleBtn.addEventListener('click', () => {
-    // Trigger physical cord pull-down animation
-    toggleBtn.classList.remove('pulling');
-    void toggleBtn.offsetWidth;
-    toggleBtn.classList.add('pulling');
-
+  function toggleCurrentTheme() {
     const isCurrentlyLight = document.documentElement.getAttribute('data-theme') === 'light';
     const nextTheme = isCurrentlyLight ? 'dark' : 'light';
 
@@ -49,9 +50,172 @@ function initThemeToggle() {
     } catch (e) {}
 
     updateToggleAria(nextTheme);
+
+    if (navigator.vibrate) {
+      try { navigator.vibrate(40); } catch (e) {}
+    }
+  }
+
+  // Fallback for simple button if fixture or chain elements are not present
+  if (!fixture || !chain || !chainPath || !chainBead) {
+    toggleBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      toggleCurrentTheme();
+    });
+    return;
+  }
+
+  // Initial check
+  const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+  updateToggleAria(currentTheme);
+
+  // String Resting Dimensions (SVG viewBox 0 0 40 50, Center X = 20)
+  const SVG_CX = 20;
+  const REST_LENGTH = 16; // Rest length in pixels
+  let currentY = 0;
+  let currentX = 0;
+  let targetY = 0;
+  let targetX = 0;
+  let velY = 0;
+  let velX = 0;
+  let isDragging = false;
+  let startPointerY = 0;
+  let startPointerX = 0;
+  let dragDisplacementY = 0;
+  let dragDisplacementX = 0;
+  let springRafId = null;
+
+  // Render current position of SVG string & bead strictly anchored to bottom tangent of circular disc
+  function renderString(x, y) {
+    const endX = SVG_CX + x;
+    const endY = REST_LENGTH + y;
+
+    // Smooth subtle curvature during drag or oscillation
+    const ctrlX = SVG_CX + x * 0.45;
+    const ctrlY = (REST_LENGTH + y) * 0.5;
+    // Cord start coordinate is permanently locked to (SVG_CX, 0) right at circle's bottom rim
+    chainPath.setAttribute('d', `M ${SVG_CX} 0 Q ${ctrlX.toFixed(2)} ${ctrlY.toFixed(2)} ${endX.toFixed(2)} ${endY.toFixed(2)}`);
+
+    // Position bead at the end of the string
+    chainBead.style.transform = `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0)`;
+  }
+
+  // Framer Spring Physics Simulation (Damped Harmonic Oscillator: Stiffness 320, Damping 22, Mass 1)
+  const STIFFNESS = 320;
+  const DAMPING = 22;
+  const MASS = 1;
+  let lastTime = 0;
+
+  function runSpringPhysics(now) {
+    if (!lastTime) lastTime = now;
+    const dt = Math.min((now - lastTime) / 1000, 0.032); // clamp dt to max 32ms
+    lastTime = now;
+
+    // Spring forces: F = -k * (pos - target) - c * vel
+    const forceY = -STIFFNESS * (currentY - targetY) - DAMPING * velY;
+    const accelY = forceY / MASS;
+    velY += accelY * dt;
+    currentY += velY * dt;
+
+    const forceX = -STIFFNESS * (currentX - targetX) - DAMPING * velX;
+    const accelX = forceX / MASS;
+    velX += accelX * dt;
+    currentX += velX * dt;
+
+    renderString(currentX, currentY);
+
+    // Check if settled
+    const isSettled =
+      Math.abs(currentY - targetY) < 0.05 &&
+      Math.abs(velY) < 0.05 &&
+      Math.abs(currentX - targetX) < 0.05 &&
+      Math.abs(velX) < 0.05;
+
+    if (!isSettled && !isDragging) {
+      springRafId = requestAnimationFrame(runSpringPhysics);
+    } else if (isSettled && !isDragging) {
+      currentY = targetY;
+      currentX = targetX;
+      velY = 0;
+      velX = 0;
+      renderString(0, 0);
+      springRafId = null;
+      lastTime = 0;
+    }
+  }
+
+  function startSpring() {
+    if (springRafId) cancelAnimationFrame(springRafId);
+    lastTime = performance.now();
+    targetX = 0;
+    targetY = 0;
+    springRafId = requestAnimationFrame(runSpringPhysics);
+  }
+
+  // MODE CHANGE TRIGGER 1: Direct Click on the Inside Circular Fixture Disc
+  fixture.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleCurrentTheme();
+    // Physical spring impulse bounce on click
+    currentY = 16;
+    currentX = (Math.random() - 0.5) * 3;
+    velY = 130;
+    velX = 0;
+    startSpring();
   });
 
-  // Listen to system changes if user hasn't explicitly set localStorage
+  // MODE CHANGE TRIGGER 2: Pulling the Hanging Cord Fully Downwards
+  chain.addEventListener('pointerdown', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    isDragging = true;
+    startPointerX = e.clientX;
+    startPointerY = e.clientY;
+    dragDisplacementX = 0;
+    dragDisplacementY = 0;
+    if (springRafId) cancelAnimationFrame(springRafId);
+    try { chain.setPointerCapture(e.pointerId); } catch (err) {}
+  });
+
+  chain.addEventListener('pointermove', (e) => {
+    if (!isDragging) return;
+    const rawDx = e.clientX - startPointerX;
+    const rawDy = e.clientY - startPointerY;
+
+    // Elastic rubber-band resistance formula (matching Framer dragElastic behavior)
+    const positiveDy = Math.max(0, rawDy);
+    dragDisplacementY = (positiveDy * 0.55) / (1 + positiveDy * 0.008);
+    dragDisplacementX = (rawDx * 0.35) / (1 + Math.abs(rawDx) * 0.01);
+
+    currentX = dragDisplacementX;
+    currentY = dragDisplacementY;
+    renderString(currentX, currentY);
+  });
+
+  function handleChainPointerEnd(e) {
+    if (!isDragging) return;
+    isDragging = false;
+    try { chain.releasePointerCapture(e.pointerId); } catch (err) {}
+
+    const FULL_PULL_THRESHOLD = 20; // Full pull threshold in pixels
+    if (dragDisplacementY >= FULL_PULL_THRESHOLD) {
+      // Trigger mode change only on full pull
+      toggleCurrentTheme();
+      velY = -120;
+    } else {
+      // Small drag or tap on chain/bead releases without mode change
+      velY = -dragDisplacementY * 6;
+    }
+
+    velX = -dragDisplacementX * 6;
+    startSpring();
+  }
+
+  chain.addEventListener('pointerup', handleChainPointerEnd);
+  chain.addEventListener('pointercancel', handleChainPointerEnd);
+
+  // System color scheme change
   if (window.matchMedia) {
     window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
       try {
@@ -67,6 +231,157 @@ function initThemeToggle() {
       } catch (err) {}
     });
   }
+
+  // Initial render
+  renderString(0, 0);
+}
+
+/* ==========================================================================
+   DYNAMIC INFO ISLAND SYSTEM (Realtime Clock & Smooth Framer Expander)
+   ========================================================================== */
+function initDynamicInfoIsland() {
+  const island = document.getElementById('dynamicInfoIsland');
+  const toggleBtn = document.getElementById('dynamicInfoToggle');
+  const bottomBar = document.getElementById('dynamicInfoBottom');
+  const clockDigits = document.getElementById('clockDigits');
+
+  if (!island || !toggleBtn) return;
+
+  // 1. Live Dhaka Time (GMT+6) real-time updater
+  function updateDhakaClock() {
+    try {
+      const now = new Date();
+      const formatter = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'Asia/Dhaka',
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true
+      });
+      if (clockDigits) {
+        clockDigits.textContent = formatter.format(now);
+      }
+    } catch (e) {
+      const now = new Date();
+      let hours = now.getHours();
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12;
+      hours = hours ? hours : 12;
+      if (clockDigits) {
+        clockDigits.textContent = `${hours}:${minutes} ${ampm}`;
+      }
+    }
+  }
+
+  updateDhakaClock();
+  setInterval(updateDhakaClock, 10000); // Update regularly
+
+  // 2. Interactive open/close states
+  let closeTimeout = null;
+
+  function openIsland() {
+    if (closeTimeout) {
+      clearTimeout(closeTimeout);
+      closeTimeout = null;
+    }
+    island.classList.add('is-open');
+    toggleBtn.setAttribute('aria-expanded', 'true');
+    if (bottomBar) bottomBar.setAttribute('aria-hidden', 'false');
+  }
+
+  function closeIsland() {
+    island.classList.remove('is-open');
+    toggleBtn.setAttribute('aria-expanded', 'false');
+    if (bottomBar) bottomBar.setAttribute('aria-hidden', 'true');
+  }
+
+  // Hover expansion for desktop
+  island.addEventListener('mouseenter', () => {
+    openIsland();
+  });
+
+  island.addEventListener('mouseleave', () => {
+    closeTimeout = setTimeout(() => {
+      closeIsland();
+    }, 280);
+  });
+
+  // Click/Tap toggle for touch and click
+  toggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (island.classList.contains('is-open')) {
+      closeIsland();
+    } else {
+      openIsland();
+    }
+  });
+
+  // Close when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!island.contains(e.target) && island.classList.contains('is-open')) {
+      closeIsland();
+    }
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && island.classList.contains('is-open')) {
+      closeIsland();
+    }
+  });
+}
+
+/* ==========================================================================
+   FRAMER SWIPE LETTERS BUTTON SYSTEM (Alternate Staggered Letter Wave)
+   ========================================================================== */
+function initSwipeLettersButtons() {
+  const buttons = document.querySelectorAll('[data-swipe-letters], .swipe-letters-btn');
+
+  buttons.forEach(btn => {
+    const titleEl = btn.querySelector('.swipe-title') || btn.querySelector('.cv-btn-title');
+    if (!titleEl || titleEl.dataset.swipeInitialized) return;
+
+    titleEl.dataset.swipeInitialized = 'true';
+    const rawText = titleEl.textContent.trim();
+    if (!rawText) return;
+
+    // Set aria-label on parent button if needed
+    if (!btn.getAttribute('aria-label')) {
+      btn.setAttribute('aria-label', rawText);
+    }
+
+    const chars = Array.from(rawText).map(c => c === ' ' ? '\u00A0' : c);
+
+    const wrapper = document.createElement('span');
+    wrapper.className = 'swipe-title-wrap';
+    wrapper.setAttribute('aria-hidden', 'true');
+
+    chars.forEach((ch, i) => {
+      const slot = document.createElement('span');
+      slot.className = 'swipe-char-slot';
+
+      const track = document.createElement('span');
+      const isEven = i % 2 === 0;
+      track.className = `swipe-char-track ${isEven ? 'swipe-dir-top' : 'swipe-dir-bottom'}`;
+      track.style.setProperty('--swipe-delay', `${i * 18}ms`);
+
+      const copy1 = document.createElement('span');
+      copy1.className = 'swipe-letter-item';
+      copy1.textContent = ch;
+
+      const copy2 = document.createElement('span');
+      copy2.className = 'swipe-letter-item';
+      copy2.textContent = ch;
+
+      track.appendChild(copy1);
+      track.appendChild(copy2);
+      slot.appendChild(track);
+      wrapper.appendChild(slot);
+    });
+
+    titleEl.innerHTML = '';
+    titleEl.appendChild(wrapper);
+  });
 }
 
 
@@ -90,7 +405,7 @@ function initScrollNav() {
     } else {
       bottomNav.classList.remove('visible');
     }
-  });
+  }, { passive: true });
 
   // Intersection Observer for Active Section Highlighting
   const observerOptions = {
@@ -493,7 +808,7 @@ function initCustomCursor() {
   });
 
   // Interactive hover detection
-  const INTERACTIVE_SELECTOR = 'a, button, [role="button"], input, textarea, select, .pill-tag, .filter-chip, .overlay-link, .nav-btn, .hero-btn, .stack-item, .noir-body, .theme-bulb-toggle, .project-card, .filter-pill, .row-item, .selected-case-row, .dossier-back-btn, .figma-arrow, .dossier-gateway-btn';
+  const INTERACTIVE_SELECTOR = 'a, button, [role="button"], input, textarea, select, .pill-tag, .filter-chip, .overlay-link, .nav-btn, .hero-btn, .stack-item, .noir-body, .theme-bulb-toggle, .dynamic-info-top, .dyn-social-btn, .dynamic-avail-badge, .project-card, .filter-pill, .row-item, .selected-case-row, .dossier-back-btn, .figma-arrow, .dossier-gateway-btn';
 
   document.addEventListener('mouseover', (e) => {
     const target = e.target;
@@ -559,7 +874,36 @@ function initCustomCursor() {
       // Clear frame
       ctx.clearRect(0, 0, width, height);
 
-      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      const siteIsLight = document.documentElement.getAttribute('data-theme') === 'light';
+
+      // Dynamic footer contrast detection: check if cursor is over the revealed inverted area
+      const contactSection = document.getElementById('contact');
+      let isOverInverted = false;
+      if (contactSection) {
+        const cRect = contactSection.getBoundingClientRect();
+        if (mouseY >= cRect.top && mouseY <= cRect.bottom && mouseX >= cRect.left && mouseX <= cRect.right) {
+          const shutterState = window.__footerShutterState;
+          if (shutterState) {
+            let colProg = shutterState.s15;
+            const relX = (mouseX - cRect.left) / cRect.width;
+            if (relX >= 0.4 && relX < 0.6) {
+              colProg = shutterState.s3;
+            } else if ((relX >= 0.2 && relX < 0.4) || (relX >= 0.6 && relX < 0.8)) {
+              colProg = shutterState.s24;
+            }
+            const bladeBottom = cRect.top + cRect.height * (1 - colProg);
+            if (mouseY >= bladeBottom) {
+              isOverInverted = true;
+            }
+          } else {
+            isOverInverted = true;
+          }
+        }
+      }
+      // When hovering over revealed inverted footer, cursor flips to maintain strong contrast:
+      // Dark site + White footer -> Dark cursor
+      // Light site + Dark footer -> White cursor
+      const isLight = isOverInverted ? !siteIsLight : siteIsLight;
 
       // 3. Draw Tapering Neon Line / Ribbon
       // From tail (TOTAL_POINTS - 1) to head (1)
@@ -1289,3 +1633,719 @@ function initScrollRestoration() {
     }
   });
 }
+
+/* ==========================================================================
+   SCROLL-DRIVEN KINETIC STATEMENT STRIP (Matches Reference 'Text Line')
+   Double-buffered liquid-smooth kinetic typography driven by viewport scroll
+   ========================================================================== */
+function initKineticScrollStrip() {
+  const strip = document.getElementById('kineticStrip');
+  const track = document.getElementById('kineticTrack');
+  if (!strip || !track) return;
+
+  const stream = track.querySelector('.kinetic-stream');
+  if (!stream) return;
+
+  let streamWidth = stream.offsetWidth || 1400;
+
+  function updateDimensions() {
+    if (stream) {
+      streamWidth = stream.offsetWidth || streamWidth;
+    }
+  }
+
+  window.addEventListener('resize', updateDimensions, { passive: true });
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(updateDimensions);
+  }
+
+  // Double-buffered smooth physics state
+  let currentPos = 0;
+  let targetPos = 0;
+  let targetScrollY = window.pageYOffset || window.scrollY || 0;
+  let smoothedScrollY = targetScrollY;
+  let prevSmoothedScrollY = targetScrollY;
+
+  let isIntersecting = false;
+  let isHovered = false;
+  let animId = null;
+
+  // Base ambient drift speed when holding/resting (pixels per frame at 60fps)
+  const baseSpeed = 1.4;
+
+  strip.addEventListener('mouseenter', () => { isHovered = true; });
+  strip.addEventListener('mouseleave', () => { isHovered = false; });
+
+  function onScroll() {
+    targetScrollY = window.pageYOffset || window.scrollY || 0;
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  function renderLoop() {
+    if (!isIntersecting) {
+      animId = null;
+      return;
+    }
+
+    // 1. Smooth out mouse-wheel/trackpad ticks with progressive damping (avoids sudden shocks)
+    smoothedScrollY += (targetScrollY - smoothedScrollY) * 0.075;
+    const rawDelta = smoothedScrollY - prevSmoothedScrollY;
+    prevSmoothedScrollY = smoothedScrollY;
+
+    // Softly cushion high-velocity spikes so acceleration never feels abrupt or shocking
+    const clampedDelta = Math.sign(rawDelta) * Math.min(Math.abs(rawDelta), 55);
+
+    // 2. Advance target position: brisk scroll response with natural physical inertia
+    const hoverFactor = isHovered ? 0.35 : 1.0;
+    targetPos += (baseSpeed * hoverFactor) + (clampedDelta * 1.35);
+
+    // 3. Fluid dual-stage lerp creates a buttery, physical glide with zero jitter
+    currentPos += (targetPos - currentPos) * 0.088;
+
+    // 4. Infinite seamless modulo wrapping
+    if (streamWidth > 0) {
+      const displayX = ((currentPos % streamWidth) + streamWidth) % streamWidth;
+      track.style.transform = `translate3d(${-displayX}px, 0, 0)`;
+    }
+
+    animId = requestAnimationFrame(renderLoop);
+  }
+
+  // IntersectionObserver: Only animate RAF when strip is in/near viewport
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      isIntersecting = entry.isIntersecting;
+      if (isIntersecting && !animId) {
+        updateDimensions();
+        targetScrollY = window.pageYOffset || window.scrollY || 0;
+        smoothedScrollY = targetScrollY;
+        prevSmoothedScrollY = targetScrollY;
+        animId = requestAnimationFrame(renderLoop);
+      }
+    });
+  }, {
+    rootMargin: '350px 0px 350px 0px'
+  });
+
+  observer.observe(strip);
+  updateDimensions();
+}
+
+/* ==========================================================================
+   COLLABORATIVE DESIGN CANVAS HEADLINE CONTROLLER
+   Recreates the Figma live multi-cursor collaborative motion from reference video
+   ========================================================================== */
+function initCollabCanvasHeadline() {
+  const container = document.getElementById('collabCanvasArea');
+  const wordEl = document.getElementById('collabWord');
+  const slotEl = document.getElementById('collabSlotWrapper');
+  const figmaBox = document.getElementById('figmaBox');
+  const figmaDimPill = document.getElementById('figmaDimPill');
+  const fontMenu = document.getElementById('figmaFontMenu');
+  const fontOptJakarta = document.getElementById('fontOptJakarta');
+  const fontOptSerif = document.getElementById('fontOptSerif');
+  const fontOptSyne = document.getElementById('fontOptSyne');
+  const typoInspector = document.getElementById('figmaTypoInspector');
+  const wBtnBold = document.getElementById('wBtnBold');
+  const wBtnBlack = document.getElementById('wBtnBlack');
+  const trackVal = document.getElementById('trackVal');
+  const palette = document.getElementById('figmaColorPalette');
+  const swatchPlatinum = document.getElementById('swatchPlatinum');
+  const swatchWhite = document.getElementById('swatchWhite');
+  const reviewChip = document.getElementById('collabReviewChip');
+  const highlighterSvg = document.getElementById('collabHighlighterSvg');
+  const cursorCristian = document.getElementById('cursorCristian');
+  const cursorSandra = document.getElementById('cursorSandra');
+
+  if (!container || !wordEl || !slotEl) return;
+
+  // Reduced motion preference check
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    wordEl.style.fontFamily = "'Syne', sans-serif";
+    wordEl.style.fontWeight = '800';
+    wordEl.style.color = '#ffffff';
+    wordEl.style.textShadow = '0 0 24px rgba(255, 255, 255, 0.45)';
+    return;
+  }
+
+  let stageTimers = [];
+  let idleInterval = null;
+  let isFooterFullyOpen = false;
+  let isLoopRunning = false;
+  let startTimeout = null;
+
+  function clearAllTimers() {
+    stageTimers.forEach(t => clearTimeout(t));
+    stageTimers = [];
+    if (idleInterval) {
+      clearInterval(idleInterval);
+      idleInterval = null;
+    }
+    if (startTimeout) {
+      clearTimeout(startTimeout);
+      startTimeout = null;
+    }
+  }
+
+  function addTimer(fn, delay) {
+    const t = setTimeout(fn, delay);
+    stageTimers.push(t);
+    return t;
+  }
+
+  // Calculate coordinates relative to canvas container
+  function getRel(el) {
+    if (!el) return { x: 0, y: 0, w: 0, h: 0, centerX: 0, centerY: 0 };
+    const cRect = container.getBoundingClientRect();
+    const eRect = el.getBoundingClientRect();
+    return {
+      x: eRect.left - cRect.left,
+      y: eRect.top - cRect.top,
+      w: eRect.width,
+      h: eRect.height,
+      centerX: eRect.left - cRect.left + eRect.width / 2,
+      centerY: eRect.top - cRect.top + eRect.height / 2
+    };
+  }
+
+  // Snappy, responsive cursor gliding
+  function setCursorPos(cursorEl, x, y, duration = 0.45, easing = 'cubic-bezier(0.22, 1, 0.36, 1)') {
+    if (!cursorEl) return;
+    cursorEl.style.transition = `transform ${duration}s ${easing}, opacity 0.28s ease`;
+    cursorEl.style.transform = `translate3d(${Math.round(x)}px, ${Math.round(y)}px, 0)`;
+  }
+
+  function hideAllCursors() {
+    [cursorCristian, cursorSandra].forEach(c => {
+      if (c) c.style.opacity = '0';
+    });
+  }
+
+  function resetAllTools() {
+    if (figmaBox) figmaBox.classList.remove('active');
+    if (fontMenu) fontMenu.classList.remove('active');
+    if (typoInspector) typoInspector.classList.remove('active');
+    if (palette) palette.classList.remove('active');
+    if (reviewChip) reviewChip.classList.remove('active');
+    if (highlighterSvg) highlighterSvg.classList.remove('drawn');
+
+    if (fontOptSerif) fontOptSerif.classList.remove('hovered');
+    if (fontOptSyne) fontOptSyne.classList.remove('active-target');
+    if (wBtnBold) wBtnBold.classList.remove('hovered');
+    if (wBtnBlack) wBtnBlack.classList.remove('active-target');
+    if (swatchPlatinum) swatchPlatinum.classList.remove('hovered');
+    if (swatchWhite) swatchWhite.classList.remove('active-target');
+  }
+
+  function stopCollabLoop() {
+    isLoopRunning = false;
+    clearAllTimers();
+    resetAllTools();
+    hideAllCursors();
+  }
+
+  // Snappy, engaging, fluid collaborative loop (~12.5s cycle)
+  function runCollabLoop() {
+    if (!isFooterFullyOpen) return;
+    clearAllTimers();
+    resetAllTools();
+    hideAllCursors();
+    isLoopRunning = true;
+
+    // Baseline gentle appearance of "work"
+    wordEl.style.fontFamily = "var(--font-display, 'Plus Jakarta Sans', sans-serif)";
+    wordEl.style.fontStyle = 'normal';
+    wordEl.style.fontWeight = '500';
+    wordEl.style.letterSpacing = '-0.02em';
+    wordEl.style.color = '#a1a1aa';
+    wordEl.style.textShadow = 'none';
+    wordEl.style.transform = 'none';
+    if (figmaDimPill) figmaDimPill.textContent = '236 × 82';
+    if (trackVal) trackVal.textContent = '-0.02em';
+
+    // -------------------------------------------------------------
+    // STEP 1: CRISTIAN ARRIVES & SELECTS "WORK" (0s - 0.85s)
+    // -------------------------------------------------------------
+    addTimer(() => {
+      const slotPos = getRel(slotEl);
+
+      // Cristian glides in from bottom-right
+      setCursorPos(cursorCristian, slotPos.centerX + 160, slotPos.centerY + 70, 0);
+      if (cursorCristian) cursorCristian.style.opacity = '1';
+
+      // Snappy glide to top-right selection corner
+      addTimer(() => {
+        const sPos = getRel(slotEl);
+        setCursorPos(cursorCristian, sPos.x + sPos.w + 10, sPos.y - 12, 0.45, 'cubic-bezier(0.22, 1, 0.36, 1)');
+      }, 120);
+
+      // Bounding box with dimension pill snaps in
+      addTimer(() => {
+        if (figmaBox) figmaBox.classList.add('active');
+      }, 550);
+
+    }, 100);
+
+    // -------------------------------------------------------------
+    // STEP 2: CHOOSING & CHANGING FONT FAMILY (0.85s - 2.6s)
+    // -------------------------------------------------------------
+    addTimer(() => {
+      if (fontMenu) fontMenu.classList.add('active');
+
+      // Cristian glides to 2nd option: Playfair Display (Serif)
+      addTimer(() => {
+        if (!fontOptSerif) return;
+        const optPos = getRel(fontOptSerif);
+        setCursorPos(cursorCristian, optPos.centerX - 10, optPos.centerY, 0.38, 'cubic-bezier(0.25, 1, 0.4, 1)');
+      }, 250);
+
+      // Hover serif: word smoothly previews editorial serif italic
+      addTimer(() => {
+        if (fontOptSerif) fontOptSerif.classList.add('hovered');
+        wordEl.style.fontFamily = "'Playfair Display', Georgia, serif";
+        wordEl.style.fontStyle = 'italic';
+        wordEl.style.fontWeight = '500';
+        if (figmaDimPill) figmaDimPill.textContent = '252 × 84';
+      }, 650);
+
+      // Move down to 3rd option: Syne (Display Bold)
+      addTimer(() => {
+        if (!fontOptSyne) return;
+        const optPos = getRel(fontOptSyne);
+        setCursorPos(cursorCristian, optPos.centerX - 10, optPos.centerY, 0.32, 'cubic-bezier(0.25, 1, 0.4, 1)');
+      }, 1050);
+
+      // Click Syne: smooth morph into bold modern display font
+      addTimer(() => {
+        if (fontOptSerif) fontOptSerif.classList.remove('hovered');
+        if (fontOptSyne) fontOptSyne.classList.add('active-target');
+        wordEl.style.fontFamily = "'Syne', sans-serif";
+        wordEl.style.fontStyle = 'normal';
+        wordEl.style.fontWeight = '700';
+        wordEl.style.letterSpacing = '-0.025em';
+        if (figmaDimPill) figmaDimPill.textContent = '264 × 82';
+      }, 1400);
+
+      // Close font menu smoothly
+      addTimer(() => {
+        if (fontMenu) fontMenu.classList.remove('active');
+      }, 1850);
+
+    }, 850);
+
+    // -------------------------------------------------------------
+    // STEP 3: TUNING WEIGHT, BOLDNESS & TRACKING (2.6s - 4.4s)
+    // -------------------------------------------------------------
+    addTimer(() => {
+      if (typoInspector) typoInspector.classList.add('active');
+
+      // Move Cristian to weight button 700
+      addTimer(() => {
+        if (!wBtnBold) return;
+        const bPos = getRel(wBtnBold);
+        setCursorPos(cursorCristian, bPos.centerX, bPos.centerY, 0.35, 'cubic-bezier(0.22, 1, 0.36, 1)');
+      }, 200);
+
+      addTimer(() => {
+        if (wBtnBold) wBtnBold.classList.add('hovered');
+      }, 550);
+
+      // Glide over to weight button 800 (Extra Bold/Black)
+      addTimer(() => {
+        if (!wBtnBlack) return;
+        const bPos = getRel(wBtnBlack);
+        setCursorPos(cursorCristian, bPos.centerX, bPos.centerY, 0.3, 'cubic-bezier(0.25, 1, 0.4, 1)');
+      }, 800);
+
+      // Click 800: word smoothly thickens with tight tracking
+      addTimer(() => {
+        if (wBtnBold) wBtnBold.classList.remove('hovered');
+        if (wBtnBlack) wBtnBlack.classList.add('active-target');
+        wordEl.style.fontWeight = '800';
+        wordEl.style.letterSpacing = '-0.04em';
+        if (trackVal) trackVal.textContent = '-0.04em';
+        if (figmaDimPill) figmaDimPill.textContent = '278 × 82';
+      }, 1150);
+
+      // Close inspector smoothly
+      addTimer(() => {
+        if (typoInspector) typoInspector.classList.remove('active');
+      }, 1600);
+
+    }, 2650);
+
+    // -------------------------------------------------------------
+    // STEP 4: CHOOSING COLOR FROM WHITE SHADES (4.4s - 6.2s)
+    // -------------------------------------------------------------
+    addTimer(() => {
+      if (palette) palette.classList.add('active');
+
+      // Move Cristian to Platinum swatch (#e4e4e7)
+      addTimer(() => {
+        if (!swatchPlatinum) return;
+        const swPos = getRel(swatchPlatinum);
+        setCursorPos(cursorCristian, swPos.centerX, swPos.centerY, 0.35, 'cubic-bezier(0.22, 1, 0.36, 1)');
+      }, 200);
+
+      // Platinum preview
+      addTimer(() => {
+        if (swatchPlatinum) swatchPlatinum.classList.add('hovered');
+        wordEl.style.color = '#e4e4e7';
+      }, 550);
+
+      // Glide to Pure White swatch (#ffffff)
+      addTimer(() => {
+        if (!swatchWhite) return;
+        const swPos = getRel(swatchWhite);
+        setCursorPos(cursorCristian, swPos.centerX, swPos.centerY, 0.3, 'cubic-bezier(0.25, 1, 0.4, 1)');
+      }, 850);
+
+      // Click Pure White: word smoothly radiates glowing white
+      addTimer(() => {
+        if (swatchPlatinum) swatchPlatinum.classList.remove('hovered');
+        if (swatchWhite) swatchWhite.classList.add('active-target');
+        wordEl.style.color = '#ffffff';
+        wordEl.style.textShadow = '0 0 24px rgba(255, 255, 255, 0.42), 0 0 55px rgba(255, 255, 255, 0.16)';
+      }, 1200);
+
+      // Close palette and dismiss bounding box smoothly
+      addTimer(() => {
+        if (palette) palette.classList.remove('active');
+        if (figmaBox) figmaBox.classList.remove('active');
+      }, 1650);
+
+    }, 4450);
+
+    // -------------------------------------------------------------
+    // STEP 5: SANDRA REVIEWS & APPROVES (6.2s - 8.1s)
+    // -------------------------------------------------------------
+    addTimer(() => {
+      const slotPos = getRel(slotEl);
+
+      // Sandra glides in from right
+      setCursorPos(cursorSandra, slotPos.centerX + 150, slotPos.centerY - 30, 0);
+      if (cursorSandra) cursorSandra.style.opacity = '1';
+
+      // Move Sandra right above "work"
+      addTimer(() => {
+        const sPos = getRel(slotEl);
+        setCursorPos(cursorSandra, sPos.centerX + 35, sPos.y - 14, 0.45, 'cubic-bezier(0.22, 1, 0.36, 1)');
+      }, 100);
+
+      // Review chip pops in & highlighter loop draws
+      addTimer(() => {
+        if (reviewChip) reviewChip.classList.add('active');
+        if (highlighterSvg) highlighterSvg.classList.add('drawn');
+      }, 600);
+
+    }, 6250);
+
+    // -------------------------------------------------------------
+    // STEP 6: SERENE FINALE & GENTLE FLOATING REST (8.1s - 12.5s)
+    // -------------------------------------------------------------
+    addTimer(() => {
+      // Dismiss review badge; keep highlighter loop active around 'work' until next cycle
+      if (reviewChip) reviewChip.classList.remove('active');
+
+      const headlineEl = document.getElementById('collabHeadline') || container;
+      const hPos = getRel(headlineEl);
+      const slotPos = getRel(slotEl);
+      const isMobile = window.innerWidth < 640;
+      const baseY = hPos.y + hPos.h + (isMobile ? 12 : 22);
+
+      // Position Roqunuzzaman & You side-by-side beneath headline with ample clearance
+      const spacing = isMobile ? 80 : 130;
+      const centerX = Math.min(Math.max(slotPos.centerX, hPos.x + spacing + 10), hPos.x + hPos.w - spacing - 10);
+      const c1X = centerX - spacing / 2 - 35;
+      const c2X = centerX + spacing / 2 + 20;
+
+      setCursorPos(cursorCristian, c1X, baseY, 0.55, 'cubic-bezier(0.16, 1, 0.3, 1)');
+      setCursorPos(cursorSandra, c2X, baseY + 6, 0.6, 'cubic-bezier(0.16, 1, 0.3, 1)');
+
+      // Gentle floating idle breathing
+      let idleTick = 0;
+      idleInterval = setInterval(() => {
+        idleTick++;
+        const hP = getRel(headlineEl);
+        const bY = hP.y + hP.h + (isMobile ? 12 : 22);
+        const off1 = Math.sin(idleTick * 0.45) * 2.8;
+        const off2 = Math.cos(idleTick * 0.45) * 2.8;
+
+        if (cursorCristian) cursorCristian.style.transform = `translate3d(${Math.round(c1X)}px, ${Math.round(bY + off1)}px, 0)`;
+        if (cursorSandra) cursorSandra.style.transform = `translate3d(${Math.round(c2X)}px, ${Math.round(bY + 6 + off2)}px, 0)`;
+      }, 150);
+
+      // Fade out cursors at 3.6s
+      addTimer(() => {
+        hideAllCursors();
+      }, 3600);
+
+      // Seamlessly restart loop at 4.2s if footer remains fully open
+      addTimer(() => {
+        if (isFooterFullyOpen) {
+          runCollabLoop();
+        } else {
+          stopCollabLoop();
+        }
+      }, 4200);
+
+    }, 8100);
+  }
+
+  // Hook triggered when footer shutter completes full opening reveal
+  window.__setCollabFooterOpenState = function(isOpen) {
+    if (isOpen) {
+      if (!isFooterFullyOpen) {
+        isFooterFullyOpen = true;
+        // Start motion smoothly once footer is fully open
+        if (startTimeout) clearTimeout(startTimeout);
+        startTimeout = setTimeout(() => {
+          if (isFooterFullyOpen && !isLoopRunning) {
+            runCollabLoop();
+          }
+        }, 220);
+      }
+    } else {
+      if (isFooterFullyOpen || isLoopRunning) {
+        isFooterFullyOpen = false;
+        stopCollabLoop();
+      }
+    }
+  };
+
+  // Interactive manual triggers (only if footer is open)
+  slotEl.addEventListener('click', () => {
+    if (isFooterFullyOpen) {
+      runCollabLoop();
+    }
+  });
+
+  let resizeDebounce = null;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeDebounce);
+    resizeDebounce = setTimeout(() => {
+      if (isFooterFullyOpen && isLoopRunning) runCollabLoop();
+    }, 250);
+  }, { passive: true });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) {
+        if (isFooterFullyOpen || isLoopRunning) {
+          isFooterFullyOpen = false;
+          stopCollabLoop();
+        }
+      }
+    });
+  }, { threshold: 0.1 });
+
+  observer.observe(container);
+}
+
+/* ==========================================================================
+   FRAMER 5-COLUMN SHUTTER CURTAIN FOOTER REVEAL SYSTEM
+   Scroll-focused, butter-smooth, fully reversible physical shutter blind reveal
+   ========================================================================== */
+function initFooterShutterReveal() {
+  const contactSection = document.getElementById('contact');
+  const curtain = document.getElementById('footerShutterCurtain');
+  const replayBtn = document.getElementById('shutterReplayTriggerBtn');
+
+  if (!contactSection || !curtain) return;
+
+  const blade1 = curtain.querySelector('.shutter-col-1 .shutter-blade');
+  const blade2 = curtain.querySelector('.shutter-col-2 .shutter-blade');
+  const blade3 = curtain.querySelector('.shutter-col-3 .shutter-blade');
+  const blade4 = curtain.querySelector('.shutter-col-4 .shutter-blade');
+  const blade5 = curtain.querySelector('.shutter-col-5 .shutter-blade');
+  const colMetaEls = curtain.querySelectorAll('.shutter-col-meta');
+
+  if (!blade1 || !blade2 || !blade3 || !blade4 || !blade5) return;
+
+  let currentProgress = 0;
+  let targetProgress = 0;
+  let isAutomatedReplay = false;
+  let isRunning = false;
+
+  // Hermite smoothstep for velvet acceleration and deceleration
+  function smoothstep(t) {
+    return t * t * (3 - 2 * t);
+  }
+
+  // Calculate target progress directly from scroll position
+  function updateScrollTarget() {
+    if (isAutomatedReplay) return;
+
+    const rect = contactSection.getBoundingClientRect();
+    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+    const docHeight = document.documentElement.scrollHeight;
+    const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+
+    // Contact section entry point:
+    // Starts opening as contact top enters lower portion of viewport
+    const startY = windowHeight * 0.95;
+    // Fully open when contact top reaches upper portion of viewport
+    const endY = windowHeight * 0.15;
+
+    let progress = (startY - rect.top) / (startY - endY);
+
+    // If user scrolled to the absolute bottom of page, ensure 100% open
+    if (scrollY + windowHeight >= docHeight - 25) {
+      progress = 1.0;
+    }
+
+    // If contact section is completely below viewport, ensure 0%
+    if (rect.top >= startY) {
+      progress = 0.0;
+    }
+
+    targetProgress = Math.max(0, Math.min(1, progress));
+  }
+
+  // Primary animation render frame (RAF)
+  function renderFrame() {
+    updateScrollTarget();
+
+    // Velvety physical lerp damping (0.09 factor) for liquid inertia
+    currentProgress += (targetProgress - currentProgress) * 0.09;
+
+    if (Math.abs(targetProgress - currentProgress) < 0.0005) {
+      currentProgress = targetProgress;
+    }
+
+    // Staggered Center-Outward Wave Ranges:
+    // Column 3 (Center): opens earliest (0.00 -> 0.65)
+    const p3 = Math.max(0, Math.min(1, currentProgress / 0.65));
+    // Columns 2 & 4 (Inner): open next (0.16 -> 0.82)
+    const p24 = Math.max(0, Math.min(1, (currentProgress - 0.16) / 0.66));
+    // Columns 1 & 5 (Outer): open last (0.32 -> 1.00)
+    const p15 = Math.max(0, Math.min(1, (currentProgress - 0.32) / 0.68));
+
+    // Smoothstep curves for each wave stage
+    const s3 = smoothstep(p3);
+    const s24 = smoothstep(p24);
+    const s15 = smoothstep(p15);
+
+    // Set scaleY transforms (1 = closed, 0 = retracted open)
+    blade3.style.transform = `scaleY(${(1 - s3).toFixed(4)})`;
+    blade2.style.transform = `scaleY(${(1 - s24).toFixed(4)})`;
+    blade4.style.transform = `scaleY(${(1 - s24).toFixed(4)})`;
+    blade1.style.transform = `scaleY(${(1 - s15).toFixed(4)})`;
+    blade5.style.transform = `scaleY(${(1 - s15).toFixed(4)})`;
+
+    // Metadata labels and center studio badge fade and slide
+    const metaAlpha = Math.max(0, 1 - currentProgress * 2.2);
+    const metaY = -currentProgress * 40;
+    for (let i = 0; i < colMetaEls.length; i++) {
+      colMetaEls[i].style.opacity = metaAlpha.toFixed(3);
+      colMetaEls[i].style.transform = `translateY(${metaY.toFixed(1)}px)`;
+    }
+
+    // Container visibility & Fully-Opened State detection:
+    const isFullyOpen = currentProgress >= 0.985;
+    if (isFullyOpen) {
+      curtain.style.visibility = 'hidden';
+      curtain.classList.add('is-open');
+      if (typeof window.__setCollabFooterOpenState === 'function') {
+        window.__setCollabFooterOpenState(true);
+      }
+    } else {
+      curtain.style.visibility = 'visible';
+      curtain.classList.remove('is-open');
+      if (typeof window.__setCollabFooterOpenState === 'function') {
+        window.__setCollabFooterOpenState(false);
+      }
+    }
+
+    // Expose real-time shutter physics for cursor contrast
+    window.__footerShutterState = { s3, s24, s15, currentProgress };
+
+    // Dynamic one-by-one menu button inversion:
+    // As the black shutter blade in Column 5 retracts upward, each menu button crosses
+    // the blade's bottom edge and transitions color individually in sync with the physical reveal!
+    const cRect = contactSection.getBoundingClientRect();
+    const blade5Bottom = cRect.top + cRect.height * (1 - s15);
+
+    const navButtons = document.querySelectorAll('.nav-btn');
+    for (let i = 0; i < navButtons.length; i++) {
+      const btn = navButtons[i];
+      const bRect = btn.getBoundingClientRect();
+      const btnCenterY = bRect.top + bRect.height * 0.5;
+
+      if (btnCenterY >= cRect.top && btnCenterY <= cRect.bottom && btnCenterY >= blade5Bottom) {
+        btn.classList.add('nav-btn-inverted');
+      } else {
+        btn.classList.remove('nav-btn-inverted');
+      }
+    }
+
+    const topLinks = document.querySelectorAll('.top-links-overlay .overlay-link');
+    for (let i = 0; i < topLinks.length; i++) {
+      const link = topLinks[i];
+      const lRect = link.getBoundingClientRect();
+      const linkCenterY = lRect.top + lRect.height * 0.5;
+
+      if (linkCenterY >= cRect.top && linkCenterY <= cRect.bottom && linkCenterY >= blade5Bottom) {
+        link.classList.add('link-inverted');
+      } else {
+        link.classList.remove('link-inverted');
+      }
+    }
+
+    requestAnimationFrame(renderFrame);
+  }
+
+  // Interactive Replay Button Animation
+  if (replayBtn) {
+    replayBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (isAutomatedReplay) return;
+
+      isAutomatedReplay = true;
+      const startTime = performance.now();
+
+      // Step 1: Smoothly animate targetProgress from current to 0 (shutters close in reverse)
+      // Step 2: Pause briefly
+      // Step 3: Smoothly animate targetProgress from 0 to 1 (shutters open in center wave)
+      const startProg = currentProgress;
+      const closeDuration = 800; // ms
+      const holdDuration = 250;  // ms
+      const openDuration = 1200; // ms
+
+      function animateReplay(now) {
+        const elapsed = now - startTime;
+
+        if (elapsed < closeDuration) {
+          const t = elapsed / closeDuration;
+          targetProgress = startProg * (1 - smoothstep(t));
+          requestAnimationFrame(animateReplay);
+        } else if (elapsed < closeDuration + holdDuration) {
+          targetProgress = 0;
+          requestAnimationFrame(animateReplay);
+        } else if (elapsed < closeDuration + holdDuration + openDuration) {
+          const t = (elapsed - closeDuration - holdDuration) / openDuration;
+          targetProgress = smoothstep(t);
+          requestAnimationFrame(animateReplay);
+        } else {
+          targetProgress = 1;
+          setTimeout(() => {
+            isAutomatedReplay = false;
+          }, 300);
+        }
+      }
+
+      requestAnimationFrame(animateReplay);
+    });
+  }
+
+  // Window scroll & resize listeners to instantly wake up target
+  window.addEventListener('scroll', updateScrollTarget, { passive: true });
+  window.addEventListener('resize', updateScrollTarget, { passive: true });
+
+  // Initial calculation and start RAF loop
+  updateScrollTarget();
+  currentProgress = targetProgress;
+  requestAnimationFrame(renderFrame);
+}
+

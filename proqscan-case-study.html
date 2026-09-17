@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ProQscan AI — Enterprise Procurement &amp; Forensic Audit Suite · UI/UX Case Study</title>
-  <meta name="description" content="Authentic UI/UX Case Study: Designing ProQscan AI, an enterprise procurement, inventory control, and forensic audit platform with 4 connected engines and real-time 3-way matching.">
+  <title>ProQscan AI — Enterprise Procurement &amp; Forensic Audit Platform · UI/UX Case Study</title>
+  <meta name="description" content="Authentic UI/UX Case Study by S M Roqunuzzaman: Architecting ProQscan AI, an enterprise procurement, inventory control, and forensic audit platform connecting 4 operational portals with real-time 3-way matching.">
   <meta property="og:title" content="ProQscan AI — UI/UX Case Study · S M Roqunuzzaman">
   <meta property="og:description" content="Connected 4-portal enterprise architecture: Procurement, Inventory, Forensic Audit Engine (with Benford's Law), and Executive Intelligence.">
 
@@ -27,7 +27,7 @@
 </head>
 <body class="case-study-page">
 
-  <!-- Fluid Neon Ribbon Cursor (White Neon in Dark Mode / Dark Neon in Light Mode) -->
+  <!-- Fluid Neon Ribbon Cursor -->
   <canvas class="cursor-trail-canvas" id="cursorTrailCanvas" aria-hidden="true"></canvas>
 
   <!-- Film Grain Overlay -->
@@ -36,7 +36,7 @@
   <!-- Top Navigation Header -->
   <header class="dossier-header-nav" role="banner">
     <div class="dossier-nav-left">
-      <a href="index.html#featured" class="dossier-back-btn">
+      <a href="index.html#selected" class="dossier-back-btn">
         <span class="back-arrow">←</span>
         <span>Back to Portfolio</span>
       </a>
@@ -50,43 +50,45 @@
       <a href="https://www.linkedin.com/in/smroqunuzzaman/" target="_blank" rel="noopener noreferrer" class="overlay-link">LinkedIn</a>
 
       <!-- Theme Switcher Bulb -->
-      <button class="theme-bulb-toggle" id="themeToggle" type="button" aria-label="Toggle dark and light theme" role="switch" aria-checked="false" title="Click to turn lights on/off">
+      <div class="theme-bulb-toggle" id="themeToggle" role="group" aria-label="Theme toggle switch">
         <div class="bulb-widget-wrapper">
-          <div class="bulb-disc-fixture">
+          <button class="bulb-disc-fixture" id="bulbDiscFixture" type="button" aria-label="Toggle dark and light theme" role="switch" aria-checked="false" title="Click disc to toggle theme">
             <svg class="bulb-silhouette-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M12 2.5a6.5 6.5 0 0 0-6.5 6.5c0 2.44 1.34 4.56 3.32 5.66.45.25.74.72.74 1.24v1.8c0 .72.58 1.3 1.3 1.3h2.28c.72 0 1.3-.58 1.3-1.3v-1.8c0-.52.29-.99.74-1.24A6.48 6.48 0 0 0 18.5 9a6.5 6.5 0 0 0-6.5-6.5zm-1.14 17.5h2.28a.7.7 0 0 1 .7.7v.2a.7.7 0 0 1-.7.7h-2.28a.7.7 0 0 1-.7-.7v-.2a.7.7 0 0 1 .7-.7z"/>
             </svg>
-          </div>
-          <div class="bulb-pull-chain" aria-hidden="true">
-            <span class="chain-string"></span>
-            <span class="chain-bead"></span>
+          </button>
+          <div class="bulb-pull-chain" id="bulbPullChain" aria-label="Pull cord to toggle theme" title="Pull string down fully to toggle theme">
+            <svg class="chain-spring-svg" id="chainSpringSvg" viewBox="0 0 40 50" preserveAspectRatio="none" aria-hidden="true">
+              <path class="chain-spring-path" id="chainSpringPath" d="M 20 0 L 20 16" />
+            </svg>
+            <span class="chain-bead" id="chainBead" aria-hidden="true"></span>
           </div>
         </div>
-      </button>
+      </div>
     </div>
   </header>
 
   <main class="case-study-container">
 
-    <!-- HERO SECTION -->
+    <!-- 01 — PROJECT INTRODUCTION / HERO -->
     <section class="case-hero-section">
       <div class="case-category-tag">
-        <span>01 — FEATURED CASE STUDY</span>
+        <span>01 — FLAGSHIP CASE STUDY</span>
         <span>·</span>
-        <span>ENTERPRISE B2B PRODUCT DESIGN</span>
+        <span>ENTERPRISE B2B SAAS PLATFORM</span>
       </div>
 
       <h1 class="case-headline">ProQscan AI: Enterprise Procurement, Inventory &amp; Forensic Audit Platform</h1>
 
       <p class="case-lead-summary">
-        Transforming chaotic, multi-crore paper &amp; spreadsheet procurement into a unified 4-engine digital defense system that detects fraud, enforces 3-way matching, and gives leadership real-time spend control.
+        Designing a unified 4-engine operational ecosystem that eliminates organizational data silos, enforces automated 3-way matching, and surfaces real-time forensic risk signals before payments clear.
       </p>
 
       <!-- Project Metadata Matrix -->
       <div class="case-meta-matrix">
         <div class="meta-matrix-item">
-          <span class="meta-matrix-label">Role</span>
-          <span class="meta-matrix-val">Lead UI/UX &amp; Product Designer</span>
+          <span class="meta-matrix-label">My Role</span>
+          <span class="meta-matrix-val">Lead UI/UX Designer</span>
         </div>
         <div class="meta-matrix-item">
           <span class="meta-matrix-label">Platform</span>
@@ -104,58 +106,82 @@
         </div>
       </div>
 
+      <!-- Quick Action Buttons -->
+      <div class="case-action-bar">
+        <a href="https://proqscanai.com/" target="_blank" rel="noopener noreferrer" class="case-action-btn live-btn">
+          <span>Experience Live Platform</span>
+          <span>↗</span>
+        </a>
+        <a href="#portals" class="case-action-btn figma-btn">
+          <span>Explore 4-Portal Architecture ↓</span>
+        </a>
+      </div>
+
       <!-- Hero Screen Showcase -->
-      <div class="case-hero-screen-frame">
+      <div class="case-hero-screen-frame" style="margin-top: 2.5rem;">
         <img src="proqscan_mockup.jpg" alt="ProQscan AI Executive Summary Dashboard on Laptop" class="case-hero-img">
         <div class="case-screen-caption">
-          <span><strong>Executive Summary Screen</strong> — Spend vs. Risk Exposure Trend, QTD ৳ Taka KPI Tiles, and Forensic Anomaly Breakdown</span>
+          <span><strong>Executive Summary Screen</strong> — Spend vs. Risk Exposure Trend, QTD Taka KPI Tiles, and Forensic Anomaly Breakdown</span>
           <span>LIVE ENTERPRISE PLATFORM</span>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 1: THE OPERATIONAL PROBLEM -->
+    <!-- 02 — OVERVIEW -->
     <section class="case-section">
       <div class="section-label-header">
-        <span class="section-tag-name">01 — The Challenge</span>
+        <span class="section-tag-name">02 — Overview</span>
+        <div class="tag-divider"></div>
+      </div>
+
+      <h2 class="case-section-title">One procurement platform. Every workflow built in.</h2>
+      <p class="case-section-desc">
+        ProQscan AI is an enterprise procurement management and forensic audit platform built to oversee capital expenditure across purchasing, warehouse storage, audit verification, and executive intelligence. Rather than forcing organizations to bridge disparate third-party tools, the product establishes an unbroken operational trail where every purchase order, goods receipt note (GRN), and vendor invoice is reconciled against the same live data layer.
+      </p>
+    </section>
+
+    <!-- 03 — THE PROBLEM / DESIGN CHALLENGE -->
+    <section class="case-section">
+      <div class="section-label-header">
+        <span class="section-tag-name">03 — The Challenge</span>
         <div class="tag-divider"></div>
       </div>
 
       <h2 class="case-section-title">Procurement should not live in disconnected systems.</h2>
       <p class="case-section-desc">
-        When purchasing, inventory, and accounting don't talk, data leaks. Traditional enterprises manage millions across disjointed tools, creating blind spots where vendor price inflation, unbilled deliveries, and invoice fraud thrive.
+        In traditional enterprise environments, departments operate in disconnected silos. Purchasing creates purchase orders in an isolated ERP; warehouse receiving logs physical shipments on paper or localized spreadsheets; and accounting pays invoices blindly without verifying what physically crossed the loading dock. By the time audits happen months later, fraudulent overbilling, duplicate invoices, and unauthorized vendor price inflation are already paid out.
       </p>
 
       <div class="comparison-grid">
         <!-- The Old Way -->
         <div class="comparison-card card-negative">
-          <span class="comparison-badge bad">✕ The Old Way: Fragmented &amp; Blind</span>
-          <h3 class="comparison-card-title">Siloed Tools &amp; Data Leakage</h3>
-          <p class="comparison-card-desc">Departments work in isolation with no single source of truth, causing delayed audits and multi-crore budget hemorrhages.</p>
+          <span class="comparison-badge bad">✕ Fragmented Enterprise Baseline</span>
+          <h3 class="comparison-card-title">Siloed Tools &amp; Operational Gaps</h3>
+          <p class="comparison-card-desc">Information gaps between departments hide discrepancies until post-audits occur.</p>
 
           <ul class="comparison-steps">
             <li>
               <span class="step-bullet bad">✕</span>
               <div>
-                <strong>ERP System:</strong> Purchase Orders created in isolation with no live check on current warehouse stock.
+                <strong>Isolated Requisitions:</strong> Purchase Orders created without visibility into current warehouse balances.
               </div>
             </li>
             <li>
               <span class="step-bullet bad">✕</span>
               <div>
-                <strong>Warehouse Software:</strong> Receiving logged on paper or disconnected sheets, leaving quantity/quality discrepancies unflagged.
+                <strong>Unverified Receiving:</strong> Warehouse clerks log goods on paper forms, leaving quantity and quality discrepancies disconnected from finance.
               </div>
             </li>
             <li>
               <span class="step-bullet bad">✕</span>
               <div>
-                <strong>Accounting Tools:</strong> Invoices paid blindly without verifying what physically arrived at the loading dock.
+                <strong>Blind Invoice Settlement:</strong> Accounts payable settles vendor claims without proof of actual item receipt.
               </div>
             </li>
             <li>
               <span class="step-bullet bad">✕</span>
               <div>
-                <strong>Audit Nightmare:</strong> Fraud and price manipulation only discovered months later during retroactive post-audits.
+                <strong>Retroactive Auditing:</strong> Anomaly detection happens after funds have already departed company accounts.
               </div>
             </li>
           </ul>
@@ -163,33 +189,33 @@
 
         <!-- The ProQscan Way -->
         <div class="comparison-card card-positive">
-          <span class="comparison-badge good">✓ The ProQscan Way: Unified &amp; Verified</span>
-          <h3 class="comparison-card-title">Unbroken Operational Audit Trail</h3>
-          <p class="comparison-card-desc">A unified data layer reconciling requisitions, warehouse goods receipts, and invoices in real time before funds release.</p>
+          <span class="comparison-badge good">✓ Connected ProQscan Architecture</span>
+          <h3 class="comparison-card-title">Continuous 3-Way Reconciliation</h3>
+          <p class="comparison-card-desc">A unified data layer reconciling requisitions, warehouse goods receipts, and invoices in real time.</p>
 
           <ul class="comparison-steps">
             <li>
               <span class="step-bullet good">✓</span>
               <div>
-                <strong>Requisition &amp; PO:</strong> Digitally generated, spec-checked, and tied directly to real-time inventory balances.
+                <strong>Requisition &amp; PO:</strong> Digitally generated, spec-validated, and tied directly to real-time stock balances.
               </div>
             </li>
             <li>
               <span class="step-bullet good">✓</span>
               <div>
-                <strong>Inventory Receiving:</strong> Automatic 3-way match against original PO items, quantities, and star-rated delivery condition.
+                <strong>Inventory Receiving:</strong> Automated 3-way match against original PO line items and star-rated condition logging.
               </div>
             </li>
             <li>
               <span class="step-bullet good">✓</span>
               <div>
-                <strong>Forensic Audit Engine:</strong> 9 risk vectors scanned automatically with Benford's Law invoice manipulation tests.
+                <strong>Forensic Audit Engine:</strong> 9 risk vectors scanned automatically, including Benford's Law distribution analysis.
               </div>
             </li>
             <li>
               <span class="step-bullet good">✓</span>
               <div>
-                <strong>Executive Intelligence:</strong> Live C-suite visibility into company-wide spend, risk tickets, and vendor scorecards.
+                <strong>Executive Intelligence:</strong> Live C-suite visibility into company-wide spend, risk tickets, and vendor behavior scores.
               </div>
             </li>
           </ul>
@@ -197,118 +223,100 @@
       </div>
     </section>
 
-    <!-- SECTION 2: THE 4 CONNECTED PORTALS -->
+    <!-- 04 — USERS & OPERATIONAL ROLES -->
     <section class="case-section">
       <div class="section-label-header">
-        <span class="section-tag-name">02 — Platform Architecture</span>
+        <span class="section-tag-name">04 — Users &amp; Operational Roles</span>
+        <div class="tag-divider"></div>
+      </div>
+
+      <h2 class="case-section-title">Designed for distinct operators with contrasting cognitive needs.</h2>
+      <p class="case-section-desc">
+        A major UX hurdle was preventing the interface from becoming an overwhelming generic spreadsheet. I structured dedicated workspaces tuned specifically to each operator's tasks:
+      </p>
+
+      <div class="workflow-rail">
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">ROLE 01</span>
+          <h3 class="workflow-step-title">Procurement Officer</h3>
+          <p class="workflow-step-desc">Needs to generate POs, parse Comparative Statements (CS) across multiple vendor quotes, and spot unit price inflation before approvals.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">ROLE 02</span>
+          <h3 class="workflow-step-title">Warehouse Receiving Officer</h3>
+          <p class="workflow-step-desc">Operates in noisy warehouse environments. Needs rapid keyboard/barcode logging, star-rated quality notes, and instant GRN generation.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">ROLE 03</span>
+          <h3 class="workflow-step-title">Forensic Compliance Auditor</h3>
+          <p class="workflow-step-desc">Investigates flagged transactions. Needs drill-down evidence drawers, Benford's Law digit tests, and immutable audit disposition tracking.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">ROLE 04</span>
+          <h3 class="workflow-step-title">Executive Leadership (C-Suite)</h3>
+          <p class="workflow-step-desc">Monitors high-level capital exposure. Needs aggregate spend vs. risk curves, vendor concentration metrics, and instant departmental drill-downs.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 — UNDERSTANDING THE PRODUCT WORKFLOW -->
+    <section class="case-section">
+      <div class="section-label-header">
+        <span class="section-tag-name">05 — Product Workflow</span>
+        <div class="tag-divider"></div>
+      </div>
+
+      <h2 class="case-section-title">From Requisition to Forensic Clearance: The 4-Stage Operational Trail</h2>
+      <p class="case-section-desc">
+        The system maps the end-to-end operational lifecycle so every transaction leaves a clear, tamper-proof paper trail:
+      </p>
+
+      <div class="workflow-rail">
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">STAGE 01 — ENTRY</span>
+          <h3 class="workflow-step-title">Requisition &amp; Sourcing</h3>
+          <p class="workflow-step-desc">Department files item request. System checks current warehouse stock to prevent duplicate orders before launching vendor quote comparisons.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">STAGE 02 — ACTION</span>
+          <h3 class="workflow-step-title">PO Generation &amp; Delivery</h3>
+          <p class="workflow-step-desc">Lowest compliant vendor selected via Comparative Statement. PO is dispatched; active tracking monitors lead times and transit status.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">STAGE 03 — DECISION</span>
+          <h3 class="workflow-step-title">Dock Receiving &amp; 3-Way Check</h3>
+          <p class="workflow-step-desc">Physical goods arrive. Warehouse records received counts, damage notes, and bill numbers. System verifies PO vs. GRN line by line.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">STAGE 04 — COMPLETION</span>
+          <h3 class="workflow-step-title">Forensic Scan &amp; Settlement</h3>
+          <p class="workflow-step-desc">Invoice passes through 9 automated risk vector checks and Benford's Law distribution test. Cleared bills move to finance; anomalies halt for review.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 — THE 4 SPECIALIZED ENGINES -->
+    <section class="case-section" id="portals">
+      <div class="section-label-header">
+        <span class="section-tag-name">06 — Platform Architecture</span>
         <div class="tag-divider"></div>
       </div>
 
       <h2 class="case-section-title">Four specialized engines. One unified operational spine.</h2>
       <p class="case-section-desc">
-        Each portal is designed for its specific operator's cognitive workflow while feeding into a single, tamper-proof relational data pipeline.
+        Each portal provides focused functionality while sharing real-time relational state across the database:
       </p>
 
       <div class="portals-bento-grid">
 
-        <!-- Portal 01: Inventory Portal -->
+        <!-- Portal 01: Procurement Engine -->
         <div class="portal-bento-card">
           <div class="portal-header-row">
-            <span class="portal-num-tag">PORTAL 01</span>
-            <span style="font-size:0.75rem; font-weight:700; color: #10b981;">INVENTORY ENGINE</span>
+            <span class="portal-num-tag">ENGINE 01</span>
+            <span style="font-size:0.75rem; font-weight:700; color: #f59e0b;">PROCUREMENT PORTAL</span>
           </div>
 
-          <h3 class="portal-name-headline">Inventory Portal (InventoryAudit)</h3>
-
-          <div class="portal-nav-pills">
-            <span class="portal-nav-pill">Dashboard</span>
-            <span class="portal-nav-pill">Stock IN (Receiving)</span>
-            <span class="portal-nav-pill">Stock OUT (Issuance)</span>
-            <span class="portal-nav-pill">Stock Balances</span>
-            <span class="portal-nav-pill">Transaction Log</span>
-          </div>
-
-          <ul class="portal-features-list">
-            <li><strong>Warehouse Control KPIs:</strong> Real-time tracking of Total Inventory Value, Low Stock Alerts, Slow-Moving Items (6+ months dormant), and Avg. Rejection Rates.</li>
-            <li><strong>Log Rejection by Procurer:</strong> Ranked bar list tracking buyer quality issues with automated callouts identifying the worst-offending procurement officer.</li>
-            <li><strong>Stock IN "Log Delivery" Modal:</strong> Enables warehouse receiving officers to record GRN details, bill numbers, received quantities, and star-rated product quality ratings before PO acceptance.</li>
-            <li><strong>Material Issue Register:</strong> Searchable disbursement log with category/sub-category, item ID, TS ID, quantity, recipient, and requesting department tracking.</li>
-            <li><strong>Historical Transaction Ledger:</strong> Full expandable ledger per addition/removal with PO/GRN cross-references and decision badges.</li>
-          </ul>
-
-          <div class="portal-highlight-box">
-            <strong>Key UX Innovation:</strong> Pre-submission inventory check prevents redundant procurement requests if active warehouse stock already exists.
-          </div>
-        </div>
-
-        <!-- Portal 02: Forensic Audit Portal -->
-        <div class="portal-bento-card">
-          <div class="portal-header-row">
-            <span class="portal-num-tag">PORTAL 02</span>
-            <span style="font-size:0.75rem; font-weight:700; color: #ef4444;">FORENSIC AUDIT ENGINE</span>
-          </div>
-
-          <h3 class="portal-name-headline">Forensic Audit Portal (Audit Engine)</h3>
-
-          <div class="portal-nav-pills">
-            <span class="portal-nav-pill">Dashboard</span>
-            <span class="portal-nav-pill">Anomaly Scanner</span>
-            <span class="portal-nav-pill">Benford's Law Audit</span>
-            <span class="portal-nav-pill">Outliers Analysis</span>
-          </div>
-
-          <ul class="portal-features-list">
-            <li><strong>Risk Exposure KPIs:</strong> Tracks Transactions Scanned, Anomalies Flagged, and Total Financial Risk Exposure with 30/90-day/YTD interval toggles.</li>
-            <li><strong>Case Disposition Pipeline:</strong> Structured 4-stage audit workflow: <em>Detected → Check Required → Action Taken → Cleared</em> with immutable investigator notes.</li>
-            <li><strong>9-Vector Anomaly Scanner:</strong> Filters flagged items across 9 risk types: <em>Price Inflation, Overbilled, Under-Delivered, Pending Orders, Unbilled Deliveries, Excess GRN, Supplier Favoritism, Missing CS, and Duplicate Billing</em>.</li>
-            <li><strong>Benford's Law Audit Engine:</strong> Chi-squared statistical algorithm evaluating invoice leading-digit distribution to detect artificial billing numbers, complete with plain-language explainers and "Manipulation Detected" alert banners.</li>
-            <li><strong>Evidence File Drilldown:</strong> Opens Comparative Statement baseline, delivery logs, vendor history, and product quality stars for airtight compliance resolution.</li>
-          </ul>
-
-          <div class="portal-highlight-box">
-            <strong>Key UX Innovation:</strong> Translates complex statistical chi-square tests into intuitive digit-by-digit visual verdicts (Suspicious vs. Normal).
-          </div>
-        </div>
-
-        <!-- Portal 03: Executive Portal -->
-        <div class="portal-bento-card">
-          <div class="portal-header-row">
-            <span class="portal-num-tag">PORTAL 03</span>
-            <span style="font-size:0.75rem; font-weight:700; color: #3b82f6;">EXECUTIVE ENGINE</span>
-          </div>
-
-          <h3 class="portal-name-headline">Executive Portal (Vendor Auditor Engine)</h3>
-
-          <div class="portal-nav-pills">
-            <span class="portal-nav-pill">Executive Summary</span>
-            <span class="portal-nav-pill">Procurement &amp; Spend</span>
-            <span class="portal-nav-pill">Vendor Performance</span>
-            <span class="portal-nav-pill">Delivery Health</span>
-            <span class="portal-nav-pill">Risk &amp; Audit</span>
-            <span class="portal-nav-pill">Dept. Drilldown</span>
-          </div>
-
-          <ul class="portal-features-list">
-            <li><strong>6 Core Executive KPI Tiles:</strong> High-contrast cards displaying Total Spend (৳ Taka), Ticket at Risk, Active POs in Pipeline, Pending Deliveries, and Overdue Values.</li>
-            <li><strong>Spend vs. Risk Exposure Curve:</strong> 6-month dual-curve graph exposing the direct correlation between procurement volume spikes and detected risk spikes.</li>
-            <li><strong>Vendor Performance Matrix:</strong> Top-tier vendor spend concentration, newly flagged suppliers, and complete scorecard distribution (score bar, rating badge, order volume).</li>
-            <li><strong>Department Portals Drill-Down:</strong> Allows C-suite leaders to view the platform through a specific officer's operational lens (e.g. "Viewing Procurement Officer: Rahul Ahmed").</li>
-            <li><strong>Ask Auditor AI:</strong> Floating natural language assistant offering quick prompts ("What needs immediate attention?", "Summarize QTD risk exposure").</li>
-          </ul>
-
-          <div class="portal-highlight-box">
-            <strong>Key UX Innovation:</strong> Instant context-switching from high-level corporate rollups directly down into granular departmental evidence.
-          </div>
-        </div>
-
-        <!-- Portal 04: Procurement Portal -->
-        <div class="portal-bento-card">
-          <div class="portal-header-row">
-            <span class="portal-num-tag">PORTAL 04</span>
-            <span style="font-size:0.75rem; font-weight:700; color: #f59e0b;">PROCUREMENT ENGINE</span>
-          </div>
-
-          <h3 class="portal-name-headline">Procurement Portal (VendorAudit)</h3>
+          <h3 class="portal-name-headline">Procurement &amp; Vendor Sourcing</h3>
 
           <div class="portal-nav-pills">
             <span class="portal-nav-pill">Dashboard</span>
@@ -320,11 +328,10 @@
           </div>
 
           <ul class="portal-features-list">
-            <li><strong>Dual-Mode PO Generation:</strong> Supports Drag-and-Drop Requisition File Parsing as well as a guided 3-step manual builder (PO Info → Requisition Details → Item Specs).</li>
-            <li><strong>Comparative Statement (CS) Sourcing:</strong> Direct entry or upload of supplier quotes with automated calculation of best/lowest prices and inflation percentage warnings.</li>
-            <li><strong>Vendor Evaluation &amp; History:</strong> Compares candidate suppliers against historical max prices, fulfillment rates, lead times, and past delivery behavior scores.</li>
-            <li><strong>Active Procurement Tracking:</strong> Real-time stage monitor (Overdue, In Transit, Awaiting Dispatch) with overdue warnings and delivery logs detail tabs.</li>
-            <li><strong>Vendor Behavior Ratings:</strong> Closes the loop upon order fulfillment with mandatory vendor experience notes and quality star evaluations.</li>
+            <li><strong>Guided 3-Step PO Builder:</strong> Supports file drag-and-drop parsing as well as step-by-step entry: PO Info → Requisition Details → Item Specs.</li>
+            <li><strong>Comparative Statement (CS) Sourcing:</strong> Direct matrix entry of vendor quotes with automatic lowest-price highlight and price inflation alerts against historical records.</li>
+            <li><strong>Vendor Behavior History:</strong> Compares supplier candidates on historical fulfillment rates, delivery speed, and past quality feedback.</li>
+            <li><strong>Active Procurement Pipeline:</strong> Live status indicators (In Transit, Awaiting Dispatch, Overdue) with direct drill-down into delivery logs.</li>
           </ul>
 
           <div class="portal-highlight-box">
@@ -332,88 +339,364 @@
           </div>
         </div>
 
+        <!-- Portal 02: Inventory Engine -->
+        <div class="portal-bento-card">
+          <div class="portal-header-row">
+            <span class="portal-num-tag">ENGINE 02</span>
+            <span style="font-size:0.75rem; font-weight:700; color: #10b981;">INVENTORY PORTAL</span>
+          </div>
+
+          <h3 class="portal-name-headline">Stock Receiving &amp; Material Issuance</h3>
+
+          <div class="portal-nav-pills">
+            <span class="portal-nav-pill">Dashboard</span>
+            <span class="portal-nav-pill">Stock IN (Receiving)</span>
+            <span class="portal-nav-pill">Stock OUT (Issuance)</span>
+            <span class="portal-nav-pill">Stock Balances</span>
+            <span class="portal-nav-pill">Transaction Ledger</span>
+          </div>
+
+          <ul class="portal-features-list">
+            <li><strong>Warehouse Control KPIs:</strong> Real-time tracking of Total Inventory Value, Low Stock Alerts, Dormant Stock (6+ months unused), and Rejection Rates.</li>
+            <li><strong>Stock IN "Log Delivery" Modal:</strong> Enables receiving clerks to capture GRN details, bill numbers, verified counts, and star-rated product quality ratings before PO acceptance.</li>
+            <li><strong>Material Issue Register:</strong> Searchable disbursement log tracking item IDs, quantities, recipient names, and requesting department codes.</li>
+            <li><strong>Historical Transaction Ledger:</strong> Expandable record per addition/issuance with direct PO/GRN cross-references.</li>
+          </ul>
+
+          <div class="portal-highlight-box">
+            <strong>Key UX Innovation:</strong> Pre-submission inventory check prevents redundant procurement requests if active warehouse stock already exists.
+          </div>
+        </div>
+
+        <!-- Portal 03: Forensic Audit Engine -->
+        <div class="portal-bento-card">
+          <div class="portal-header-row">
+            <span class="portal-num-tag">ENGINE 03</span>
+            <span style="font-size:0.75rem; font-weight:700; color: #ef4444;">FORENSIC AUDIT ENGINE</span>
+          </div>
+
+          <h3 class="portal-name-headline">Anomaly Scanner &amp; Benford's Law Audit</h3>
+
+          <div class="portal-nav-pills">
+            <span class="portal-nav-pill">Audit Dashboard</span>
+            <span class="portal-nav-pill">Anomaly Scanner</span>
+            <span class="portal-nav-pill">Benford's Law Audit</span>
+            <span class="portal-nav-pill">Outliers Analysis</span>
+          </div>
+
+          <ul class="portal-features-list">
+            <li><strong>9-Vector Anomaly Scanner:</strong> Filters flagged items across 9 risk categories: <em>Price Inflation, Overbilled, Under-Delivered, Pending Orders, Unbilled Deliveries, Excess GRN, Supplier Favoritism, Missing CS, and Duplicate Billing</em>.</li>
+            <li><strong>Benford's Law Statistical Engine:</strong> Chi-squared statistical algorithm evaluating invoice leading-digit distribution to detect artificial billing numbers, complete with plain-language explainers and "Manipulation Detected" alert banners.</li>
+            <li><strong>Structured 4-Stage Case Disposition:</strong> Structured workflow: <em>Detected → Check Required → Action Taken → Cleared</em> with immutable investigator notes.</li>
+            <li><strong>Evidence Drilldown Drawer:</strong> Opens Comparative Statement baseline, delivery logs, vendor history, and product quality stars without leaving the main audit queue.</li>
+          </ul>
+
+          <div class="portal-highlight-box">
+            <strong>Key UX Innovation:</strong> Translates complex statistical chi-square tests into intuitive digit-by-digit visual verdicts (Suspicious vs. Normal).
+          </div>
+        </div>
+
+        <!-- Portal 04: Executive Engine -->
+        <div class="portal-bento-card">
+          <div class="portal-header-row">
+            <span class="portal-num-tag">ENGINE 04</span>
+            <span style="font-size:0.75rem; font-weight:700; color: #3b82f6;">EXECUTIVE ENGINE</span>
+          </div>
+
+          <h3 class="portal-name-headline">Executive Intelligence &amp; Oversight</h3>
+
+          <div class="portal-nav-pills">
+            <span class="portal-nav-pill">Executive Summary</span>
+            <span class="portal-nav-pill">Spend Analytics</span>
+            <span class="portal-nav-pill">Vendor Scorecards</span>
+            <span class="portal-nav-pill">Delivery Health</span>
+            <span class="portal-nav-pill">Department Drilldown</span>
+          </div>
+
+          <ul class="portal-features-list">
+            <li><strong>Executive KPI Matrix:</strong> High-contrast summary tiles displaying Total Spend (৳ Taka), Tickets at Risk, Active POs in Pipeline, Pending Deliveries, and Overdue Value.</li>
+            <li><strong>Spend vs. Risk Exposure Curve:</strong> Dual-curve chart exposing the direct relationship between procurement volume spikes and detected risk spikes.</li>
+            <li><strong>Vendor Performance Matrix:</strong> Top-tier vendor spend concentration, newly flagged suppliers, and complete scorecard distribution.</li>
+            <li><strong>Departmental Lens Drilldown:</strong> Allows leadership to inspect operations through a specific officer's viewpoint (e.g., "Viewing Procurement Officer: Rahul Ahmed").</li>
+          </ul>
+
+          <div class="portal-highlight-box">
+            <strong>Key UX Innovation:</strong> Instant context-switching from corporate-level rollups directly down into granular departmental evidence.
+          </div>
+        </div>
+
       </div>
     </section>
 
-    <!-- SECTION 3: KEY UX & DESIGN DECISIONS -->
+    <!-- 07 — KEY UX DECISIONS -->
     <section class="case-section">
       <div class="section-label-header">
-        <span class="section-tag-name">03 — UX &amp; Systems Thinking</span>
+        <span class="section-tag-name">07 — Key UX Decisions</span>
         <div class="tag-divider"></div>
       </div>
 
       <h2 class="case-section-title">Designing for high data density without cognitive fatigue.</h2>
       <p class="case-section-desc">
-        Enterprise tools often fail because they dump uncurated spreadsheets onto users. ProQscan AI was designed around progressive disclosure, unambiguous risk colors, and zero-confusion reconciliation.
+        Enterprise tools often fail because they dump uncurated spreadsheets onto users. I structured ProQscan AI around progressive disclosure, unambiguous risk semantics, and zero-confusion reconciliation:
       </p>
 
-      <div class="comparison-grid">
-        <div class="comparison-card">
-          <h3 class="comparison-card-title">1. Color-Coded Forensic Risk Semantics</h3>
-          <p class="comparison-card-desc">
-            We implemented a strict, non-negotiable color grammar across all 4 engines:
+      <div class="ux-decisions-grid">
+        <div class="ux-decision-card">
+          <span class="decision-topic-tag">COLOR SEMANTICS</span>
+          <h3 class="decision-title">Strict Forensic Risk Grammar</h3>
+          <p class="decision-body">
+            Rather than decorative colors, every hue in ProQscan AI has an unambiguous operational meaning:
+            <br>• <strong>Emerald Green:</strong> Verified 3-way match, healthy stock, on-time delivery.
+            <br>• <strong>Amber Orange:</strong> Pending approval, unbilled deliveries awaiting verification.
+            <br>• <strong>Crimson Red:</strong> Critical anomalies, Benford manipulation alerts, duplicate billing.
+            <br>• <strong>Navy Blue:</strong> Strategic governance metrics and executive intelligence indicators.
           </p>
-          <ul class="portal-features-list">
-            <li><strong style="color:#10b981;">Emerald Green:</strong> Verified 3-way match, healthy inventory levels, and compliant on-time vendor fulfillments.</li>
-            <li><strong style="color:#f59e0b;">Amber / Orange:</strong> Pending approval, unbilled deliveries awaiting verification, or items flagged for standard review.</li>
-            <li><strong style="color:#ef4444;">Crimson Red:</strong> Critical anomalies, Benford's Law invoice manipulation warnings, duplicate bills, and severe price inflation.</li>
-            <li><strong style="color:#3b82f6;">Executive Navy / Blue:</strong> Strategic governance metrics, roll-up timelines, and executive intelligence indicators.</li>
-          </ul>
         </div>
 
-        <div class="comparison-card">
-          <h3 class="comparison-card-title">2. Progressive Disclosure in Complex Modals</h3>
-          <p class="comparison-card-desc">
-            Rather than overwhelming warehouse clerks with multi-page accounting forms:
+        <div class="ux-decision-card">
+          <span class="decision-topic-tag">PROGRESSIVE DISCLOSURE</span>
+          <h3 class="decision-title">Contextual Sliders &amp; Evidence Drawers</h3>
+          <p class="decision-body">
+            Instead of navigating away to inspect flagged transactions, auditors click any anomaly row to open a slide-over evidence drawer. This reveals the original PO, supplier quotation, and dock GRN without losing the auditor's scroll position in the primary queue.
           </p>
-          <ul class="portal-features-list">
-            <li><strong>Contextual Modal Sliders:</strong> "Log Delivery" and "Record Material Issue" isolate required fields into bite-sized numbered steps.</li>
-            <li><strong>Inline Calculations:</strong> Comparative statement totals, inflation percentages, and unit conversions calculate in real time as values are typed.</li>
-            <li><strong>Drill-Down Drawers:</strong> Clicking any flagged transaction expands an evidence side-panel without losing the auditor's scroll position in the main queue.</li>
-            <li><strong>Keyboard-First Navigation:</strong> Standardized tab indices and shortcut key combinations for rapid warehouse barcode logging.</li>
-          </ul>
+        </div>
+
+        <div class="ux-decision-card">
+          <span class="decision-topic-tag">INPUT ERGONOMICS</span>
+          <h3 class="decision-title">Keyboard-First Dock Receiving</h3>
+          <p class="decision-body">
+            Warehouse clerks logging incoming deliveries need speed. I optimized the "Log Delivery" form for sequential keyboard navigation (Tab-index ordering, numeric auto-formatting, and instant barcode scan population) to minimize mouse dependency.
+          </p>
+        </div>
+
+        <div class="ux-decision-card">
+          <span class="decision-topic-tag">INFORMATION ARCHITECTURE</span>
+          <h3 class="decision-title">Single Unbroken Audit Trail</h3>
+          <p class="decision-body">
+            Every record maintains explicit bidirectional links: a purchase order displays its related GRN and invoice; a flagged invoice links directly to its receiving condition stars and the originating requisition officer.
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 4: IMPACT & MEASURABLE OUTCOMES -->
+    <!-- 08 — IMPORTANT SCREENS & FEATURE SPOTLIGHTS -->
     <section class="case-section">
       <div class="section-label-header">
-        <span class="section-tag-name">04 — Measurable Outcomes</span>
+        <span class="section-tag-name">08 — Key Screen Showcases</span>
         <div class="tag-divider"></div>
       </div>
 
-      <h2 class="case-section-title">Real enterprise impact delivered.</h2>
+      <h2 class="case-section-title">Deep dive into core operational screens.</h2>
+
+      <!-- Spotlight 1: Forensic Audit & Benford's Law -->
+      <article class="feature-spotlight-card">
+        <div class="feature-spotlight-header">
+          <span class="feature-tag-chip">Forensic Engine</span>
+          <h3 class="feature-spotlight-title">Forensic Anomaly Scanner &amp; Benford's Law Audit</h3>
+        </div>
+
+        <div class="feature-meta-triad">
+          <div class="triad-col">
+            <span class="triad-label">What it is</span>
+            <p class="triad-text">An automated audit workspace that runs multi-vector risk tests on all incoming invoice data.</p>
+          </div>
+          <div class="triad-col">
+            <span class="triad-label">What the user does</span>
+            <p class="triad-text">Auditors review flagged invoices, inspect leading-digit distribution graphs, and log official case disposition notes.</p>
+          </div>
+          <div class="triad-col">
+            <span class="triad-label">Why structured this way</span>
+            <p class="triad-text">Translates complex mathematical chi-square tests into clear visual verdicts (Suspicious vs. Normal), enabling non-statisticians to act quickly.</p>
+          </div>
+        </div>
+
+        <div class="feature-media-frame">
+          <img src="proqscan_audit_mockup.jpg" alt="ProQscan AI Forensic Audit Engine Mockup" class="feature-media-img">
+        </div>
+      </article>
+
+      <!-- Spotlight 2: Inventory Warehouse Portal -->
+      <article class="feature-spotlight-card">
+        <div class="feature-spotlight-header">
+          <span class="feature-tag-chip">Inventory Engine</span>
+          <h3 class="feature-spotlight-title">Stock Receiving &amp; Material Disbursement Ledger</h3>
+        </div>
+
+        <div class="feature-meta-triad">
+          <div class="triad-col">
+            <span class="triad-label">What it is</span>
+            <p class="triad-text">The warehouse intake and issuance hub tracking items from loading dock to internal departmental use.</p>
+          </div>
+          <div class="triad-col">
+            <span class="triad-label">What the user does</span>
+            <p class="triad-text">Warehouse clerks log incoming GRNs against open POs, rate item quality, and record authorized stock disbursements.</p>
+          </div>
+          <div class="triad-col">
+            <span class="triad-label">Why structured this way</span>
+            <p class="triad-text">Prevents unrecorded inventory leakage by enforcing mandatory bill numbers and condition star ratings before goods are added to active balances.</p>
+          </div>
+        </div>
+
+        <div class="feature-media-frame">
+          <img src="proqscan_inventory_mockup.jpg" alt="ProQscan AI Inventory Portal Mockup" class="feature-media-img">
+        </div>
+      </article>
+
+      <!-- Spotlight 3: Executive Intelligence Dashboard -->
+      <article class="feature-spotlight-card">
+        <div class="feature-spotlight-header">
+          <span class="feature-tag-chip">Executive Engine</span>
+          <h3 class="feature-spotlight-title">Executive Summary &amp; Spend vs. Risk Analysis</h3>
+        </div>
+
+        <div class="feature-meta-triad">
+          <div class="triad-col">
+            <span class="triad-label">What it is</span>
+            <p class="triad-text">The C-suite overview aggregating capital flow, active order pipelines, and enterprise risk tickets.</p>
+          </div>
+          <div class="triad-col">
+            <span class="triad-label">What the user does</span>
+            <p class="triad-text">Executives monitor total corporate spend in real-time Taka (৳), track risk trends, and drill down into specific departmental operations.</p>
+          </div>
+          <div class="triad-col">
+            <span class="triad-label">Why structured this way</span>
+            <p class="triad-text">Pairs high-contrast aggregate KPI cards with a visual correlation curve, instantly revealing if a spending surge coincides with an anomaly surge.</p>
+          </div>
+        </div>
+
+        <div class="feature-media-frame">
+          <img src="proqscan_executive_mockup.jpg" alt="ProQscan AI Executive Portal Mockup" class="feature-media-img">
+        </div>
+      </article>
+
+      <!-- Spotlight 4: Procurement Sourcing Engine -->
+      <article class="feature-spotlight-card">
+        <div class="feature-spotlight-header">
+          <span class="feature-tag-chip">Procurement Engine</span>
+          <h3 class="feature-spotlight-title">PO Generation &amp; Comparative Statement Sourcing</h3>
+        </div>
+
+        <div class="feature-meta-triad">
+          <div class="triad-col">
+            <span class="triad-label">What it is</span>
+            <p class="triad-text">The purchasing command center where requisitions are transformed into verified vendor purchase orders.</p>
+          </div>
+          <div class="triad-col">
+            <span class="triad-label">What the user does</span>
+            <p class="triad-text">Procurement officers compare supplier quotations, identify lowest compliant bids, and dispatch structured POs.</p>
+          </div>
+          <div class="triad-col">
+            <span class="triad-label">Why structured this way</span>
+            <p class="triad-text">Automates quote comparison arithmetic and alerts officers to price inflation against historical purchase rates before commitments are approved.</p>
+          </div>
+        </div>
+
+        <div class="feature-media-frame">
+          <img src="proqscan_procurement_mockup.jpg" alt="ProQscan AI Procurement Portal Mockup" class="feature-media-img">
+        </div>
+      </article>
+
+    </section>
+
+    <!-- 09 — DESIGN SYSTEM & UI SPECS -->
+    <section class="case-section">
+      <div class="section-label-header">
+        <span class="section-tag-name">09 — Design System &amp; UI System</span>
+        <div class="tag-divider"></div>
+      </div>
+
+      <h2 class="case-section-title">A consistent design system built for multi-portal scale.</h2>
       <p class="case-section-desc">
-        By connecting procurement, inventory, and forensic auditing into a unified platform, ProQscan AI eliminated the blind spots that cost companies millions annually.
+        To maintain visual coherence across all four engines, I established a centralized design tokens system:
       </p>
 
-      <div class="impact-metrics-grid">
-        <div class="impact-metric-card">
-          <div class="metric-num">100%</div>
-          <div class="metric-label">3-Way Verification</div>
-          <div class="metric-sub">Zero unverified invoices cleared for accounting payment</div>
+      <div class="ux-decisions-grid">
+        <div class="ux-decision-card">
+          <span class="decision-topic-tag">TYPOGRAPHY SYSTEM</span>
+          <h3 class="decision-title">Manrope + Tabular Monospace</h3>
+          <p class="decision-body">
+            <strong>Headings &amp; UI:</strong> Clean geometric sans-serif (Manrope / Plus Jakarta Sans) for effortless scanning of dense dashboards.
+            <br><strong>Financial Numerals:</strong> Tabular monospace figures for invoice amounts, PO numbers, and ledger columns to ensure vertical decimal alignment across multi-row comparison tables.
+          </p>
         </div>
 
-        <div class="impact-metric-card">
-          <div class="metric-num">9</div>
-          <div class="metric-label">Risk Vectors Automated</div>
-          <div class="metric-sub">From price inflation to Benford invoice manipulation</div>
-        </div>
-
-        <div class="impact-metric-card">
-          <div class="metric-num">4</div>
-          <div class="metric-label">Connected Portals</div>
-          <div class="metric-sub">Unbroken operational chain with zero data silos</div>
-        </div>
-
-        <div class="impact-metric-card">
-          <div class="metric-num">৳ Crores</div>
-          <div class="metric-label">Protected Spend</div>
-          <div class="metric-sub">Live fraud prevention before funds leave enterprise accounts</div>
+        <div class="ux-decision-card">
+          <span class="decision-topic-tag">COMPONENT TOKENS</span>
+          <h3 class="decision-title">Atomic Table &amp; Status Badges</h3>
+          <p class="decision-body">
+            Standardized pill badges (Verified, Pending, Flagged, Cleared), high-density data table rows with hover elevation, sticky column headers, and uniform pagination controls shared across all four operational portals.
+          </p>
         </div>
       </div>
     </section>
+
+    <!-- 10 — OUTCOME & DELIVERED FOUNDATION -->
+    <section class="case-section">
+      <div class="section-label-header">
+        <span class="section-tag-name">10 — Delivered Foundation</span>
+        <div class="tag-divider"></div>
+      </div>
+
+      <h2 class="case-section-title">What was delivered: A resilient enterprise operating system.</h2>
+      <p class="case-section-desc">
+        The project successfully transitioned an enterprise organization from fragmented spreadsheets to a connected digital platform:
+      </p>
+
+      <div class="workflow-rail">
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">DELIVERABLE 01</span>
+          <h3 class="workflow-step-title">4 Unified Portals</h3>
+          <p class="workflow-step-desc">Seamless role-based workspaces connecting Procurement, Warehouse Inventory, Forensic Audit, and Executive Intelligence.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">DELIVERABLE 02</span>
+          <h3 class="workflow-step-title">Automated 3-Way Match</h3>
+          <p class="workflow-step-desc">End-to-end verification linking PO line items, physical receiving receipts (GRN), and accounting invoices.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">DELIVERABLE 03</span>
+          <h3 class="workflow-step-title">9-Vector Forensic Scanner</h3>
+          <p class="workflow-step-desc">Proactive anomaly detection catching price inflation, duplicate billing, and Benford digit manipulation before payment.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">DELIVERABLE 04</span>
+          <h3 class="workflow-step-title">Scalable Design System</h3>
+          <p class="workflow-step-desc">Standardized components, high-density data tables, and strict status color semantics ready for future operational expansions.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 — REFLECTION / WHAT I LEARNED -->
+    <section class="case-section">
+      <div class="section-label-header">
+        <span class="section-tag-name">11 — Designer Reflection</span>
+        <div class="tag-divider"></div>
+      </div>
+
+      <h2 class="case-section-title">What this project taught me as a product designer.</h2>
+
+      <div class="reflection-quote-box">
+        <p class="reflection-quote-text">
+          "Designing for enterprise operations taught me that true UX excellence in data-heavy platforms isn't about making things look minimal—it's about making dense, high-stakes information scan effortlessly. When millions of taka and operational fraud are on the line, an operator shouldn't have to hunt for discrepancies. Good design brings the anomaly directly to their attention with zero ambiguity."
+        </p>
+        <span class="reflection-author-tag">— S M Roqunuzzaman · UI/UX Designer</span>
+      </div>
+    </section>
+
+    <!-- 12 — CROSS-PROJECT NAVIGATION -->
+    <nav class="case-pagination-row" aria-label="More Case Studies">
+      <a href="boighor-case-study.html" class="case-nav-tile">
+        <span class="case-nav-dir">← Previous Project</span>
+        <span class="case-nav-title">Boighor: Mobile E-Reader App</span>
+        <span class="case-nav-desc">Distraction-free reading typography and fluid audiobook scrub ergonomics.</span>
+      </a>
+
+      <a href="callswain-case-study.html" class="case-nav-tile" style="text-align: right;">
+        <span class="case-nav-dir">Next Project →</span>
+        <span class="case-nav-title">Callswain AI: Voice Telephony SaaS</span>
+        <span class="case-nav-desc">Intelligent IVR flow studio, waveform analytics, and agent productivity.</span>
+      </a>
+    </nav>
 
     <!-- FOOTER / GATEWAY -->
     <footer class="case-study-footer">
@@ -428,21 +711,20 @@
         </h2>
 
         <div class="case-footer-actions">
-          <a href="https://proqscanai.com/" target="_blank" rel="noopener noreferrer" class="btn-primary" style="display:inline-flex; align-items:center; gap:8px;">
+          <a href="https://proqscanai.com/" target="_blank" rel="noopener noreferrer" class="case-action-btn live-btn">
             <span>VISIT LIVE PLATFORM (PROQSCANAI.COM)</span>
             <span>↗</span>
           </a>
-          <a href="cv.html#projects" class="btn-secondary" style="display:inline-flex; align-items:center; gap:8px;">
-            <span>VIEW ALL CASE ARCHIVES IN CV</span>
-            <span>→</span>
+          <a href="cv.html#projects" class="case-action-btn figma-btn">
+            <span>VIEW ALL CASE ARCHIVES IN CV →</span>
           </a>
-          <a href="index.html#featured" class="btn-secondary-link" style="font-size:0.9rem;">
-            <span>← Back to Portfolio</span>
+          <a href="index.html#selected" class="btn-secondary-link" style="font-size:0.9rem;">
+            <span>← Back to Selected Work</span>
           </a>
         </div>
 
         <p class="contact-location" style="margin-top:3rem; font-size:0.8rem; color: var(--muted-foreground);">
-          © 2026 S M Roqunuzzaman · Lead UI/UX Designer · ProQscan AI Case Study
+          © 2026 S M Roqunuzzaman · UI/UX Designer · ProQscan AI Case Study
         </p>
       </div>
     </footer>

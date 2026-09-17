@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Boighor — Digital Books &amp; Audiobook Reader Mobile App · UI/UX Case Study</title>
-  <meta name="description" content="Authentic UI/UX Case Study: Designing Boighor, a distraction-free mobile e-reading and audiobook listening app with typographic legibility and offline sync.">
+  <title>BoiGhor — Digital Books &amp; Audiobook Reader Mobile App · UI/UX Case Study</title>
+  <meta name="description" content="Authentic UI/UX Case Study by S M Roqunuzzaman: Designing BoiGhor, a distraction-free mobile reading and audiobook listening app with ergonomic audio scrubbers, typographic scaling, and offline sync.">
+  <meta property="og:title" content="BoiGhor — UI/UX Case Study · S M Roqunuzzaman">
+  <meta property="og:description" content="Mobile E-Reader & Audiobook App: Ergonomic audio player, typographic comfort, digital library reservation, and offline reading.">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,7 +27,10 @@
 </head>
 <body class="case-study-page">
 
+  <!-- Fluid Neon Ribbon Cursor -->
   <canvas class="cursor-trail-canvas" id="cursorTrailCanvas" aria-hidden="true"></canvas>
+
+  <!-- Film Grain Overlay -->
   <div class="grain-overlay" aria-hidden="true"></div>
 
   <!-- Top Navigation Header -->
@@ -33,52 +38,56 @@
     <div class="dossier-nav-left">
       <a href="index.html#selected" class="dossier-back-btn">
         <span class="back-arrow">←</span>
-        <span>Back to Selected Works</span>
+        <span>Back to Portfolio</span>
       </a>
     </div>
 
     <div class="dossier-nav-right">
       <a href="cv.html" class="overlay-link">Curriculum Vitae (CV)</a>
-      <a href="https://drive.google.com/file/d/1cXV8lthcDHrPGLQng46d6io8WmMNn0Pw/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="overlay-link resume-link-highlight">PDF Resume ↗</a>
+      <a href="https://drive.google.com/file/d/1cXV8lthcDHrPGLQng46d6io8WmMNn0Pw/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="overlay-link resume-link-highlight" title="Open PDF Resume in Google Drive">PDF Resume ↗</a>
       <a href="mailto:smroqunuzzaman@gmail.com" class="overlay-link">Mail</a>
       <a href="https://dribbble.com/SMRoqunuzzaman" target="_blank" rel="noopener noreferrer" class="overlay-link">Dribbble</a>
       <a href="https://www.linkedin.com/in/smroqunuzzaman/" target="_blank" rel="noopener noreferrer" class="overlay-link">LinkedIn</a>
 
-      <button class="theme-bulb-toggle" id="themeToggle" type="button" aria-label="Toggle dark and light theme" role="switch" aria-checked="false">
+      <!-- Theme Switcher Bulb -->
+      <div class="theme-bulb-toggle" id="themeToggle" role="group" aria-label="Theme toggle switch">
         <div class="bulb-widget-wrapper">
-          <div class="bulb-disc-fixture">
-            <svg class="bulb-silhouette-svg" viewBox="0 0 24 24" fill="currentColor">
+          <button class="bulb-disc-fixture" id="bulbDiscFixture" type="button" aria-label="Toggle dark and light theme" role="switch" aria-checked="false" title="Click disc to toggle theme">
+            <svg class="bulb-silhouette-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M12 2.5a6.5 6.5 0 0 0-6.5 6.5c0 2.44 1.34 4.56 3.32 5.66.45.25.74.72.74 1.24v1.8c0 .72.58 1.3 1.3 1.3h2.28c.72 0 1.3-.58 1.3-1.3v-1.8c0-.52.29-.99.74-1.24A6.48 6.48 0 0 0 18.5 9a6.5 6.5 0 0 0-6.5-6.5zm-1.14 17.5h2.28a.7.7 0 0 1 .7.7v.2a.7.7 0 0 1-.7.7h-2.28a.7.7 0 0 1-.7-.7v-.2a.7.7 0 0 1 .7-.7z"/>
             </svg>
-          </div>
-          <div class="bulb-pull-chain" aria-hidden="true">
-            <span class="chain-string"></span>
-            <span class="chain-bead"></span>
+          </button>
+          <div class="bulb-pull-chain" id="bulbPullChain" aria-label="Pull cord to toggle theme" title="Pull string down fully to toggle theme">
+            <svg class="chain-spring-svg" id="chainSpringSvg" viewBox="0 0 40 50" preserveAspectRatio="none" aria-hidden="true">
+              <path class="chain-spring-path" id="chainSpringPath" d="M 20 0 L 20 16" />
+            </svg>
+            <span class="chain-bead" id="chainBead" aria-hidden="true"></span>
           </div>
         </div>
-      </button>
+      </div>
     </div>
   </header>
 
   <main class="case-study-container">
 
-    <!-- HERO SECTION -->
+    <!-- 01 — PROJECT INTRODUCTION / HERO -->
     <section class="case-hero-section">
       <div class="case-category-tag">
         <span>05 — SELECTED CASE STUDY</span>
         <span>·</span>
-        <span>MOBILE PRODUCT DESIGN</span>
+        <span>MOBILE PRODUCT DESIGN &amp; AUDIO UX</span>
       </div>
 
-      <h1 class="case-headline">Boighor: Digital Books &amp; Audiobook Reader Mobile App</h1>
+      <h1 class="case-headline">BoiGhor: Digital Books &amp; Audiobook Reader Mobile App</h1>
 
       <p class="case-lead-summary">
-        Designing a distraction-free mobile reading and audio listening experience emphasizing typographic legibility, intuitive scrubber ergonomics, and seamless offline library synchronization.
+        Designing a distraction-free mobile reading and audiobook listening experience, combining customizable typography scaling, ergonomic one-handed audio scrubbers, and seamless offline library synchronization.
       </p>
 
+      <!-- Project Metadata Matrix -->
       <div class="case-meta-matrix">
         <div class="meta-matrix-item">
-          <span class="meta-matrix-label">Role</span>
+          <span class="meta-matrix-label">My Role</span>
           <span class="meta-matrix-val">Lead Mobile UI/UX Designer</span>
         </div>
         <div class="meta-matrix-item">
@@ -86,117 +95,455 @@
           <span class="meta-matrix-val">iOS &amp; Android Native App</span>
         </div>
         <div class="meta-matrix-item">
-          <span class="meta-matrix-label">Timeline</span>
-          <span class="meta-matrix-val">2024–2025</span>
+          <span class="meta-matrix-label">Scope</span>
+          <span class="meta-matrix-val">Mobile App, Audio UX &amp; Branding</span>
         </div>
         <div class="meta-matrix-item">
-          <span class="meta-matrix-label">Scope</span>
-          <span class="meta-matrix-val">Mobile App &amp; Audio UX</span>
+          <span class="meta-matrix-label">Figma Design</span>
+          <span class="meta-matrix-val">
+            <a href="https://www.figma.com/design/VjkZy0jZGdqwQPVSX28d8I/A-Case-Study-on-BoiGhor" target="_blank" rel="noopener noreferrer">Figma Workspace ↗</a>
+          </span>
         </div>
       </div>
 
+      <!-- Quick Action Buttons -->
+      <div class="case-action-bar">
+        <a href="https://www.figma.com/design/VjkZy0jZGdqwQPVSX28d8I/A-Case-Study-on-BoiGhor" target="_blank" rel="noopener noreferrer" class="case-action-btn live-btn">
+          <span>Inspect Figma Workspace</span>
+          <span>↗</span>
+        </a>
+        <a href="#reader" class="case-action-btn figma-btn">
+          <span>Explore Reading Engine ↓</span>
+        </a>
+      </div>
+
       <!-- Hero Screen Showcase -->
-      <div class="case-hero-screen-frame">
-        <img src="boighor_mockup.png" alt="Boighor E-Reader and Audiobook App Screen Mockup" class="case-hero-img">
+      <div class="case-hero-screen-frame" style="margin-top: 2.5rem;">
+        <img src="boighor_mockup.png" alt="BoiGhor E-Reader and Audiobook App Screen Mockup" class="case-hero-img">
         <div class="case-screen-caption">
-          <span><strong>Boighor Reader &amp; Audio Player</strong> — Custom Font Scaling, Fluid Sleep Timer Scrubber, and Reading Progress Insights</span>
-          <span>SHIPPED MOBILE PRODUCT</span>
+          <span><strong>BoiGhor Reader &amp; Audio Player</strong> — Custom Font Scaling, Fluid Sleep Timer Scrubber, and Reading Progress Insights</span>
+          <span>FIGMA DESIGN &amp; MOBILE PRODUCT</span>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 1: CORE EXPERIENCE -->
+    <!-- 02 — OVERVIEW -->
     <section class="case-section">
       <div class="section-label-header">
-        <span class="section-tag-name">01 — Reader Experience</span>
+        <span class="section-tag-name">02 — Overview</span>
         <div class="tag-divider"></div>
       </div>
 
-      <h2 class="case-section-title">A serene digital sanctuary for avid book lovers.</h2>
+      <h2 class="case-section-title">A pocket library engineered for long-form reading comfort.</h2>
       <p class="case-section-desc">
-        We stripped away intrusive banner ads and cluttered social feeds, creating an uninterrupted reading canvas with bespoke typographic spacing and haptic-enhanced page turning.
+        BoiGhor is a dedicated mobile reading and audiobook listening application developed to bridge literary collections with everyday mobile users. The app addresses three primary reader needs: comfortable digital text rendering for hours of reading without eye strain, intuitive audio playback for busy commuters listening on the go, and digital library shelf management with automated return notifications.
+      </p>
+    </section>
+
+    <!-- 03 — THE PROBLEM / DESIGN CHALLENGE -->
+    <section class="case-section">
+      <div class="section-label-header">
+        <span class="section-tag-name">03 — The Challenge</span>
+        <div class="tag-divider"></div>
+      </div>
+
+      <h2 class="case-section-title">Digital reading on mobile often feels commercialized, cramped, and fatiguing.</h2>
+      <p class="case-section-desc">
+        Many existing digital reading apps suffer from aggressive storefront promotions, rigid typographic layouts, and clumsy audio scrubbers that are nearly impossible to adjust while walking or standing on public transit. Readers frequently face eye fatigue in low light, lose their reading place when transitioning between audio and text, and forget book loan due dates.
+      </p>
+
+      <div class="comparison-grid">
+        <div class="comparison-card card-negative">
+          <span class="comparison-badge bad">✕ Conventional E-Reader Apps</span>
+          <h3 class="comparison-card-title">Commercial Distractions &amp; Clumsy Controls</h3>
+          <p class="comparison-card-desc">Tiny progress sliders, intrusive purchase popups, and fixed margins that cause visual strain.</p>
+
+          <ul class="comparison-steps">
+            <li>
+              <span class="step-bullet bad">✕</span>
+              <div>
+                <strong>Rigid Typography:</strong> Inflexible margins and line-heights that crowd text on smaller mobile screens.
+              </div>
+            </li>
+            <li>
+              <span class="step-bullet bad">✕</span>
+              <div>
+                <strong>Tiny Audio Sliders:</strong> Narrow scrub bars that make precise 15-second rewinds difficult during transit.
+              </div>
+            </li>
+            <li>
+              <span class="step-bullet bad">✕</span>
+              <div>
+                <strong>Disconnected Media:</strong> Reading an e-book and listening to its audiobook are treated as completely separate apps with independent bookmarks.
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="comparison-card card-positive">
+          <span class="comparison-badge good">✓ BoiGhor Purpose-Built App</span>
+          <h3 class="comparison-card-title">Ergonomic Canvas &amp; Synchronized Media</h3>
+          <p class="comparison-card-desc">An invisible, typography-first reading canvas with thumb-friendly audio controls.</p>
+
+          <ul class="comparison-steps">
+            <li>
+              <span class="step-bullet good">✓</span>
+              <div>
+                <strong>Adaptive Reading Canvas:</strong> Custom font scales, line leading, and eye-friendly Sepia / Midnight color themes.
+              </div>
+            </li>
+            <li>
+              <span class="step-bullet good">✓</span>
+              <div>
+                <strong>Thumb-Zone Audio Sheet:</strong> Expandable bottom player with tactile 15-second skip buttons and sleep timer.
+              </div>
+            </li>
+            <li>
+              <span class="step-bullet good">✓</span>
+              <div>
+                <strong>Unified Progress Sync:</strong> Single shelf bookmarking that tracks your spot whether reading paragraphs or listening to narration.
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 — USERS & MOBILE PERSONAS -->
+    <section class="case-section">
+      <div class="section-label-header">
+        <span class="section-tag-name">04 — Users &amp; Mobile Personas</span>
+        <div class="tag-divider"></div>
+      </div>
+
+      <h2 class="case-section-title">Designing for diverse reading habits throughout the day.</h2>
+      <p class="case-section-desc">
+        Mobile reading behavior shifts dramatically depending on environment and available attention:
+      </p>
+
+      <div class="workflow-rail">
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">PERSONA 01</span>
+          <h3 class="workflow-step-title">The Daily Commuter</h3>
+          <p class="workflow-step-desc">Listens to narrated audiobooks while navigating crowded buses and trains. Needs large, unmissable play/pause targets and offline storage.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">PERSONA 02</span>
+          <h3 class="workflow-step-title">The Bedtime Reader</h3>
+          <p class="workflow-step-desc">Reads long-form literature in dark bedrooms. Needs warm sepia tones, zero blue-light glare, and an automatic audio sleep timer.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">PERSONA 03</span>
+          <h3 class="workflow-step-title">The Student / Researcher</h3>
+          <p class="workflow-step-desc">Highlights key passages, exports chapter summaries, and references digital library books with automated due-date reminders.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">PERSONA 04</span>
+          <h3 class="workflow-step-title">The Casual Explorer</h3>
+          <p class="workflow-step-desc">Discovers emerging Bengali and world literature through curated editorial lists, sample audio clips, and community reviews.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 — THE READER JOURNEY -->
+    <section class="case-section" id="reader">
+      <div class="section-label-header">
+        <span class="section-tag-name">05 — Product Workflow</span>
+        <div class="tag-divider"></div>
+      </div>
+
+      <h2 class="case-section-title">The Reading Lifecycle: From Shelf Discovery to Offline Immersion</h2>
+      <p class="case-section-desc">
+        How users discover, read, listen, and annotate books in BoiGhor:
+      </p>
+
+      <div class="workflow-rail">
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">STEP 01 — ENTRY</span>
+          <h3 class="workflow-step-title">Library Discovery</h3>
+          <p class="workflow-step-desc">Browse curated shelves, listen to narrator audio previews, and reserve or download titles directly to personal shelf.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">STEP 02 — ACTION</span>
+          <h3 class="workflow-step-title">Immersive Reading Canvas</h3>
+          <p class="workflow-step-desc">Tap book to open full-bleed reader. Adjust font size, margin width, and background paper texture with real-time preview.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">STEP 03 — DECISION</span>
+          <h3 class="workflow-step-title">Seamless Audio Handoff</h3>
+          <p class="workflow-step-desc">Switching to hands-free? Tap the listen icon; audio narrator begins speaking from the exact paragraph you were reading.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">STEP 04 — COMPLETION</span>
+          <h3 class="workflow-step-title">Retention &amp; Return</h3>
+          <p class="workflow-step-desc">Review highlights and reading milestones. Automated notification alerts user before library loan expires.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 — UX STRUCTURE & CORE MODULES -->
+    <section class="case-section">
+      <div class="section-label-header">
+        <span class="section-tag-name">06 — UX Structure</span>
+        <div class="tag-divider"></div>
+      </div>
+
+      <h2 class="case-section-title">Core architectural modules of the BoiGhor mobile app.</h2>
+      <p class="case-section-desc">
+        The interface balances quiet literary immersion with fluid audio multitasking:
       </p>
 
       <div class="portals-bento-grid">
         <div class="portal-bento-card">
           <div class="portal-header-row">
-            <span class="portal-num-tag">FEATURE A</span>
-            <span style="font-size:0.75rem; font-weight:700; color: #f59e0b;">TYPOGRAPHY</span>
+            <span class="portal-num-tag">MODULE 01</span>
+            <span style="font-size:0.75rem; font-weight:700; color: #f59e0b;">READING ENGINE</span>
           </div>
-          <h3 class="portal-name-headline">Adaptive E-Ink Reading Modes</h3>
+          <h3 class="portal-name-headline">Adaptive Typography Canvas</h3>
+          <div class="portal-nav-pills">
+            <span class="portal-nav-pill">Font Scale</span>
+            <span class="portal-nav-pill">Sepia / Dark</span>
+            <span class="portal-nav-pill">Page Curl</span>
+            <span class="portal-nav-pill">Highlighting</span>
+          </div>
           <ul class="portal-features-list">
-            <li>Warm sepia, pure dark OLED, and natural paper lighting themes for eye strain prevention.</li>
-            <li>Custom Bengali and English serif fonts tuned specifically for mobile pixel density.</li>
-            <li>Dynamic line-height, kerning, and margin customization controls with live preview.</li>
+            <li>Edge-to-edge reading screen that hides navigation chrome on scroll, keeping focus purely on literature.</li>
+            <li>Custom typography menu supporting font switching, leading adjustments, and margin padding sliders.</li>
+            <li>Passage highlighter allowing readers to save quotes and add personal marginalia notes.</li>
           </ul>
         </div>
 
         <div class="portal-bento-card">
           <div class="portal-header-row">
-            <span class="portal-num-tag">FEATURE B</span>
-            <span style="font-size:0.75rem; font-weight:700; color: #3b82f6;">AUDIO PLAYER</span>
+            <span class="portal-num-tag">MODULE 02</span>
+            <span style="font-size:0.75rem; font-weight:700; color: #8b5cf6;">AUDIO STUDIO</span>
           </div>
-          <h3 class="portal-name-headline">Integrated Audiobook Player</h3>
+          <h3 class="portal-name-headline">Ergonomic Audiobook Player</h3>
+          <div class="portal-nav-pills">
+            <span class="portal-nav-pill">Thumb Zone</span>
+            <span class="portal-nav-pill">15s Jump</span>
+            <span class="portal-nav-pill">Sleep Timer</span>
+            <span class="portal-nav-pill">Speed 0.75x–2x</span>
+          </div>
           <ul class="portal-features-list">
-            <li>Seamless whisper-sync switching between reading the e-book text and listening to audio narration.</li>
-            <li>Haptic-assisted circular scrub dial for precise chapter rewinding and bookmarking.</li>
-            <li>Smart sleep timer fading audio gently as the listener drifts off to sleep.</li>
+            <li>Expandable bottom-sheet audio player accessible from anywhere in the app with a quick upward swipe.</li>
+            <li>Generously sized 15-second forward/backward jump buttons designed for one-handed operation on transit.</li>
+            <li>Gentle fade-out sleep timer (15 min, 30 min, end of chapter) preventing audio from running all night.</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 2: SHIPPED RESULTS -->
+    <!-- 07 — KEY UX DECISIONS -->
     <section class="case-section">
       <div class="section-label-header">
-        <span class="section-tag-name">02 — App Metrics</span>
+        <span class="section-tag-name">07 — Key UX Decisions</span>
         <div class="tag-divider"></div>
       </div>
 
-      <h2 class="case-section-title">Loved by over 100,000 active book readers.</h2>
+      <h2 class="case-section-title">Designing for invisible ergonomics and literary respect.</h2>
+      <p class="case-section-desc">
+        Every detail was refined to remove friction between the reader and the written word:
+      </p>
 
-      <div class="impact-metrics-grid">
-        <div class="impact-metric-card">
-          <div class="metric-num">100k+</div>
-          <div class="metric-label">Downloads</div>
-          <div class="metric-sub">Across Google Play &amp; Apple App Store</div>
+      <div class="ux-decisions-grid">
+        <div class="ux-decision-card">
+          <span class="decision-topic-tag">ERGONOMICS</span>
+          <h3 class="decision-title">Thumb-Zone Audio Controls</h3>
+          <p class="decision-body">
+            Reaching for the top of large smartphones while standing on a moving train causes dropped phones and mis-taps. All primary playback buttons (Play/Pause, 15s skip, scrubber) sit comfortably in the bottom 40% of the screen.
+          </p>
         </div>
 
-        <div class="impact-metric-card">
-          <div class="metric-num">42m</div>
-          <div class="metric-label">Avg. Session Time</div>
-          <div class="metric-sub">High engagement driven by distraction-free reading</div>
+        <div class="ux-decision-card">
+          <span class="decision-topic-tag">TYPOGRAPHY UX</span>
+          <h3 class="decision-title">Optically Calibrated Leading</h3>
+          <p class="decision-body">
+            Bengali script and classical typography require greater line height than English sans-serif to prevent ascenders and descenders from colliding. I engineered proportional leading scaling that expands automatically as font size increases.
+          </p>
         </div>
 
-        <div class="impact-metric-card">
-          <div class="metric-num">4.7★</div>
-          <div class="metric-label">Store Rating</div>
-          <div class="metric-sub">Consistently praised for typographic readability</div>
+        <div class="ux-decision-card">
+          <span class="decision-topic-tag">OFFLINE RELIABILITY</span>
+          <h3 class="decision-title">Transparent Storage &amp; Sync</h3>
+          <p class="decision-body">
+            Readers frequently travel through underground metros or rural areas with zero signal. Downloaded titles display clear offline badges, and all progress is cached locally and merged quietly whenever a connection is restored.
+          </p>
         </div>
 
-        <div class="impact-metric-card">
-          <div class="metric-num">95%</div>
-          <div class="metric-label">Offline Reliability</div>
-          <div class="metric-sub">Zero-friction chapter downloads and sync</div>
+        <div class="ux-decision-card">
+          <span class="decision-topic-tag">CULTURAL IDENTITY</span>
+          <h3 class="decision-title">Bengali Warmth without Cliché</h3>
+          <p class="decision-body">
+            Rather than relying on generic modern neon gradients, the brand identity embraces warm bookcloth textures, terracotta tones, and deep midnight blues reflecting the rich heritage of South Asian literature.
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- 08 — IMPORTANT SCREENS SHOWCASE -->
+    <section class="case-section">
+      <div class="section-label-header">
+        <span class="section-tag-name">08 — Screen Showcase</span>
+        <div class="tag-divider"></div>
+      </div>
+
+      <h2 class="case-section-title">Deep dive into the mobile reader experience.</h2>
+
+      <article class="feature-spotlight-card">
+        <div class="feature-spotlight-header">
+          <span class="feature-tag-chip">Mobile Interface</span>
+          <h3 class="feature-spotlight-title">BoiGhor Reading Canvas &amp; Audio Player Console</h3>
+        </div>
+
+        <div class="feature-meta-triad">
+          <div class="triad-col">
+            <span class="triad-label">What it is</span>
+            <p class="triad-text">The central reading environment combining adaptive text display with a fluid expandable audio scrubber.</p>
+          </div>
+          <div class="triad-col">
+            <span class="triad-label">What the user does</span>
+            <p class="triad-text">Reads chapters comfortably, adjusts paper color themes, highlights favorite quotes, and controls narrator audio.</p>
+          </div>
+          <div class="triad-col">
+            <span class="triad-label">Why structured this way</span>
+            <p class="triad-text">Keeps reading chrome invisible until tapped, while maintaining an accessible persistent bottom bar for instant audio control.</p>
+          </div>
+        </div>
+
+        <div class="feature-media-frame">
+          <img src="boighor_mockup.png" alt="BoiGhor E-Reader and Audiobook App Screen Mockup" class="feature-media-img">
+        </div>
+      </article>
+    </section>
+
+    <!-- 09 — DESIGN SYSTEM & TYPOGRAPHY SYSTEM -->
+    <section class="case-section">
+      <div class="section-label-header">
+        <span class="section-tag-name">09 — Design System</span>
+        <div class="tag-divider"></div>
+      </div>
+
+      <h2 class="case-section-title">Paper-inspired tactile design tokens for mobile screens.</h2>
+      <p class="case-section-desc">
+        The design system pairs tactile warmth with high legibility across diverse device screens:
+      </p>
+
+      <div class="ux-decisions-grid">
+        <div class="ux-decision-card">
+          <span class="decision-topic-tag">COLOR SYSTEM</span>
+          <h3 class="decision-title">Paper Tones: Sepia, Parchment &amp; Midnight</h3>
+          <p class="decision-body">
+            Carefully calibrated background values (`#F7F4EB` Day, `#EFE6D5` Sepia, `#121214` Midnight) provide optimal contrast ratios that exceed WCAG AAA standards while preventing glare.
+          </p>
+        </div>
+
+        <div class="ux-decision-card">
+          <span class="decision-topic-tag">TYPOGRAPHY SYSTEM</span>
+          <h3 class="decision-title">Editorial Serif + Modern Sans</h3>
+          <p class="decision-body">
+            Playfair Display and classical serif typefaces give book covers and titles literary gravitas, while Plus Jakarta Sans powers library navigation, search results, and player controls with crisp clarity.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 — OUTCOME & DELIVERED FOUNDATION -->
+    <section class="case-section">
+      <div class="section-label-header">
+        <span class="section-tag-name">10 — Delivered Foundation</span>
+        <div class="tag-divider"></div>
+      </div>
+
+      <h2 class="case-section-title">What was delivered: A complete mobile reading ecosystem.</h2>
+      <p class="case-section-desc">
+        The project delivered a cohesive mobile product specification:
+      </p>
+
+      <div class="workflow-rail">
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">DELIVERABLE 01</span>
+          <h3 class="workflow-step-title">Adaptive E-Reader Canvas</h3>
+          <p class="workflow-step-desc">Customizable typography engine with font scaling, proportional line-height, and paper texture themes.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">DELIVERABLE 02</span>
+          <h3 class="workflow-step-title">Ergonomic Audio Player</h3>
+          <p class="workflow-step-desc">One-handed bottom sheet player with tactile jump controls, sleep timer, and speed modulation.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">DELIVERABLE 03</span>
+          <h3 class="workflow-step-title">Offline Library Shelf</h3>
+          <p class="workflow-step-desc">Reliable local storage and background sync architecture ensuring reading continuity without internet.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">DELIVERABLE 04</span>
+          <h3 class="workflow-step-title">Literary Brand Identity</h3>
+          <p class="workflow-step-desc">Warm, respectful cultural visual system honoring South Asian book heritage in a clean modern product shell.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 — REFLECTION / WHAT I LEARNED -->
+    <section class="case-section">
+      <div class="section-label-header">
+        <span class="section-tag-name">11 — Designer Reflection</span>
+        <div class="tag-divider"></div>
+      </div>
+
+      <h2 class="case-section-title">What this project taught me as a product designer.</h2>
+
+      <div class="reflection-quote-box">
+        <p class="reflection-quote-text">
+          "Designing BoiGhor taught me the profound value of invisible UI. In a reading application, every button, border, or icon that calls attention to itself is a distraction from the story. The ultimate benchmark of success is when the interface recedes completely into the background, leaving the reader alone with the author's words. Getting out of the user's way is often the most demanding design challenge of all."
+        </p>
+        <span class="reflection-author-tag">— S M Roqunuzzaman · UI/UX Designer</span>
+      </div>
+    </section>
+
+    <!-- 12 — CROSS-PROJECT NAVIGATION -->
+    <nav class="case-pagination-row" aria-label="More Case Studies">
+      <a href="sakeena-case-study.html" class="case-nav-tile">
+        <span class="case-nav-dir">← Previous Project</span>
+        <span class="case-nav-title">Sakeena Institute: Global LMS</span>
+        <span class="case-nav-desc">Multi-role learning ecosystem, course studios, and localized international billing.</span>
+      </a>
+
+      <a href="proqscan-case-study.html" class="case-nav-tile" style="text-align: right;">
+        <span class="case-nav-dir">Next Project →</span>
+        <span class="case-nav-title">ProQscan AI: Procurement &amp; Audit</span>
+        <span class="case-nav-desc">4-portal enterprise architecture with automated 3-way matching.</span>
+      </a>
+    </nav>
+
+    <!-- FOOTER / GATEWAY -->
     <footer class="case-study-footer">
       <div class="case-footer-content">
+        <div class="section-label-header" style="margin-bottom:1rem;">
+          <span class="section-tag-name">Inspect the Design File</span>
+          <div class="tag-divider" style="margin: 0.5rem auto 0;"></div>
+        </div>
+
         <h2 style="font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight:700;">
-          Explore more selected projects or view full CV.
+          Explore the Figma workspace or review more case files.
         </h2>
 
         <div class="case-footer-actions">
-          <a href="index.html#selected" class="btn-primary" style="display:inline-flex; align-items:center; gap:8px;">
-            <span>← BACK TO SELECTED CAROUSEL</span>
+          <a href="https://www.figma.com/design/VjkZy0jZGdqwQPVSX28d8I/A-Case-Study-on-BoiGhor" target="_blank" rel="noopener noreferrer" class="case-action-btn live-btn">
+            <span>INSPECT FIGMA DESIGN WORKSPACE</span>
+            <span>↗</span>
           </a>
-          <a href="cv.html#projects" class="btn-secondary" style="display:inline-flex; align-items:center; gap:8px;">
-            <span>VIEW CASE ARCHIVES IN CV →</span>
+          <a href="cv.html#projects" class="case-action-btn figma-btn">
+            <span>VIEW ALL CASE ARCHIVES IN CV →</span>
+          </a>
+          <a href="index.html#selected" class="btn-secondary-link" style="font-size:0.9rem;">
+            <span>← Back to Selected Work</span>
           </a>
         </div>
+
+        <p class="contact-location" style="margin-top:3rem; font-size:0.8rem; color: var(--muted-foreground);">
+          © 2026 S M Roqunuzzaman · UI/UX Designer · BoiGhor Case Study
+        </p>
       </div>
     </footer>
 

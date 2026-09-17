@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Callswain AI — Intelligent IVR &amp; Agent Management Suite · UI/UX Case Study</title>
-  <meta name="description" content="Authentic UI/UX Case Study: Designing Callswain AI, an enterprise AI voice call center SaaS with automated drag-and-drop call routing and real-time audio analytics.">
+  <meta name="description" content="Authentic UI/UX Case Study by S M Roqunuzzaman: Designing Callswain AI, an enterprise cloud telephony and agent performance SaaS with visual drag-and-drop IVR routing and real-time waveform telemetry.">
+  <meta property="og:title" content="Callswain AI — UI/UX Case Study · S M Roqunuzzaman">
+  <meta property="og:description" content="Intelligent call center console: Visual IVR Flow Studio, real-time agent productivity monitoring, and audio waveform telemetry.">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,7 +27,10 @@
 </head>
 <body class="case-study-page">
 
+  <!-- Fluid Neon Ribbon Cursor -->
   <canvas class="cursor-trail-canvas" id="cursorTrailCanvas" aria-hidden="true"></canvas>
+
+  <!-- Film Grain Overlay -->
   <div class="grain-overlay" aria-hidden="true"></div>
 
   <!-- Top Navigation Header -->
@@ -33,61 +38,65 @@
     <div class="dossier-nav-left">
       <a href="index.html#selected" class="dossier-back-btn">
         <span class="back-arrow">←</span>
-        <span>Back to Selected Works</span>
+        <span>Back to Portfolio</span>
       </a>
     </div>
 
     <div class="dossier-nav-right">
       <a href="cv.html" class="overlay-link">Curriculum Vitae (CV)</a>
-      <a href="https://drive.google.com/file/d/1cXV8lthcDHrPGLQng46d6io8WmMNn0Pw/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="overlay-link resume-link-highlight">PDF Resume ↗</a>
+      <a href="https://drive.google.com/file/d/1cXV8lthcDHrPGLQng46d6io8WmMNn0Pw/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="overlay-link resume-link-highlight" title="Open PDF Resume in Google Drive">PDF Resume ↗</a>
       <a href="mailto:smroqunuzzaman@gmail.com" class="overlay-link">Mail</a>
       <a href="https://dribbble.com/SMRoqunuzzaman" target="_blank" rel="noopener noreferrer" class="overlay-link">Dribbble</a>
       <a href="https://www.linkedin.com/in/smroqunuzzaman/" target="_blank" rel="noopener noreferrer" class="overlay-link">LinkedIn</a>
 
-      <button class="theme-bulb-toggle" id="themeToggle" type="button" aria-label="Toggle dark and light theme" role="switch" aria-checked="false">
+      <!-- Theme Switcher Bulb -->
+      <div class="theme-bulb-toggle" id="themeToggle" role="group" aria-label="Theme toggle switch">
         <div class="bulb-widget-wrapper">
-          <div class="bulb-disc-fixture">
-            <svg class="bulb-silhouette-svg" viewBox="0 0 24 24" fill="currentColor">
+          <button class="bulb-disc-fixture" id="bulbDiscFixture" type="button" aria-label="Toggle dark and light theme" role="switch" aria-checked="false" title="Click disc to toggle theme">
+            <svg class="bulb-silhouette-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M12 2.5a6.5 6.5 0 0 0-6.5 6.5c0 2.44 1.34 4.56 3.32 5.66.45.25.74.72.74 1.24v1.8c0 .72.58 1.3 1.3 1.3h2.28c.72 0 1.3-.58 1.3-1.3v-1.8c0-.52.29-.99.74-1.24A6.48 6.48 0 0 0 18.5 9a6.5 6.5 0 0 0-6.5-6.5zm-1.14 17.5h2.28a.7.7 0 0 1 .7.7v.2a.7.7 0 0 1-.7.7h-2.28a.7.7 0 0 1-.7-.7v-.2a.7.7 0 0 1 .7-.7z"/>
             </svg>
-          </div>
-          <div class="bulb-pull-chain" aria-hidden="true">
-            <span class="chain-string"></span>
-            <span class="chain-bead"></span>
+          </button>
+          <div class="bulb-pull-chain" id="bulbPullChain" aria-label="Pull cord to toggle theme" title="Pull string down fully to toggle theme">
+            <svg class="chain-spring-svg" id="chainSpringSvg" viewBox="0 0 40 50" preserveAspectRatio="none" aria-hidden="true">
+              <path class="chain-spring-path" id="chainSpringPath" d="M 20 0 L 20 16" />
+            </svg>
+            <span class="chain-bead" id="chainBead" aria-hidden="true"></span>
           </div>
         </div>
-      </button>
+      </div>
     </div>
   </header>
 
   <main class="case-study-container">
 
-    <!-- HERO SECTION -->
+    <!-- 01 — PROJECT INTRODUCTION / HERO -->
     <section class="case-hero-section">
       <div class="case-category-tag">
         <span>02 — SELECTED CASE STUDY</span>
         <span>·</span>
-        <span>AI VOICE SAAS</span>
+        <span>AI VOICE TELEPHONY SAAS</span>
       </div>
 
       <h1 class="case-headline">Callswain AI: Intelligent IVR &amp; Agent Management Suite</h1>
 
       <p class="case-lead-summary">
-        Designing an enterprise telephony dashboard that turns complex telecommunication infrastructure into visual drag-and-drop IVR trees, real-time waveform analytics, and automated agent performance scoring.
+        Designing an enterprise telephony dashboard that transforms brittle telecommunication infrastructure into visual drag-and-drop routing trees, real-time waveform audio analytics, and live agent productivity telemetry.
       </p>
 
+      <!-- Project Metadata Matrix -->
       <div class="case-meta-matrix">
         <div class="meta-matrix-item">
-          <span class="meta-matrix-label">Role</span>
+          <span class="meta-matrix-label">My Role</span>
           <span class="meta-matrix-val">Product &amp; UI/UX Designer</span>
         </div>
         <div class="meta-matrix-item">
-          <span class="meta-matrix-label">Industry</span>
-          <span class="meta-matrix-val">AI Voice &amp; Enterprise Telephony</span>
+          <span class="meta-matrix-label">Platform</span>
+          <span class="meta-matrix-val">Web SaaS &amp; Real-Time Console</span>
         </div>
         <div class="meta-matrix-item">
-          <span class="meta-matrix-label">Timeline</span>
-          <span class="meta-matrix-val">2025–2026 (Live Platform)</span>
+          <span class="meta-matrix-label">Scope</span>
+          <span class="meta-matrix-val">IVR Studio, Agent Wall &amp; Telemetry</span>
         </div>
         <div class="meta-matrix-item">
           <span class="meta-matrix-label">Live Platform</span>
@@ -97,147 +106,444 @@
         </div>
       </div>
 
+      <!-- Quick Action Buttons -->
+      <div class="case-action-bar">
+        <a href="https://callswainai.com/" target="_blank" rel="noopener noreferrer" class="case-action-btn live-btn">
+          <span>Visit Live Platform (callswainai.com)</span>
+          <span>↗</span>
+        </a>
+        <a href="#ivr-studio" class="case-action-btn figma-btn">
+          <span>Explore IVR Studio UX ↓</span>
+        </a>
+      </div>
+
       <!-- Hero Screen Showcase -->
-      <div class="case-hero-screen-frame">
-        <img src="callswain_mockup.jpg" alt="Callswain AI Intelligent IVR Dashboard Mockup" class="case-hero-img">
+      <div class="case-hero-screen-frame" style="margin-top: 2.5rem;">
+        <img src="callswain_mockup.jpg" alt="Callswain AI Operational Console Interface Mockup" class="case-hero-img">
         <div class="case-screen-caption">
-          <span><strong>Callswain AI Operational Console</strong> — Real-time Call Waveform Monitor, IVR Tree Builder, and Agent Efficiency Benchmarks</span>
-          <span>LIVE ENTERPRISE PLATFORM</span>
+          <span><strong>Callswain Operational Console</strong> — Real-Time Waveform Monitor, Visual IVR Routing Canvas, and Agent Queue SLA Telemetry</span>
+          <span>SHIPPED ENTERPRISE PLATFORM</span>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 1: THE CHALLENGE -->
+    <!-- 02 — OVERVIEW -->
     <section class="case-section">
       <div class="section-label-header">
-        <span class="section-tag-name">01 — The Challenge</span>
+        <span class="section-tag-name">02 — Overview</span>
         <div class="tag-divider"></div>
       </div>
 
-      <h2 class="case-section-title">Legacy PBX and call center software are slow, opaque, and intimidating.</h2>
+      <h2 class="case-section-title">Visualizing high-frequency telecommunication in real time.</h2>
       <p class="case-section-desc">
-        Traditional enterprise call centers rely on legacy XML configuration or cumbersome menu matrices. When managers need to reroute emergency call spikes or audit agent performance, they face hours of friction and high caller drop-off rates.
+        Callswain AI is a cloud telephony management platform built for modern inbound and outbound support operations. It serves two interconnected audiences: operations managers who need to configure complex Interactive Voice Response (IVR) phone menus without touching XML scripts, and team supervisors who need live visibility into call queues, agent talk times, and audio health across distributed call centers.
+      </p>
+    </section>
+
+    <!-- 03 — THE PROBLEM / DESIGN CHALLENGE -->
+    <section class="case-section">
+      <div class="section-label-header">
+        <span class="section-tag-name">03 — The Challenge</span>
+        <div class="tag-divider"></div>
+      </div>
+
+      <h2 class="case-section-title">Legacy PBX tools are rigid, code-heavy, and blind in emergencies.</h2>
+      <p class="case-section-desc">
+        Traditional enterprise call centers rely on legacy telecommunication platforms that treat call routing as nested spreadsheets or developer-only code scripts. When unexpected call spikes occur or an office closes for emergencies, updating a phone tree can take hours of engineering coordination. Furthermore, supervisors have no real-time way to detect caller abandonment until post-shift reports are generated hours later.
       </p>
 
       <div class="comparison-grid">
         <div class="comparison-card card-negative">
-          <span class="comparison-badge bad">✕ Legacy Telephony</span>
-          <h3 class="comparison-card-title">Rigid, Code-Heavy Call Configuration</h3>
+          <span class="comparison-badge bad">✕ Legacy Telephony Software</span>
+          <h3 class="comparison-card-title">Rigid, Code-Heavy Menus</h3>
+          <p class="comparison-card-desc">Opaque configuration and delayed post-call reporting cause high caller drop-off.</p>
+
           <ul class="comparison-steps">
-            <li><span class="step-bullet bad">✕</span> Static IVR trees that require technical developers to update or route during outages.</li>
-            <li><span class="step-bullet bad">✕</span> Post-call metrics calculated hours after incidents occur.</li>
-            <li><span class="step-bullet bad">✕</span> No real-time sentiment analysis or caller intent detection.</li>
+            <li>
+              <span class="step-bullet bad">✕</span>
+              <div>
+                <strong>Developer-Only Routing:</strong> Changing an IVR branch requires manual XML editing and telecom ticket submissions.
+              </div>
+            </li>
+            <li>
+              <span class="step-bullet bad">✕</span>
+              <div>
+                <strong>Lagged Telemetry:</strong> Queue spikes and call abandonment are discovered hours after callers hang up in frustration.
+              </div>
+            </li>
+            <li>
+              <span class="step-bullet bad">✕</span>
+              <div>
+                <strong>Invisible Agent Activity:</strong> Supervisors cannot glance at active calls to distinguish between speaking, listening, or on-hold dead air.
+              </div>
+            </li>
           </ul>
         </div>
 
         <div class="comparison-card card-positive">
-          <span class="comparison-badge good">✓ Callswain AI</span>
-          <h3 class="comparison-card-title">Visual Drag-and-Drop Call Architect</h3>
+          <span class="comparison-badge good">✓ Callswain AI Platform</span>
+          <h3 class="comparison-card-title">Visual Drag-and-Drop Studio</h3>
+          <p class="comparison-card-desc">A unified canvas pairing node-based routing with real-time audio waveform telemetry.</p>
+
           <ul class="comparison-steps">
-            <li><span class="step-bullet good">✓</span> Node-based visual canvas for live IVR branching, fallback routing, and intent triggers.</li>
-            <li><span class="step-bullet good">✓</span> Sub-second waveform voice streaming with automated live sentiment transcription.</li>
-            <li><span class="step-bullet good">✓</span> AI-powered agent coaching cards that surface relevant knowledge bases during live calls.</li>
+            <li>
+              <span class="step-bullet good">✓</span>
+              <div>
+                <strong>Visual Node Canvas:</strong> Drag-and-drop IVR builder with DTMF keypress nodes, business hours branches, and fallback triggers.
+              </div>
+            </li>
+            <li>
+              <span class="step-bullet good">✓</span>
+              <div>
+                <strong>Sub-Second Queue Visibility:</strong> Live SLA timers, active caller countdowns, and instant visual overflow warnings.
+              </div>
+            </li>
+            <li>
+              <span class="step-bullet good">✓</span>
+              <div>
+                <strong>Real-Time Audio Waveforms:</strong> Visual waveform streams let supervisors inspect call dynamics at a glance without audio interruption.
+              </div>
+            </li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 2: ARCHITECTURE & UX HIGHLIGHTS -->
+    <!-- 04 — USERS & OPERATIONAL ROLES -->
     <section class="case-section">
       <div class="section-label-header">
-        <span class="section-tag-name">02 — Core Features</span>
+        <span class="section-tag-name">04 — Users &amp; Operational Roles</span>
         <div class="tag-divider"></div>
       </div>
 
-      <h2 class="case-section-title">Designed for call center commanders and front-line agents.</h2>
+      <h2 class="case-section-title">Designed for high-pressure operations commanders and front-line agents.</h2>
       <p class="case-section-desc">
-        The interface balances ultra-dense live monitoring with calm, error-free operational tools for high-pressure support teams.
+        Call center environments operate under intense temporal pressure. The interface was engineered around the concrete workflows of two core operational personas:
+      </p>
+
+      <div class="workflow-rail">
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">ROLE 01</span>
+          <h3 class="workflow-step-title">Call Center Operations Supervisor</h3>
+          <p class="workflow-step-desc">Builds and iterates IVR phone trees, monitors queue thresholds, and manages real-time agent capacity across departments.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">ROLE 02</span>
+          <h3 class="workflow-step-title">Front-Line Support Agent</h3>
+          <p class="workflow-step-desc">Receives incoming routed calls, references caller context cards, logs post-call wrap-up dispositions, and toggles availability status.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">ROLE 03</span>
+          <h3 class="workflow-step-title">Quality Assurance Auditor</h3>
+          <p class="workflow-step-desc">Listens to recorded call archives, inspects duration benchmarks, and evaluates handling compliance using standardized scorecards.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">ROLE 04</span>
+          <h3 class="workflow-step-title">Telephony Infrastructure Admin</h3>
+          <p class="workflow-step-desc">Manages phone number allocations, WebRTC carrier trunking, and emergency forwarding numbers during carrier outages.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 — UNDERSTANDING THE CALL LIFECYCLE -->
+    <section class="case-section">
+      <div class="section-label-header">
+        <span class="section-tag-name">05 — Product Workflow</span>
+        <div class="tag-divider"></div>
+      </div>
+
+      <h2 class="case-section-title">The Telephony Lifecycle: From Inbound Dial to Wrap-Up Disposition</h2>
+      <p class="case-section-desc">
+        How an inbound telephone call moves through Callswain's interface architecture:
+      </p>
+
+      <div class="workflow-rail">
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">PHASE 01 — ENTRY</span>
+          <h3 class="workflow-step-title">Carrier Ingest</h3>
+          <p class="workflow-step-desc">Caller dials inbound DID number. System immediately parses caller ID and checks active business-hour filters.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">PHASE 02 — ACTION</span>
+          <h3 class="workflow-step-title">Visual IVR Branching</h3>
+          <p class="workflow-step-desc">Caller hears synthesized voice prompt and enters DTMF keypad options. System traverses configured visual node tree.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">PHASE 03 — DECISION</span>
+          <h3 class="workflow-step-title">Intelligent Queue Routing</h3>
+          <p class="workflow-step-desc">Call reaches target department queue. Engine routes to next available agent based on idle duration and skill tags.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">PHASE 04 — COMPLETION</span>
+          <h3 class="workflow-step-title">Live Call &amp; Wrap-Up</h3>
+          <p class="workflow-step-desc">Agent accepts call with real-time waveform audio. Upon hang-up, mandatory wrap-up timer records disposition tag.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 — UX STRUCTURE & INFORMATION ARCHITECTURE -->
+    <section class="case-section" id="ivr-studio">
+      <div class="section-label-header">
+        <span class="section-tag-name">06 — Core Features</span>
+        <div class="tag-divider"></div>
+      </div>
+
+      <h2 class="case-section-title">Three unified operational workspaces.</h2>
+      <p class="case-section-desc">
+        The interface balances dense telemetry with calm, mistake-proof operational tools:
       </p>
 
       <div class="portals-bento-grid">
         <div class="portal-bento-card">
           <div class="portal-header-row">
-            <span class="portal-num-tag">FEATURE 01</span>
-            <span style="font-size:0.75rem; font-weight:700; color: #3b82f6;">FLOW BUILDER</span>
+            <span class="portal-num-tag">WORKSPACE 01</span>
+            <span style="font-size:0.75rem; font-weight:700; color: #ff6b00;">IVR STUDIO</span>
           </div>
-          <h3 class="portal-name-headline">Visual IVR Flow Studio</h3>
+          <h3 class="portal-name-headline">Visual IVR Flow Canvas</h3>
+          <div class="portal-nav-pills">
+            <span class="portal-nav-pill">Node Canvas</span>
+            <span class="portal-nav-pill">DTMF Branching</span>
+            <span class="portal-nav-pill">Speech Prompts</span>
+            <span class="portal-nav-pill">Fallback Handlers</span>
+          </div>
           <ul class="portal-features-list">
-            <li>Interactive infinite canvas with drag-and-drop speech recognition, DTMF keypress nodes, and webhook integration.</li>
-            <li>One-click simulation tester enabling designers to test callers' voice journeys before deploying changes live.</li>
-            <li>Version-controlled drafts with instant rollback in case of telecommunication carrier issues.</li>
+            <li>Interactive infinite canvas supporting drag-and-drop connectors for speech prompts, digit menus, and ring groups.</li>
+            <li>In-canvas validation warnings alerting designers to "dead-end" branches that lack a fallback or voicemail destination.</li>
+            <li>Draft and Live version toggling allowing supervisors to test menu modifications without disrupting active callers.</li>
           </ul>
         </div>
 
         <div class="portal-bento-card">
           <div class="portal-header-row">
-            <span class="portal-num-tag">FEATURE 02</span>
-            <span style="font-size:0.75rem; font-weight:700; color: #10b981;">REAL-TIME METRICS</span>
+            <span class="portal-num-tag">WORKSPACE 02</span>
+            <span style="font-size:0.75rem; font-weight:700; color: #10b981;">SUPERVISOR WALL</span>
           </div>
-          <h3 class="portal-name-headline">Live Agent Productivity Wall</h3>
+          <h3 class="portal-name-headline">Real-Time Agent Telemetry Wall</h3>
+          <div class="portal-nav-pills">
+            <span class="portal-nav-pill">Active Queues</span>
+            <span class="portal-nav-pill">Agent Grid</span>
+            <span class="portal-nav-pill">SLA Timers</span>
+            <span class="portal-nav-pill">Waveform Audio</span>
+          </div>
           <ul class="portal-features-list">
-            <li>Real-time caller queue counters with SLA countdown timers and visual warning states.</li>
-            <li>Individual agent activity timeline mapping active calls, wrap-up times, and idle duration.</li>
-            <li>Audio whisper / barge-in controls allowing senior supervisors to assist junior agents seamlessly.</li>
+            <li>High-contrast status cards grouping agents by operational state (Available, On Call, In Wrap-Up, Offline).</li>
+            <li>Live call waveform bars indicating voice volume and conversational activity without intrusive audio monitoring.</li>
+            <li>Queue threshold indicators that escalate visually when wait times exceed defined SLA benchmarks.</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 3: IMPACT METRICS -->
+    <!-- 07 — KEY UX DECISIONS -->
     <section class="case-section">
       <div class="section-label-header">
-        <span class="section-tag-name">03 — Shipped Results</span>
+        <span class="section-tag-name">07 — Key UX Decisions</span>
         <div class="tag-divider"></div>
       </div>
 
-      <h2 class="case-section-title">Quantifiable enterprise performance.</h2>
+      <h2 class="case-section-title">Designing for high-pressure, zero-error telecommunication environments.</h2>
+      <p class="case-section-desc">
+        Every design decision in Callswain AI was driven by the reality that seconds matter when managing live phone queues:
+      </p>
 
-      <div class="impact-metrics-grid">
-        <div class="impact-metric-card">
-          <div class="metric-num">+45%</div>
-          <div class="metric-label">Routing Speed</div>
-          <div class="metric-sub">Reduction in average caller wait time</div>
+      <div class="ux-decisions-grid">
+        <div class="ux-decision-card">
+          <span class="decision-topic-tag">INTERACTION DESIGN</span>
+          <h3 class="decision-title">Visual Node Canvas over Matrix Tables</h3>
+          <p class="decision-body">
+            Phone trees are inherently spatial graphs, not flat tables. By moving IVR design to a visual node canvas, supervisors can immediately trace the caller's mental path ("If caller presses 1 → go to Sales → if wait time > 3 mins → route to Overflow Voicemail").
+          </p>
         </div>
 
-        <div class="impact-metric-card">
-          <div class="metric-num">99.8%</div>
-          <div class="metric-label">System Uptime</div>
-          <div class="metric-sub">Telephony reliability across tier-1 carriers</div>
+        <div class="ux-decision-card">
+          <span class="decision-topic-tag">TELEMETRY ERGONOMICS</span>
+          <h3 class="decision-title">Waveform Glancing over Audio Tapping</h3>
+          <p class="decision-body">
+            Supervisors managing 40+ agents cannot listen to every call simultaneously. I integrated mini waveform animations into each active call card. A flat line signals awkward silence or an unmuted hold; rhythmic waves signal an active dialogue.
+          </p>
         </div>
 
-        <div class="impact-metric-card">
-          <div class="metric-num">3x</div>
-          <div class="metric-label">Agent Output</div>
-          <div class="metric-sub">Boost in simultaneous caller handling</div>
+        <div class="ux-decision-card">
+          <span class="decision-topic-tag">ERROR PREVENTION</span>
+          <h3 class="decision-title">Dead-End Branch Detection</h3>
+          <p class="decision-body">
+            A common failure in legacy telephony is publishing an IVR branch that terminates without an action, hanging up on callers. The canvas runs real-time connectivity validation, highlighting unconnected ports in warning amber before publication.
+          </p>
         </div>
 
-        <div class="impact-metric-card">
-          <div class="metric-num">-65%</div>
-          <div class="metric-label">Setup Overhead</div>
-          <div class="metric-sub">Zero custom scripting required for IVR trees</div>
+        <div class="ux-decision-card">
+          <span class="decision-topic-tag">COLOR SEMANTICS</span>
+          <h3 class="decision-title">High-Visibility Agent States</h3>
+          <p class="decision-body">
+            Using Callswain's brand orange for interactive triggers, paired with emerald green for ready agents, deep blue for active calls, and muted charcoal for offline desks—ensuring supervisors can scan room status in a split second.
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- 08 — IMPORTANT SCREENS SHOWCASE -->
+    <section class="case-section">
+      <div class="section-label-header">
+        <span class="section-tag-name">08 — Screen Showcase</span>
+        <div class="tag-divider"></div>
+      </div>
+
+      <h2 class="case-section-title">Deep dive into the operational interface.</h2>
+
+      <article class="feature-spotlight-card">
+        <div class="feature-spotlight-header">
+          <span class="feature-tag-chip">Console View</span>
+          <h3 class="feature-spotlight-title">Callswain AI Supervisor Telemetry Console</h3>
+        </div>
+
+        <div class="feature-meta-triad">
+          <div class="triad-col">
+            <span class="triad-label">What it is</span>
+            <p class="triad-text">The central control hub pairing real-time call volume counters, agent status badges, and active queue monitoring.</p>
+          </div>
+          <div class="triad-col">
+            <span class="triad-label">What the user does</span>
+            <p class="triad-text">Supervisors monitor inbound call flow, track individual agent talk times, and manage routing changes during peak traffic.</p>
+          </div>
+          <div class="triad-col">
+            <span class="triad-label">Why structured this way</span>
+            <p class="triad-text">Positions critical queue counters along the top metric rail while keeping active agent status cards front and center for immediate operational awareness.</p>
+          </div>
+        </div>
+
+        <div class="feature-media-frame">
+          <img src="callswain_mockup.jpg" alt="Callswain AI Operational Console Mockup" class="feature-media-img">
+        </div>
+      </article>
+    </section>
+
+    <!-- 09 — DESIGN SYSTEM & UI SPECS -->
+    <section class="case-section">
+      <div class="section-label-header">
+        <span class="section-tag-name">09 — Design System</span>
+        <div class="tag-divider"></div>
+      </div>
+
+      <h2 class="case-section-title">A high-contrast visual language built for 24/7 command centers.</h2>
+      <p class="case-section-desc">
+        Call centers often run in low-light environments. The design system prioritizes contrast, legible numeric telemetry, and durable visual tokens:
+      </p>
+
+      <div class="ux-decisions-grid">
+        <div class="ux-decision-card">
+          <span class="decision-topic-tag">COLOR SYSTEM</span>
+          <h3 class="decision-title">Dark Zinc + Callswain Orange</h3>
+          <p class="decision-body">
+            Deep charcoal surfaces (`#18181b` / `#09090b`) reduce eye fatigue during long shifts, while vibrant brand orange (`#FF6B00`) highlights primary actions, active audio waveforms, and important queue alerts.
+          </p>
+        </div>
+
+        <div class="ux-decision-card">
+          <span class="decision-topic-tag">TYPOGRAPHY SYSTEM</span>
+          <h3 class="decision-title">Plus Jakarta Sans &amp; Monospace Timers</h3>
+          <p class="decision-body">
+            Plus Jakarta Sans provides high clarity for agent names and IVR prompt text, while monospaced numerical figures prevent layout jitter as live call second-counters tick in real time.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 — OUTCOME & DELIVERED FOUNDATION -->
+    <section class="case-section">
+      <div class="section-label-header">
+        <span class="section-tag-name">10 — Delivered Foundation</span>
+        <div class="tag-divider"></div>
+      </div>
+
+      <h2 class="case-section-title">What was delivered: A cohesive telecommunication management suite.</h2>
+      <p class="case-section-desc">
+        The project delivered an end-to-end design foundation replacing disjointed legacy telephony tools:
+      </p>
+
+      <div class="workflow-rail">
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">DELIVERABLE 01</span>
+          <h3 class="workflow-step-title">Zero-Code IVR Canvas</h3>
+          <p class="workflow-step-desc">Visual drag-and-drop flow builder allowing non-technical managers to compose and deploy multi-tier phone menus.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">DELIVERABLE 02</span>
+          <h3 class="workflow-step-title">Live Telemetry Wall</h3>
+          <p class="workflow-step-desc">Real-time status grid showing active calls, agent availability states, and audio waveform activity.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">DELIVERABLE 03</span>
+          <h3 class="workflow-step-title">Queue SLA Timers</h3>
+          <p class="workflow-step-desc">Visual urgency indicators alerting supervisors to high wait times before caller abandonment occurs.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">DELIVERABLE 04</span>
+          <h3 class="workflow-step-title">Telephony Design System</h3>
+          <p class="workflow-step-desc">High-contrast dark mode component library engineered for prolonged command center operations.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 — REFLECTION / WHAT I LEARNED -->
+    <section class="case-section">
+      <div class="section-label-header">
+        <span class="section-tag-name">11 — Designer Reflection</span>
+        <div class="tag-divider"></div>
+      </div>
+
+      <h2 class="case-section-title">What this project taught me as a product designer.</h2>
+
+      <div class="reflection-quote-box">
+        <p class="reflection-quote-text">
+          "Designing for voice telephony taught me the critical difference between static data and live operational state. In a call center, information is constantly decaying: a caller waiting 30 seconds is normal, but a caller waiting 3 minutes is an operational emergency. UI elements can't just display numbers—they have to visually convey temporal urgency and give operators immediate levers to intervene."
+        </p>
+        <span class="reflection-author-tag">— S M Roqunuzzaman · UI/UX Designer</span>
+      </div>
+    </section>
+
+    <!-- 12 — CROSS-PROJECT NAVIGATION -->
+    <nav class="case-pagination-row" aria-label="More Case Studies">
+      <a href="proqscan-case-study.html" class="case-nav-tile">
+        <span class="case-nav-dir">← Previous Project</span>
+        <span class="case-nav-title">ProQscan AI: Procurement &amp; Audit</span>
+        <span class="case-nav-desc">4-portal enterprise architecture with automated 3-way matching.</span>
+      </a>
+
+      <a href="voqal-case-study.html" class="case-nav-tile" style="text-align: right;">
+        <span class="case-nav-dir">Next Project →</span>
+        <span class="case-nav-title">Voqal AI: Voice Agent Studio</span>
+        <span class="case-nav-desc">Visual prompt builder, test call simulator, and multi-tenant admin.</span>
+      </a>
+    </nav>
+
+    <!-- FOOTER / GATEWAY -->
     <footer class="case-study-footer">
       <div class="case-footer-content">
+        <div class="section-label-header" style="margin-bottom:1rem;">
+          <span class="section-tag-name">Experience Callswain AI</span>
+          <div class="tag-divider" style="margin: 0.5rem auto 0;"></div>
+        </div>
+
         <h2 style="font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight:700;">
-          Experience Callswain AI live or explore other cases.
+          Explore the live platform or review more case files.
         </h2>
 
         <div class="case-footer-actions">
-          <a href="https://callswainai.com/" target="_blank" rel="noopener noreferrer" class="btn-primary" style="display:inline-flex; align-items:center; gap:8px;">
-            <span>VISIT CALLSWAINAI.COM</span>
+          <a href="https://callswainai.com/" target="_blank" rel="noopener noreferrer" class="case-action-btn live-btn">
+            <span>VISIT LIVE PLATFORM (CALLSWAINAI.COM)</span>
             <span>↗</span>
           </a>
-          <a href="index.html#selected" class="btn-secondary" style="display:inline-flex; align-items:center; gap:8px;">
-            <span>← RETURN TO CAROUSEL</span>
+          <a href="cv.html#projects" class="case-action-btn figma-btn">
+            <span>VIEW ALL CASE ARCHIVES IN CV →</span>
           </a>
-          <a href="cv.html#projects" class="btn-secondary-link">
-            <span>View All Cases in CV →</span>
+          <a href="index.html#selected" class="btn-secondary-link" style="font-size:0.9rem;">
+            <span>← Back to Selected Work</span>
           </a>
         </div>
+
+        <p class="contact-location" style="margin-top:3rem; font-size:0.8rem; color: var(--muted-foreground);">
+          © 2026 S M Roqunuzzaman · UI/UX Designer · Callswain AI Case Study
+        </p>
       </div>
     </footer>
 

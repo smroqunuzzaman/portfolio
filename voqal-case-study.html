@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Voqal AI — Conversational Voice Agent Builder &amp; Analytics · UI/UX Case Study</title>
-  <meta name="description" content="Authentic UI/UX Case Study: Designing Voqal, an enterprise conversational AI voice platform with visual prompt builder, test call simulator, and multi-tenant admin console.">
+  <meta name="description" content="Authentic UI/UX Case Study by S M Roqunuzzaman: Designing Voqal AI for Betopia Group, an enterprise conversational voice platform with 3-step agent wizard, test call simulator, and multi-tenant telemetry.">
+  <meta property="og:title" content="Voqal AI — UI/UX Case Study · S M Roqunuzzaman">
+  <meta property="og:description" content="AI Voice Agent Studio: 3-step creation wizard, real-time call simulator, transcript viewer, and multi-tenant admin console.">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,7 +27,10 @@
 </head>
 <body class="case-study-page">
 
+  <!-- Fluid Neon Ribbon Cursor -->
   <canvas class="cursor-trail-canvas" id="cursorTrailCanvas" aria-hidden="true"></canvas>
+
+  <!-- Film Grain Overlay -->
   <div class="grain-overlay" aria-hidden="true"></div>
 
   <!-- Top Navigation Header -->
@@ -33,170 +38,512 @@
     <div class="dossier-nav-left">
       <a href="index.html#selected" class="dossier-back-btn">
         <span class="back-arrow">←</span>
-        <span>Back to Selected Works</span>
+        <span>Back to Portfolio</span>
       </a>
     </div>
 
     <div class="dossier-nav-right">
       <a href="cv.html" class="overlay-link">Curriculum Vitae (CV)</a>
-      <a href="https://drive.google.com/file/d/1cXV8lthcDHrPGLQng46d6io8WmMNn0Pw/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="overlay-link resume-link-highlight">PDF Resume ↗</a>
+      <a href="https://drive.google.com/file/d/1cXV8lthcDHrPGLQng46d6io8WmMNn0Pw/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="overlay-link resume-link-highlight" title="Open PDF Resume in Google Drive">PDF Resume ↗</a>
       <a href="mailto:smroqunuzzaman@gmail.com" class="overlay-link">Mail</a>
       <a href="https://dribbble.com/SMRoqunuzzaman" target="_blank" rel="noopener noreferrer" class="overlay-link">Dribbble</a>
       <a href="https://www.linkedin.com/in/smroqunuzzaman/" target="_blank" rel="noopener noreferrer" class="overlay-link">LinkedIn</a>
 
-      <button class="theme-bulb-toggle" id="themeToggle" type="button" aria-label="Toggle dark and light theme" role="switch" aria-checked="false">
+      <!-- Theme Switcher Bulb -->
+      <div class="theme-bulb-toggle" id="themeToggle" role="group" aria-label="Theme toggle switch">
         <div class="bulb-widget-wrapper">
-          <div class="bulb-disc-fixture">
-            <svg class="bulb-silhouette-svg" viewBox="0 0 24 24" fill="currentColor">
+          <button class="bulb-disc-fixture" id="bulbDiscFixture" type="button" aria-label="Toggle dark and light theme" role="switch" aria-checked="false" title="Click disc to toggle theme">
+            <svg class="bulb-silhouette-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M12 2.5a6.5 6.5 0 0 0-6.5 6.5c0 2.44 1.34 4.56 3.32 5.66.45.25.74.72.74 1.24v1.8c0 .72.58 1.3 1.3 1.3h2.28c.72 0 1.3-.58 1.3-1.3v-1.8c0-.52.29-.99.74-1.24A6.48 6.48 0 0 0 18.5 9a6.5 6.5 0 0 0-6.5-6.5zm-1.14 17.5h2.28a.7.7 0 0 1 .7.7v.2a.7.7 0 0 1-.7.7h-2.28a.7.7 0 0 1-.7-.7v-.2a.7.7 0 0 1 .7-.7z"/>
             </svg>
-          </div>
-          <div class="bulb-pull-chain" aria-hidden="true">
-            <span class="chain-string"></span>
-            <span class="chain-bead"></span>
+          </button>
+          <div class="bulb-pull-chain" id="bulbPullChain" aria-label="Pull cord to toggle theme" title="Pull string down fully to toggle theme">
+            <svg class="chain-spring-svg" id="chainSpringSvg" viewBox="0 0 40 50" preserveAspectRatio="none" aria-hidden="true">
+              <path class="chain-spring-path" id="chainSpringPath" d="M 20 0 L 20 16" />
+            </svg>
+            <span class="chain-bead" id="chainBead" aria-hidden="true"></span>
           </div>
         </div>
-      </button>
+      </div>
     </div>
   </header>
 
   <main class="case-study-container">
 
-    <!-- HERO SECTION -->
+    <!-- 01 — PROJECT INTRODUCTION / HERO -->
     <section class="case-hero-section">
       <div class="case-category-tag">
         <span>03 — SELECTED CASE STUDY</span>
         <span>·</span>
-        <span>PRODUCT DESIGN · 2026</span>
+        <span>CONVERSATIONAL AI &amp; SAAS PRODUCT DESIGN</span>
       </div>
 
-      <h1 class="case-headline">Voqal: AI Voice Agent Builder &amp; Call Analytics</h1>
+      <h1 class="case-headline">Voqal AI: Voice Agent Studio &amp; Telemetry Console</h1>
 
       <p class="case-lead-summary">
-        Crafting an enterprise platform for training, testing, and deploying conversational speech agents with human-like vocal inflection, live simulation sandboxes, and deep latency instrumentation.
+        Designing an end-to-end voice agent studio for Betopia Group, featuring a guided 3-step creation wizard, split-screen prompt simulator, and multi-tenant call analytics platform built for international deployment.
       </p>
 
+      <!-- Project Metadata Matrix -->
       <div class="case-meta-matrix">
         <div class="meta-matrix-item">
-          <span class="meta-matrix-label">Role</span>
-          <span class="meta-matrix-val">Lead Product Designer</span>
+          <span class="meta-matrix-label">My Role</span>
+          <span class="meta-matrix-val">UI/UX &amp; Product Designer</span>
         </div>
         <div class="meta-matrix-item">
-          <span class="meta-matrix-label">Platform</span>
-          <span class="meta-matrix-val">Web SaaS &amp; Voice Studio</span>
-        </div>
-        <div class="meta-matrix-item">
-          <span class="meta-matrix-label">Timeline</span>
-          <span class="meta-matrix-val">2026</span>
+          <span class="meta-matrix-label">Client / Org</span>
+          <span class="meta-matrix-val">Betopia Group</span>
         </div>
         <div class="meta-matrix-item">
           <span class="meta-matrix-label">Deliverables</span>
-          <span class="meta-matrix-val">Design System &amp; Studio UX</span>
+          <span class="meta-matrix-val">Design System, Studio UX &amp; Simulator</span>
+        </div>
+        <div class="meta-matrix-item">
+          <span class="meta-matrix-label">Figma Design</span>
+          <span class="meta-matrix-val">
+            <a href="https://www.figma.com/design/vABZISsnUv6okHreZK1C4v/Project-IVR-for-LTD" target="_blank" rel="noopener noreferrer">Figma Workspace ↗</a>
+          </span>
         </div>
       </div>
 
+      <!-- Quick Action Buttons -->
+      <div class="case-action-bar">
+        <a href="https://www.figma.com/design/vABZISsnUv6okHreZK1C4v/Project-IVR-for-LTD" target="_blank" rel="noopener noreferrer" class="case-action-btn live-btn">
+          <span>Inspect Figma Workspace</span>
+          <span>↗</span>
+        </a>
+        <a href="#wizard" class="case-action-btn figma-btn">
+          <span>Explore 3-Step Wizard ↓</span>
+        </a>
+      </div>
+
       <!-- Hero Screen Showcase -->
-      <div class="case-hero-screen-frame">
-        <img src="voqal_mockup.png" alt="Voqal AI Voice Studio Interface Mockup" class="case-hero-img">
+      <div class="case-hero-screen-frame" style="margin-top: 2.5rem;">
+        <img src="voqal_mockup.png" alt="Voqal AI Voice Agent Builder Interface Mockup" class="case-hero-img">
         <div class="case-screen-caption">
-          <span><strong>Voqal Studio Console</strong> — Visual System Prompt Tuner, In-Browser Voice Simulator, and Turn-Taking Analytics</span>
-          <span>SHIPPED PRODUCT DESIGN</span>
+          <span><strong>Voqal Agent Creation Studio</strong> — System Prompt Canvas, Real-Time WebRTC Audio Simulator, and Latency Telemetry</span>
+          <span>FIGMA DESIGN &amp; SAAS FOUNDATION</span>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 1: THE CHALLENGE -->
+    <!-- 02 — OVERVIEW -->
     <section class="case-section">
       <div class="section-label-header">
-        <span class="section-tag-name">01 — The Challenge</span>
+        <span class="section-tag-name">02 — Overview</span>
         <div class="tag-divider"></div>
       </div>
 
-      <h2 class="case-section-title">Voice AI requires managing latency, interruption, and emotional tone.</h2>
+      <h2 class="case-section-title">Democratizing conversational voice engineering for non-developers.</h2>
       <p class="case-section-desc">
-        Text chat bots are forgiving of delays; voice conversations break if latency exceeds 400ms. Designers and engineers needed a unified interface to test voice synthesis models, tweak prompt guardrails, and monitor call satisfaction in real time.
+        Voqal AI is a cloud SaaS platform that allows businesses to build, test, and deploy intelligent conversational voice agents without writing custom backend code. Designed for Betopia Group, the product spans the entire voice development lifecycle: from drafting persona prompts and picking synthetic voice models to running live in-browser test phone calls, reviewing transcript logs, and managing team billing across international operations.
+      </p>
+    </section>
+
+    <!-- 03 — THE PROBLEM / DESIGN CHALLENGE -->
+    <section class="case-section">
+      <div class="section-label-header">
+        <span class="section-tag-name">03 — The Challenge</span>
+        <div class="tag-divider"></div>
+      </div>
+
+      <h2 class="case-section-title">Bridging high-latency AI parameters with intuitive interface design.</h2>
+      <p class="case-section-desc">
+        Configuring conversational speech AI involves technical complexities that overwhelm standard business operators: model temperature, voice synthesis models, time-to-first-byte (TTFB) latencies, and knowledge base document indexing. In existing developer tools, creators had to edit JSON payloads and use external telephone lines to test if an agent sounded natural, resulting in slow feedback loops and frustrating setup experiences.
+      </p>
+
+      <div class="comparison-grid">
+        <div class="comparison-card card-negative">
+          <span class="comparison-badge bad">✕ Fragmented Developer Tools</span>
+          <h3 class="comparison-card-title">Code-Heavy Configuration &amp; Blind Testing</h3>
+          <p class="comparison-card-desc">Users juggle command-line scripts and telephony providers just to test a single prompt adjustment.</p>
+
+          <ul class="comparison-steps">
+            <li>
+              <span class="step-bullet bad">✕</span>
+              <div>
+                <strong>Overwhelming Parameter Dumps:</strong> Exposing raw LLM weights, sampling rates, and token limits confuses non-technical operators.
+              </div>
+            </li>
+            <li>
+              <span class="step-bullet bad">✕</span>
+              <div>
+                <strong>External Testing Friction:</strong> Creators had to deploy code to a live server and dial a physical telephone to hear the voice agent.
+              </div>
+            </li>
+            <li>
+              <span class="step-bullet bad">✕</span>
+              <div>
+                <strong>Opaque Call Failures:</strong> When an agent pauses or gives a robotic reply, traditional logs show raw error codes without timestamped transcripts.
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="comparison-card card-positive">
+          <span class="comparison-badge good">✓ Voqal Integrated Studio</span>
+          <h3 class="comparison-card-title">Guided Wizard &amp; In-Browser Simulator</h3>
+          <p class="comparison-card-desc">An interactive studio unifying prompt authoring, voice auditioning, and real-time WebRTC simulation.</p>
+
+          <ul class="comparison-steps">
+            <li>
+              <span class="step-bullet good">✓</span>
+              <div>
+                <strong>Guided 3-Step Wizard:</strong> Step-by-step progressive disclosure isolating identity, knowledge, and telephony settings.
+              </div>
+            </li>
+            <li>
+              <span class="step-bullet good">✓</span>
+              <div>
+                <strong>Live In-Browser Simulator:</strong> Interactive telephone handset interface allowing creators to test conversations instantly with one click.
+              </div>
+            </li>
+            <li>
+              <span class="step-bullet good">✓</span>
+              <div>
+                <strong>Dual-Channel Transcripts:</strong> Synchronized audio playback highlighting agent vs. caller speech bubbles with confidence scores.
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 — USERS & OPERATIONAL ROLES -->
+    <section class="case-section">
+      <div class="section-label-header">
+        <span class="section-tag-name">04 — Users &amp; Operational Roles</span>
+        <div class="tag-divider"></div>
+      </div>
+
+      <h2 class="case-section-title">Designed for creators, analysts, and enterprise administrators.</h2>
+      <p class="case-section-desc">
+        The platform serves three specialized user groups across an organization's voice deployment journey:
+      </p>
+
+      <div class="workflow-rail">
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">ROLE 01</span>
+          <h3 class="workflow-step-title">Voice Prompt Creator</h3>
+          <p class="workflow-step-desc">Defines agent persona, writes system prompts, selects voice timber, and configures fallback knowledge base documents.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">ROLE 02</span>
+          <h3 class="workflow-step-title">Conversation Analyst</h3>
+          <p class="workflow-step-desc">Inspects historical call logs, reads verbatim transcripts, flags misheard caller intents, and benchmarks conversation completion.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">ROLE 03</span>
+          <h3 class="workflow-step-title">Operations Super Admin</h3>
+          <p class="workflow-step-desc">Oversees multi-tenant company accounts, provisions outbound phone numbers, and manages telephony credit usage meters.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">ROLE 04</span>
+          <h3 class="workflow-step-title">Department Manager</h3>
+          <p class="workflow-step-desc">Assigns specific voice agents to customer support queues, sets business operating hours, and monitors caller satisfaction ratings.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 — AGENT CREATION & SIMULATION WORKFLOW -->
+    <section class="case-section" id="wizard">
+      <div class="section-label-header">
+        <span class="section-tag-name">05 — Product Workflow</span>
+        <div class="tag-divider"></div>
+      </div>
+
+      <h2 class="case-section-title">The Guided 3-Step Agent Creation &amp; Deployment Flow</h2>
+      <p class="case-section-desc">
+        To eliminate setup fatigue, I structured agent creation into a focused, progressive journey:
+      </p>
+
+      <div class="workflow-rail">
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">STEP 01 — IDENTITY</span>
+          <h3 class="workflow-step-title">Persona &amp; Voice Selection</h3>
+          <p class="workflow-step-desc">Name the agent, select target primary language, audition sample voice clips, and calibrate pitch and speaking speed.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">STEP 02 — KNOWLEDGE</span>
+          <h3 class="workflow-step-title">Instructions &amp; Guardrails</h3>
+          <p class="workflow-step-desc">Define conversational mission, enter fallback scripts, and upload company reference PDFs for automated retrieval.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">STEP 03 — TESTING</span>
+          <h3 class="workflow-step-title">Interactive Simulation</h3>
+          <p class="workflow-step-desc">Launch an in-browser WebRTC call with the live agent. Speak naturally to test interruptions, pauses, and latency.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">STEP 04 — DEPLOYMENT</span>
+          <h3 class="workflow-step-title">Phone Number Assignment</h3>
+          <p class="workflow-step-desc">Link the tested agent to an inbound DID phone number or web chat widget with active telemetry monitoring.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 — UX STRUCTURE & PLATFORM PORTALS -->
+    <section class="case-section">
+      <div class="section-label-header">
+        <span class="section-tag-name">06 — UX Structure</span>
+        <div class="tag-divider"></div>
+      </div>
+
+      <h2 class="case-section-title">Core architectural modules of the Voqal platform.</h2>
+      <p class="case-section-desc">
+        The Figma workspace spans four interconnected interface modules designed for high operational clarity:
       </p>
 
       <div class="portals-bento-grid">
         <div class="portal-bento-card">
           <div class="portal-header-row">
-            <span class="portal-num-tag">STUDIO 01</span>
-            <span style="font-size:0.75rem; font-weight:700; color: #a855f7;">PROMPT STUDIO</span>
+            <span class="portal-num-tag">MODULE 01</span>
+            <span style="font-size:0.75rem; font-weight:700; color: #8b5cf6;">STUDIO CANVAS</span>
           </div>
-          <h3 class="portal-name-headline">Visual Agent Persona Architect</h3>
+          <h3 class="portal-name-headline">Split-Screen Prompt &amp; Voice Studio</h3>
+          <div class="portal-nav-pills">
+            <span class="portal-nav-pill">Prompt Editor</span>
+            <span class="portal-nav-pill">Voice Audition</span>
+            <span class="portal-nav-pill">Live WebRTC</span>
+            <span class="portal-nav-pill">Latency Meters</span>
+          </div>
           <ul class="portal-features-list">
-            <li>Parameter sliders for warmth, pacing, pitch, and hesitation probability.</li>
-            <li>Dynamic variable injection pulling caller CRM data directly into conversational context.</li>
-            <li>Zero-code guardrail filters restricting toxic queries and compliance violations.</li>
+            <li>Left panel dedicated to persona guidelines, temperature sliders, and knowledge base document links.</li>
+            <li>Right panel houses an interactive mobile handset widget for one-click audio testing without leaving the studio.</li>
+            <li>Real-time speech latency readout showing time-to-first-byte (TTFB) in milliseconds.</li>
           </ul>
         </div>
 
         <div class="portal-bento-card">
           <div class="portal-header-row">
-            <span class="portal-num-tag">STUDIO 02</span>
-            <span style="font-size:0.75rem; font-weight:700; color: #3b82f6;">TELEMETRY</span>
+            <span class="portal-num-tag">MODULE 02</span>
+            <span style="font-size:0.75rem; font-weight:700; color: #3b82f6;">TELEMETRY LOGS</span>
           </div>
-          <h3 class="portal-name-headline">End-to-End Latency Waterfall</h3>
+          <h3 class="portal-name-headline">Call Logs &amp; Transcript Viewer</h3>
+          <div class="portal-nav-pills">
+            <span class="portal-nav-pill">Call History</span>
+            <span class="portal-nav-pill">Audio Scrub</span>
+            <span class="portal-nav-pill">Timestamped Dialog</span>
+            <span class="portal-nav-pill">Sentiment Tag</span>
+          </div>
           <ul class="portal-features-list">
-            <li>Sub-millisecond waterfall graphs decomposing STT (Speech-to-Text), LLM generation, and TTS streaming.</li>
-            <li>Interruption detection logs showing where human callers spoke over the AI.</li>
-            <li>Automated resolution scoring assessing whether caller issues were resolved without human escalations.</li>
+            <li>Master-detail ledger showing caller ID, call duration, timestamp, and end disposition (Resolved, Transferred, Dropped).</li>
+            <li>Synchronized transcript player where clicking any spoken dialogue bubble seeks audio directly to that exact second.</li>
+            <li>Visual flag markers identifying turns where the agent triggered fallback or requested human transfer.</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 2: SHIPPED IMPACT -->
+    <!-- 07 — KEY UX DECISIONS -->
     <section class="case-section">
       <div class="section-label-header">
-        <span class="section-tag-name">02 — Impact Metrics</span>
+        <span class="section-tag-name">07 — Key UX Decisions</span>
         <div class="tag-divider"></div>
       </div>
 
-      <h2 class="case-section-title">Measurable production results.</h2>
+      <h2 class="case-section-title">Designing for conversational repair and rapid iteration.</h2>
+      <p class="case-section-desc">
+        AI voice interfaces have unique friction points. I established specific design solutions to make testing and refinement seamless:
+      </p>
 
-      <div class="impact-metrics-grid">
-        <div class="impact-metric-card">
-          <div class="metric-num">-60%</div>
-          <div class="metric-label">Agent Setup Time</div>
-          <div class="metric-sub">From days of coding to 15-minute visual builds</div>
+      <div class="ux-decisions-grid">
+        <div class="ux-decision-card">
+          <span class="decision-topic-tag">SPLIT-SCREEN ERGONOMICS</span>
+          <h3 class="decision-title">Zero-Context-Switch Testing</h3>
+          <p class="decision-body">
+            In standard tools, testing a prompt adjustment required navigating to a different page or opening a modal. By embedding a live WebRTC audio handset directly on the right side of the prompt editor, creators make a tweak and test it within two seconds.
+          </p>
         </div>
 
-        <div class="impact-metric-card">
-          <div class="metric-num">4.8★</div>
-          <div class="metric-label">Audio Quality</div>
-          <div class="metric-sub">Natural cadence scored by blind test listeners</div>
+        <div class="ux-decision-card">
+          <span class="decision-topic-tag">TRANSCRIPT USABILITY</span>
+          <h3 class="decision-title">Click-to-Seek Audio Dialogue</h3>
+          <p class="decision-body">
+            Call center managers reviewing a 10-minute call don't want to listen to the whole recording. Each spoken transcript bubble is tied to audio timestamps: clicking the user's complaint immediately jumps playback to that moment.
+          </p>
         </div>
 
-        <div class="impact-metric-card">
-          <div class="metric-num">12k+</div>
-          <div class="metric-label">Daily Calls</div>
-          <div class="metric-sub">Processed simultaneously with &lt;380ms latency</div>
+        <div class="ux-decision-card">
+          <span class="decision-topic-tag">PROGRESSIVE DISCLOSURE</span>
+          <h3 class="decision-title">Hiding Machine Learning Jargon</h3>
+          <p class="decision-body">
+            Technical terms like "top_p", "frequency_penalty", and "chunk_overlap" were moved into an "Advanced Model Engineering" collapsible drawer, while common business controls (Voice Timber, Tone, and Core Instructions) remain front and center.
+          </p>
         </div>
 
-        <div class="impact-metric-card">
-          <div class="metric-num">92%</div>
-          <div class="metric-label">Resolution Rate</div>
-          <div class="metric-sub">Calls completed without human transfer</div>
+        <div class="ux-decision-card">
+          <span class="decision-topic-tag">LATENCY TRANSPARENCY</span>
+          <h3 class="decision-title">Visual Audio Inflection Meters</h3>
+          <p class="decision-body">
+            Voice agents feel robotic if they pause too long before speaking. I designed real-time synthesis badges that clearly show when the agent is "Listening", "Synthesizing", or "Speaking", helping designers diagnose conversational lag.
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- 08 — IMPORTANT SCREENS SHOWCASE -->
+    <section class="case-section">
+      <div class="section-label-header">
+        <span class="section-tag-name">08 — Screen Showcase</span>
+        <div class="tag-divider"></div>
+      </div>
+
+      <h2 class="case-section-title">Deep dive into the voice studio interface.</h2>
+
+      <article class="feature-spotlight-card">
+        <div class="feature-spotlight-header">
+          <span class="feature-tag-chip">Voice Studio</span>
+          <h3 class="feature-spotlight-title">Voqal AI Agent Creation Studio &amp; Simulator</h3>
+        </div>
+
+        <div class="feature-meta-triad">
+          <div class="triad-col">
+            <span class="triad-label">What it is</span>
+            <p class="triad-text">The central creator dashboard combining prompt instructions with an interactive test phone call handset.</p>
+          </div>
+          <div class="triad-col">
+            <span class="triad-label">What the user does</span>
+            <p class="triad-text">Authors voice persona instructions, selects vocal parameters, and tests conversation quality over in-browser WebRTC.</p>
+          </div>
+          <div class="triad-col">
+            <span class="triad-label">Why structured this way</span>
+            <p class="triad-text">Eliminates testing friction by keeping prompt inputs and live audio feedback side-by-side in a single ergonomic view.</p>
+          </div>
+        </div>
+
+        <div class="feature-media-frame">
+          <img src="voqal_mockup.png" alt="Voqal AI Voice Studio Interface Mockup" class="feature-media-img">
+        </div>
+      </article>
+    </section>
+
+    <!-- 09 — DESIGN SYSTEM & UI SPECS -->
+    <section class="case-section">
+      <div class="section-label-header">
+        <span class="section-tag-name">09 — Design System</span>
+        <div class="tag-divider"></div>
+      </div>
+
+      <h2 class="case-section-title">Modern dark studio aesthetic calibrated for voice synthesis.</h2>
+      <p class="case-section-desc">
+        The design system reinforces audio creativity while maintaining structured enterprise usability:
+      </p>
+
+      <div class="ux-decisions-grid">
+        <div class="ux-decision-card">
+          <span class="decision-topic-tag">COLOR SYSTEM</span>
+          <h3 class="decision-title">Deep Obsidian + Violet Glow</h3>
+          <p class="decision-body">
+            A rich charcoal palette accented by soft indigo and violet tones creates a focused, modern creative studio environment. Waveform visualizers and status lights use luminous neon accents for instant visibility.
+          </p>
+        </div>
+
+        <div class="ux-decision-card">
+          <span class="decision-topic-tag">TYPOGRAPHY SYSTEM</span>
+          <h3 class="decision-title">Plus Jakarta Sans &amp; Clean Contrast</h3>
+          <p class="decision-body">
+            Clean sans-serif typography ensures high legibility across dialogue transcript bubbles, audio latency meters, and multi-tenant admin configuration tables.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 — OUTCOME & DELIVERED FOUNDATION -->
+    <section class="case-section">
+      <div class="section-label-header">
+        <span class="section-tag-name">10 — Delivered Foundation</span>
+        <div class="tag-divider"></div>
+      </div>
+
+      <h2 class="case-section-title">What was delivered: A scalable voice SaaS product foundation.</h2>
+      <p class="case-section-desc">
+        The design handoff delivered a comprehensive product architecture ready for engineering implementation:
+      </p>
+
+      <div class="workflow-rail">
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">DELIVERABLE 01</span>
+          <h3 class="workflow-step-title">3-Step Onboarding Wizard</h3>
+          <p class="workflow-step-desc">Focused step-by-step agent builder guiding creators from raw idea to deployable phone persona.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">DELIVERABLE 02</span>
+          <h3 class="workflow-step-title">Split-Screen Simulator</h3>
+          <p class="workflow-step-desc">Interactive WebRTC test phone interface enabling immediate audio iteration in the same viewport.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">DELIVERABLE 03</span>
+          <h3 class="workflow-step-title">Transcript Explorer</h3>
+          <p class="workflow-step-desc">Master-detail call log viewer with click-to-seek audio playback and conversation outcome tagging.</p>
+        </div>
+        <div class="workflow-step-card">
+          <span class="workflow-step-num">DELIVERABLE 04</span>
+          <h3 class="workflow-step-title">Multi-Tenant Admin Suite</h3>
+          <p class="workflow-step-desc">Workspace management console handling team permissions, telephone number assignments, and billing.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 — REFLECTION / WHAT I LEARNED -->
+    <section class="case-section">
+      <div class="section-label-header">
+        <span class="section-tag-name">11 — Designer Reflection</span>
+        <div class="tag-divider"></div>
+      </div>
+
+      <h2 class="case-section-title">What this project taught me as a product designer.</h2>
+
+      <div class="reflection-quote-box">
+        <p class="reflection-quote-text">
+          "Designing for conversational AI voice agents made me realize that latency is a primary UX concern, not just an engineering metric. When an AI speaks, even a half-second pause feels awkward to a human caller. The interface had to make latency visible and manageable to creators so they could design prompts that set expectations, acknowledge input immediately, and keep conversations feeling natural."
+        </p>
+        <span class="reflection-author-tag">— S M Roqunuzzaman · UI/UX Designer</span>
+      </div>
+    </section>
+
+    <!-- 12 — CROSS-PROJECT NAVIGATION -->
+    <nav class="case-pagination-row" aria-label="More Case Studies">
+      <a href="callswain-case-study.html" class="case-nav-tile">
+        <span class="case-nav-dir">← Previous Project</span>
+        <span class="case-nav-title">Callswain AI: Voice Telephony SaaS</span>
+        <span class="case-nav-desc">Intelligent IVR flow studio, waveform analytics, and agent productivity.</span>
+      </a>
+
+      <a href="sakeena-case-study.html" class="case-nav-tile" style="text-align: right;">
+        <span class="case-nav-dir">Next Project →</span>
+        <span class="case-nav-title">Sakeena Institute: Global LMS Platform</span>
+        <span class="case-nav-desc">Multi-role learning ecosystem, course studios, and localized international billing.</span>
+      </a>
+    </nav>
+
+    <!-- FOOTER / GATEWAY -->
     <footer class="case-study-footer">
       <div class="case-footer-content">
+        <div class="section-label-header" style="margin-bottom:1rem;">
+          <span class="section-tag-name">Inspect the Design File</span>
+          <div class="tag-divider" style="margin: 0.5rem auto 0;"></div>
+        </div>
+
         <h2 style="font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight:700;">
-          Explore more selected projects or view full CV.
+          Explore the Figma workspace or review more case files.
         </h2>
 
         <div class="case-footer-actions">
-          <a href="index.html#selected" class="btn-primary" style="display:inline-flex; align-items:center; gap:8px;">
-            <span>← BACK TO SELECTED CAROUSEL</span>
+          <a href="https://www.figma.com/design/vABZISsnUv6okHreZK1C4v/Project-IVR-for-LTD" target="_blank" rel="noopener noreferrer" class="case-action-btn live-btn">
+            <span>INSPECT FIGMA DESIGN WORKSPACE</span>
+            <span>↗</span>
           </a>
-          <a href="cv.html#projects" class="btn-secondary" style="display:inline-flex; align-items:center; gap:8px;">
-            <span>VIEW CASE ARCHIVES IN CV →</span>
+          <a href="cv.html#projects" class="case-action-btn figma-btn">
+            <span>VIEW ALL CASE ARCHIVES IN CV →</span>
+          </a>
+          <a href="index.html#selected" class="btn-secondary-link" style="font-size:0.9rem;">
+            <span>← Back to Selected Work</span>
           </a>
         </div>
+
+        <p class="contact-location" style="margin-top:3rem; font-size:0.8rem; color: var(--muted-foreground);">
+          © 2026 S M Roqunuzzaman · UI/UX Designer · Voqal AI Case Study
+        </p>
       </div>
     </footer>
 
